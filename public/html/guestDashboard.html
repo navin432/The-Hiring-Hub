@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guest Dashboard - Job Listings</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #ffffff;
+        padding: 20px;
+        margin-top: 30px;
+        width: 900px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+      }
+
+      .header h2 {
+        color: #333333;
+      }
+
+      .nav-tabs {
+        display: flex;
+        gap: 20px;
+      }
+
+      .nav-tabs a {
+        text-decoration: none;
+        font-size: 16px;
+        color: #007bff;
+        padding: 10px 20px;
+        background-color: #f0f0f0;
+        border-radius: 4px;
+      }
+
+      .nav-tabs a:hover {
+        background-color: #007bff;
+        color: white;
+      }
+      button a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      .job-listings {
+        margin-top: 20px;
+      }
+
+      .job-listing {
+        border-bottom: 1px solid #cccccc;
+        padding: 15px 0;
+      }
+
+      .job-listing:last-child {
+        border-bottom: none;
+      }
+
+      .job-listing h3 {
+        color: #333333;
+      }
+
+      .job-listing p {
+        color: #666666;
+        margin: 5px 0;
+      }
+
+      .job-listing button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .job-listing button:hover {
+        background-color: #0056b3;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #666666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>Welcome, Guest</h2>
+        <div class="nav-tabs">
+          <a href="#">Job Listings</a>
+          <a href="applicationStatus.html">Application Status</a>
+        </div>
+      </div>
+
+      <div class="job-listings">
+        <div class="job-listing">
+          <h3>Software Engineer</h3>
+          <p>Company: Tech Corp</p>
+          <p>Location: Remote</p>
+          <a href="jobApply.html">Apply Now</a>
+        </div>
+
+        <div class="job-listing">
+          <h3>Marketing Specialist</h3>
+          <p>Company: Global Marketing</p>
+          <p>Location: New York, NY</p>
+          <a href="jobApply.html">Apply Now</a>
+        </div>
+
+        <div class="job-listing">
+          <h3>Data Analyst</h3>
+          <p>Company: Data Solutions</p>
+          <p>Location: Chicago, IL</p>
+          <a href="jobApply.html">Apply Now</a>
+        </div>
+
+        <div class="job-listing">
+          <h3>UX/UI Designer</h3>
+          <p>Company: Creative Studio</p>
+          <p>Location: San Francisco, CA</p>
+          <a href="jobApply.html">Apply Now</a>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>&copy; 2024 Job Site. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>

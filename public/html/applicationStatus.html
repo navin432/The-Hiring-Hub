@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Status</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f7f6;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100vh;
+      }
+
+      .container {
+        background-color: #ffffff;
+        padding: 30px;
+        margin-top: 30px;
+        width: 800px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .container h2 {
+        color: #333333;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .status-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+
+      .status-table th,
+      .status-table td {
+        padding: 12px;
+        border: 1px solid #dddddd;
+        text-align: left;
+        font-size: 14px;
+        color: #333333;
+      }
+
+      .status-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+      }
+
+      .status-table td.status {
+        font-weight: bold;
+      }
+
+      .status.approved {
+        color: #28a745;
+      }
+
+      .status.pending {
+        color: #ffc107;
+      }
+
+      .status.rejected {
+        color: #dc3545;
+      }
+
+      button {
+        width: 100%;
+        padding: 12px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+      button a {
+        color: #fff;
+        text-decoration: none;
+      }
+      button:hover {
+        background-color: #0056b3;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 20px;
+        color: #666666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Application Status</h2>
+
+      <table class="status-table">
+        <thead>
+          <tr>
+            <th>Job Title</th>
+            <th>Company</th>
+            <th>Date Applied</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Software Engineer</td>
+            <td>Tech Corp</td>
+            <td>August 15, 2024</td>
+            <td class="status approved">Approved</td>
+          </tr>
+          <tr>
+            <td>Marketing Specialist</td>
+            <td>Global Marketing</td>
+            <td>September 2, 2024</td>
+            <td class="status pending">Pending</td>
+          </tr>
+          <tr>
+            <td>Data Analyst</td>
+            <td>Data Solutions</td>
+            <td>August 30, 2024</td>
+            <td class="status rejected">Rejected</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <a href="guestDashboard.html">Go Back to Job Listings</a>
+
+      <div class="footer">
+        <p>&copy; 2024 Job Site. All rights reserved.</p>
+      </div>
+    </div>
+  </body>
+</html>
