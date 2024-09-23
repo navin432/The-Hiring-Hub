@@ -27,11 +27,6 @@ a {
   font-size: 1.5rem;
 }
 
-h1,
-h2,
-h3 {
-  text-align: center;
-}
 h2 {
   padding-bottom: 1rem;
   margin: 0;
@@ -73,6 +68,28 @@ h3 {
   color: #fff;
 }
 
+.btn--apply {
+  background: #007bff;
+  color: #fff;
+  display: inline-block;
+  margin: 0;
+}
+
+.btn--status {
+  background: #dd4b39;
+  color: #fff;
+  display: inline-block;
+}
+.btn--jobSubmit {
+  background: #007bff;
+  color: #fff;
+}
+
+.btn--logout {
+  background: rgb(248, 24, 24);
+  color: #fff;
+  font-weight: 500;
+}
 .forgotPassword {
   color: #007bff;
 }
@@ -147,4 +164,239 @@ h3 {
   align-items: center;
   height: 100vh;
   font-size: 1.5rem;
+}
+
+.login h1,
+.login h2,
+.login h3 {
+  text-align: center;
+}
+/* Guest Dashboard Styles */
+.dashboard {
+  font-family: Arial, sans-serif;
+  background-color: #f4f7f6;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.dashboard__container {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-top: 30px;
+  width: 900px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Header */
+.dashboard__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 0 4rem 0 1.5rem;
+}
+
+.dashboard__header .logo {
+  margin: 0;
+}
+.dashboard__title {
+  color: #333333;
+}
+
+.dashboard__nav {
+  margin-top: 5rem;
+}
+
+/* Navigation */
+.dashboard__nav-tabs {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.dashboard__nav-item {
+  list-style: none;
+}
+
+.dashboard__nav-link {
+  text-decoration: none;
+  font-size: 16px;
+  color: #007bff;
+  padding: 10px 20px;
+  background-color: #f0f0f0;
+  border-radius: 4px;
+}
+
+.dashboard__nav-link:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Job Listings */
+.dashboard__job-listings {
+  margin-top: 20px;
+}
+
+.job-listing {
+  border-bottom: 1px solid #cccccc;
+  padding: 15px 0;
+}
+
+.job-listing:last-child {
+  border-bottom: none;
+}
+
+.job-listing__title {
+  color: #333333;
+}
+
+.job-listing__company,
+.job-listing__location {
+  color: #666666;
+  margin: 5px 0;
+}
+
+/* Footer */
+.dashboard__footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.dashboard__footer-text {
+  color: #666666;
+}
+
+/* Job Application Page Styles */
+.application {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f4f7f6;
+  font-size: 1.5rem;
+}
+
+.application__container {
+  background-color: #ffffff;
+  padding: 30px;
+  margin-top: 30px;
+  width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.application__title {
+  color: #333333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.application__form-group {
+  margin-bottom: 20px;
+}
+
+.application__form-label {
+  font-size: 14px;
+  color: #666666;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.application__form-input,
+.application__form-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  font-size: 14px;
+  color: #333333;
+}
+
+.application__form-textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+.application__button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.application__button:hover {
+  background-color: #0056b3;
+}
+
+.application__footer {
+  text-align: center;
+  margin-top: 20px;
+  color: #666666;
+}
+
+/* Application Status Page */
+.status {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+}
+.status__heading {
+  text-align: center;
+}
+
+.status__heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.status__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.status__table th,
+.status__table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.status__table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.status__item--approved {
+  color: green;
+  font-weight: bold;
+}
+
+.status__item--pending {
+  color: orange;
+  font-weight: bold;
+}
+
+.status__item--rejected {
+  color: red;
+  font-weight: bold;
+}
+
+/* Footer */
+.status__footer {
+  text-align: center;
+  padding: 10px 0;
+  background-color: #333;
+  color: white;
+  margin-top: 10px;
 }

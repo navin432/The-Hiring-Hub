@@ -4,145 +4,70 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Guest Dashboard - Job Listings</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f4f7f6;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        height: 100vh;
-      }
-
-      .container {
-        background-color: #ffffff;
-        padding: 20px;
-        margin-top: 30px;
-        width: 900px;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      }
-
-      .header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 30px;
-      }
-
-      .header h2 {
-        color: #333333;
-      }
-
-      .nav-tabs {
-        display: flex;
-        gap: 20px;
-      }
-
-      .nav-tabs a {
-        text-decoration: none;
-        font-size: 16px;
-        color: #007bff;
-        padding: 10px 20px;
-        background-color: #f0f0f0;
-        border-radius: 4px;
-      }
-
-      .nav-tabs a:hover {
-        background-color: #007bff;
-        color: white;
-      }
-      button a {
-        color: #fff;
-        text-decoration: none;
-      }
-
-      .job-listings {
-        margin-top: 20px;
-      }
-
-      .job-listing {
-        border-bottom: 1px solid #cccccc;
-        padding: 15px 0;
-      }
-
-      .job-listing:last-child {
-        border-bottom: none;
-      }
-
-      .job-listing h3 {
-        color: #333333;
-      }
-
-      .job-listing p {
-        color: #666666;
-        margin: 5px 0;
-      }
-
-      .job-listing button {
-        background-color: #007bff;
-        color: white;
-        padding: 10px;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-      }
-
-      .job-listing button:hover {
-        background-color: #0056b3;
-      }
-
-      .footer {
-        text-align: center;
-        margin-top: 20px;
-        color: #666666;
-      }
-    </style>
+    <script
+      src="https://kit.fontawesome.com/7b04b644ae.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <div class="container">
-      <div class="header">
-        <h2>Welcome, Guest</h2>
-        <div class="nav-tabs">
-          <a href="#">Job Listings</a>
-          <a href="applicationStatus.html">Application Status</a>
-        </div>
-      </div>
+    <div class="dashboard">
+      <div class="dashboard__container">
+        <header class="dashboard__header">
+          <h2 class="dashboard__title">Welcome, Guest</h2>
+          <img src="../images/Hiring.png" alt="" class="logo" />
+        </header>
+        <nav class="dashboard__nav">
+          <ul class="dashboard__nav-tabs">
+            <li class="dashboard__nav-item">
+              <a href="#" class="dashboard__nav-link">Job Listings</a>
+            </li>
+            <li class="dashboard__nav-item">
+              <a href="applicationStatus.html" class="dashboard__nav-link"
+                >Application Status</a
+              >
+            </li>
+          </ul>
+        </nav>
 
-      <div class="job-listings">
-        <div class="job-listing">
-          <h3>Software Engineer</h3>
-          <p>Company: Tech Corp</p>
-          <p>Location: Remote</p>
-          <a href="jobApply.html">Apply Now</a>
-        </div>
+        <section class="dashboard__job-listings">
+          <article class="job-listing">
+            <h3 class="job-listing__title">Software Engineer</h3>
+            <p class="job-listing__company">Company: Tech Corp</p>
+            <p class="job-listing__location">Location: Remote</p>
+            <a href="jobApply.html" class="btn btn--apply">Apply Now</a>
+          </article>
 
-        <div class="job-listing">
-          <h3>Marketing Specialist</h3>
-          <p>Company: Global Marketing</p>
-          <p>Location: New York, NY</p>
-          <a href="jobApply.html">Apply Now</a>
-        </div>
+          <article class="job-listing">
+            <h3 class="job-listing__title">Marketing Specialist</h3>
+            <p class="job-listing__company">Company: Global Marketing</p>
+            <p class="job-listing__location">Location: New York, NY</p>
+            <a href="jobApply.html" class="btn btn--apply">Apply Now</a>
+          </article>
 
-        <div class="job-listing">
-          <h3>Data Analyst</h3>
-          <p>Company: Data Solutions</p>
-          <p>Location: Chicago, IL</p>
-          <a href="jobApply.html">Apply Now</a>
-        </div>
+          <article class="job-listing">
+            <h3 class="job-listing__title">Data Analyst</h3>
+            <p class="job-listing__company">Company: Data Solutions</p>
+            <p class="job-listing__location">Location: Chicago, IL</p>
+            <a href="jobApply.html" class="btn btn--apply">Apply Now</a>
+          </article>
 
-        <div class="job-listing">
-          <h3>UX/UI Designer</h3>
-          <p>Company: Creative Studio</p>
-          <p>Location: San Francisco, CA</p>
-          <a href="jobApply.html">Apply Now</a>
-        </div>
-      </div>
+          <article class="job-listing">
+            <h3 class="job-listing__title">UX/UI Designer</h3>
+            <p class="job-listing__company">Company: Creative Studio</p>
+            <p class="job-listing__location">Location: San Francisco, CA</p>
+            <a href="jobApply.html" class="btn btn--apply">Apply Now</a>
+          </article>
+        </section>
 
-      <div class="footer">
-        <p>&copy; 2024 Job Site. All rights reserved.</p>
+        <footer class="dashboard__footer">
+          <p class="dashboard__footer-text">
+            &copy; 2024 The Hiring Hub. All rights reserved.
+          </p>
+          <a href="../index.html" class="btn btn--logout"
+            >Logout <span class="fa-solid fa-right-from-bracket"> </span
+          ></a>
+        </footer>
       </div>
     </div>
   </body>
