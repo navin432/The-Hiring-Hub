@@ -1,16 +1,5 @@
 @import "./normalize.css";
 
-body {
-  background-color: #f4f7f6;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  font-size: 1.5rem;
-}
-
 *,
 *::after,
 *::before {
@@ -139,4 +128,23 @@ h3 {
   object-fit: cover;
   margin: 0 auto;
   margin-bottom: 1rem;
+}
+
+/* Grids */
+.grid {
+  display: grid;
+}
+
+.grid--1x2 {
+  grid-template-columns: 1fr auto;
+}
+/* Login Section */
+.login {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  font-size: 1.5rem;
 }
