@@ -400,3 +400,54 @@ h3 {
   color: white;
   margin-top: 10px;
 }
+
+/* SignUP Page */
+.signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f7f6;
+  font-size: 1.5rem;
+}
+
+.signup__container {
+  background-color: #ffffff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 400px;
+}
+
+.signup__title {
+  text-align: center;
+  color: #333333;
+  margin-bottom: 20px;
+}
+
+.signup__form-group {
+  margin-bottom: 20px;
+}
+
+.signup__form-label {
+  font-size: 1.5rem;
+  color: #666666;
+}
+
+.signup__form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1.4rem;
+  color: #333333;
+}
+
+.signup__footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.signup__footer a {
+  color: #007bff;
+}

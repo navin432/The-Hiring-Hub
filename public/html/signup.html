@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <div class="signup">
+      <div class="signup__container">
+        <img src="../images/Hiring.png" alt="" class="logo" />
+        <h2 class="signup__title">Create an Account</h2>
+        <form class="signup__form">
+          <div class="signup__form-group">
+            <label for="name" class="signup__form-label">Full Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              class="signup__form-input"
+              placeholder="Enter your full name"
+              required
+            />
+          </div>
+
+          <div class="signup__form-group">
+            <label for="email" class="signup__form-label">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              class="signup__form-input"
+              placeholder="Enter your email"
+              required
+            />
+          </div>
+
+          <div class="signup__form-group">
+            <label for="password" class="signup__form-label">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="signup__form-input"
+              placeholder="Create a password"
+              required
+            />
+          </div>
+
+          <div class="signup__form-group">
+            <label for="confirm-password" class="signup__form-label"
+              >Confirm Password</label
+            >
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              class="signup__form-input"
+              placeholder="Confirm your password"
+              required
+            />
+          </div>
+
+          <a href="../index.html" class="btn btn--signup btn--stretched">
+            Sign Up
+          </a>
+        </form>
+        <div class="signup__footer">
+          <p>
+            Already have an account?
+            <a href="../index.html" class="forgotPassword">Login here</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
