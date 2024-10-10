@@ -14,7 +14,7 @@
     <section class="login">
       <div class="login-container">
         <img src="images/Hiring.png" alt="" class="logo" />
-        <form>
+        <form id="loginForm">
           <label for="user-id">User ID</label>
           <input
             type="text"
@@ -47,15 +47,13 @@
               <label for="guest">Guest</label>
             </div>
           </div>
-          <a
-            class="btn btn--login btn--stretched"
-            href="html/guestDashboard.html"
-            >Login</a
-          >
-          <a class="btn btn--stretched btn--google">
-            Continue with Google <span class="fa-brands fa-google"></span>
-          </a>
+          <button type="submit" class="btn btn--login btn--stretched">
+            Login
+          </button>
         </form>
+        <a class="btn btn--stretched btn--google">
+          Continue with Google <span class="fa-brands fa-google"></span>
+        </a>
         <a href="html/signup.html" class="btn btn--stretched btn--signup"
           >Sign Up</a
         >
@@ -68,5 +66,6 @@
         </div>
       </div>
     </section>
+    <script src="js/login.js"></script>
   </body>
 </html>

@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
   },
   role: {
     type: String,
-    required: true,
+    default: "guest",
     minlength: 3,
     maxlength: 20,
   },
@@ -35,7 +35,7 @@ function validateUser(user) {
     name: Joi.string().min(4).max(50).required(),
     email: Joi.string().min(6).max(254).required().email(),
     password: Joi.string().min(6).max(254).required(),
-    role: Joi.string().min(3).max(20).required(),
+    role: Joi.string().min(3).max(20),
   });
   return schema.validate(user);
 }
