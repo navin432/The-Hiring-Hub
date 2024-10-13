@@ -3,7 +3,7 @@ const Joi = require("joi");
 const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
-const { User } = require("../modules/user");
+const { User } = require("../models/user");
 
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);

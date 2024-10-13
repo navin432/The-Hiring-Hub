@@ -1,4 +1,4 @@
-const { User, validate } = require("../modules/user");
+const { User, validate } = require("../models/user");
 const jwt = require("jsonwebtoken");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
