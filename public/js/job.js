@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const jobListingsSection = document.getElementById("job-listings");
 
-  // Fetch job listings from the server
   async function fetchJobListings() {
     try {
-      const response = await fetch("/api/jobs"); // Replace with your actual API route
+      const response = await fetch("/api/jobs");
       const jobs = await response.json();
       renderJobListings(jobs);
     } catch (error) {
@@ -12,9 +11,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  // Render job listings in the HTML
   function renderJobListings(jobs) {
-    jobListingsSection.innerHTML = ""; // Clear previous job listings
+    jobListingsSection.innerHTML = "";
 
     jobs.forEach((job) => {
       const jobListing = document.createElement("article");
@@ -73,6 +71,5 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Load job listings when the page loads
   fetchJobListings();
 });
