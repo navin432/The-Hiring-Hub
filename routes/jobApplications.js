@@ -2,6 +2,8 @@ const upload = require("../middleware/fileUpload");
 const express = require("express");
 const { JobApplication, validate } = require("../models/jobApplication");
 const { Job } = require("../models/job");
+const fs = require("fs");
+const path = require("path");
 
 const router = express.Router();
 
@@ -138,17 +140,38 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// DELETE: Delete a job application by ID
+// DELETE: Delete a job application by ID and its associated files
 router.delete("/:id", async (req, res) => {
-  try {
-    const jobApplication = await JobApplication.findByIdAndRemove(
-      req.params.id
-    );
-    if (!jobApplication)
-      return res.status(404).send("Job application not found.");
+  const applicationId = req.params.id;
 
-    res.send("Job application deleted successfully.");
+  try {
+    const jobApplication = await JobApplication.findById(applicationId);
+    if (!jobApplication) {
+      return res.status(404).send("Job application not found.");
+    }
+
+    // Delete the associated files (if any)
+    const filesToDelete = [
+      jobApplication.resume,
+      jobApplication.coverLetter,
+      ...(jobApplication.additionalDocs || []),
+    ];
+
+    // Delete each file from the filesystem
+    filesToDelete.forEach((filePath) => {
+      if (filePath) {
+        const file = path.join(__dirname, "../", filePath); //Join to get the full file path
+        if (fs.existsSync(file)) {
+          fs.unlinkSync(file); // Delete the file
+        }
+      }
+    });
+
+    await JobApplication.findByIdAndDelete(applicationId);
+
+    res.send("Job application and associated files deleted successfully.");
   } catch (err) {
+    console.error("Error while deleting job application:", err);
     res
       .status(500)
       .send("Error while deleting job application: " + err.message);

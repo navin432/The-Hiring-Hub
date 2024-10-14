@@ -28,7 +28,8 @@ const jobApplicationSchema = new mongoose.Schema({
     type: String,
   },
   additionalDocs: {
-    type: String,
+    type: [String],
+    default: [],
   },
   comments: {
     type: String,
@@ -50,7 +51,7 @@ function validateJobApplication(application) {
   const schema = Joi.object({
     jobId: Joi.objectId().required(),
     experience: Joi.number().required().min(0).max(20),
-    comments: Joi.string().max(500).optional(),
+    comments: Joi.string().max(500).allow("").optional(),
   });
 
   return schema.validate(application);

@@ -14,31 +14,15 @@
         <thead>
           <tr>
             <th>Job Title</th>
-            <th>Company</th>
+            <th>Resume</th>
+            <th>Cover Letter</th>
+            <th>Other Documents</th>
             <th>Date Applied</th>
             <th>Status</th>
+            <th>Control</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>Software Engineer</td>
-            <td>Tech Corp</td>
-            <td>August 15, 2024</td>
-            <td class="status__item status__item--approved">Approved</td>
-          </tr>
-          <tr>
-            <td>Marketing Specialist</td>
-            <td>Global Marketing</td>
-            <td>September 2, 2024</td>
-            <td class="status__item status__item--pending">Pending</td>
-          </tr>
-          <tr>
-            <td>Data Analyst</td>
-            <td>Data Solutions</td>
-            <td>September 10, 2024</td>
-            <td class="status__item status__item--rejected">Rejected</td>
-          </tr>
-        </tbody>
+        <tbody id="jobApplicationsTbody"></tbody>
       </table>
       <a href="guestDashboard.html" class="btn btn--status"
         >Go Back to Dashboard</a
@@ -47,5 +31,6 @@
         <p>&copy; 2024 The Hiring Hub. All rights reserved.</p>
       </div>
     </div>
+    <script src="../js/gettingJobApplications.js"></script>
   </body>
 </html>
