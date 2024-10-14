@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 const express = require("express");
 const router = express.Router();
 const { User } = require("../models/user");
-const { includes } = require("lodash");
 const access = ["admin", "manager", "hR", "employee"];
 
 router.post("/", async (req, res) => {
@@ -22,7 +21,7 @@ router.post("/", async (req, res) => {
       "jwtPrivateKey"
     );
     res.send({ role, token });
-  } else if (req.body.role === "guest") {
+  } else if (req.body.role === "guest" && role === "guest") {
     const token = jwt.sign(
       { _id: user._id, name: user.name, role: user.role },
       "jwtPrivateKey"

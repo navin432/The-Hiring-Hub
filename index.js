@@ -10,6 +10,7 @@ const users = require("./routes/users");
 const auth = require("./routes/auth");
 const jobs = require("./routes/jobs");
 const jobApplication = require("./routes/jobApplications");
+const resetCode = require("./routes/resetCode");
 
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -25,6 +26,7 @@ app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/jobs", jobs);
 app.use("/api/jobapplications", jobApplication);
+app.use("/api/forgotpassword", resetCode);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

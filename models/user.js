@@ -27,6 +27,9 @@ const userSchema = new mongoose.Schema({
     minlength: 3,
     maxlength: 20,
   },
+  resetCode: {
+    type: Number,
+  },
 });
 
 const User = mongoose.model("User", userSchema);
