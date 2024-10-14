@@ -27,7 +27,6 @@ router.post("/", async (req, res) => {
       { _id: user._id, name: user.name, role: user.role },
       "jwtPrivateKey"
     );
-    console.log(role);
     res.send({ role, token });
   } else {
     return res.status(400).send("Authorization Failed, Invalid Role");
