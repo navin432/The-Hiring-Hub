@@ -49,7 +49,9 @@ document.addEventListener("DOMContentLoaded", function () {
             ).toLocaleDateString()}</p>
           </div>
           
-          <a href="jobApply.html" class="btn btn--apply">Apply Now</a>
+          <a href="jobApply.html?jobId=${
+            job._id
+          }" class="btn btn--apply">Apply Now</a>
         `;
 
       jobListingsSection.appendChild(jobListing);

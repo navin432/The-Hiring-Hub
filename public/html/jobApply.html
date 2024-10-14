@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Job Application - Apply Now</title>
-    <!-- <link rel="stylesheet" href="../css/style.css" /> -->
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
@@ -12,7 +11,11 @@
       <div class="application__container">
         <img src="../images/Hiring.png" alt="" class="logo" />
         <h2 class="application__title">Apply for the Job</h2>
-        <form class="application__form">
+        <form
+          class="application__form"
+          id="jobApplicationForm"
+          enctype="multipart/form-data"
+        >
           <div class="application__form-group">
             <label class="application__form-label" for="experience"
               >Years of Experience</label
@@ -36,6 +39,7 @@
               name="resume"
               class="application__form-input"
               accept=".pdf, .doc, .docx"
+              required
             />
           </div>
 
@@ -46,7 +50,7 @@
             <input
               type="file"
               id="cover-letter"
-              name="cover-letter"
+              name="coverLetter"
               class="application__form-input"
               accept=".pdf, .doc, .docx"
             />
@@ -54,14 +58,15 @@
 
           <div class="application__form-group">
             <label class="application__form-label" for="additional-docs"
-              >Upload Additional Documents (Certificates, etc.)</label
+              >Upload Additional Documents</label
             >
             <input
               type="file"
               id="additional-docs"
-              name="additional-docs"
+              name="additionalDocs"
               class="application__form-input"
               accept=".pdf, .doc, .docx"
+              multiple
             />
           </div>
 
@@ -77,11 +82,10 @@
             ></textarea>
           </div>
 
-          <a
-            href="guestDashboard.html"
-            class="btn btn--jobSubmit btn--stretched"
-            >Submit Application</a
-          >
+          <!-- Submit button -->
+          <button type="submit" class="btn btn--jobSubmit btn--stretched">
+            Submit Application
+          </button>
         </form>
 
         <div class="application__footer">
@@ -89,5 +93,6 @@
         </div>
       </div>
     </div>
+    <script src="../js/jobApplication.js"></script>
   </body>
 </html>

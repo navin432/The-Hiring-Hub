@@ -63,3 +63,4 @@ function validateJob(job) {
 
 exports.Job = Job;
 exports.validate = validateJob;
+exports.jobSchema = jobSchema;

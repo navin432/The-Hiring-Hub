@@ -1,13 +1,18 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const mongoose = require("mongoose");
+const Joi = require("joi");
+Joi.objectId = require("joi-objectid")(Joi);
 
 // Routes
 const users = require("./routes/users");
 const auth = require("./routes/auth");
 const jobs = require("./routes/jobs");
+const jobApplication = require("./routes/jobApplications");
 
 app.use(express.json());
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 mongoose
   .connect("mongodb://localhost/theHiringHub")
@@ -19,6 +24,7 @@ app.use(express.static("public"));
 app.use("/api/users", users);
 app.use("/api/auth", auth);
 app.use("/api/jobs", jobs);
+app.use("/api/jobapplications", jobApplication);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
