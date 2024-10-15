@@ -9,6 +9,9 @@ document
     const email = document.getElementById("user-id").value;
     const password = document.getElementById("password").value;
     const role = document.querySelector(".role:checked").value;
+    const errorDisplay = document.getElementById("errorDisplay");
+    const errorTitle = errorDisplay.children[0];
+    const errorMsg = errorDisplay.children[1];
 
     try {
       const response = await fetch("/api/auth", {
@@ -28,11 +31,12 @@ document
         window.location.href = `html/${data.role}Dashboard.html`;
       } else {
         const errorMessage = await response.text();
-        alert("Login failed: " + errorMessage);
+        errorTitle.innerText = "Login failed: ";
+        errorMsg.innerText = errorMessage;
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("An error occurred while logging in.");
+      errorMsg.innerText = "An error occurred while logging in.";
     } finally {
       loginButton.disabled = false;
     }

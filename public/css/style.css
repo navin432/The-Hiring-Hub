@@ -554,3 +554,14 @@ h3 {
 .reset-password__form-group:last-of-type {
   margin-bottom: 0px;
 }
+
+/* Error Message */
+.error-message {
+  color: #8f0000;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+#errorDisplay:first-child {
+  color: #222;
+}
