@@ -3,6 +3,9 @@ const jwt = require("jsonwebtoken");
 const _ = require("lodash");
 const bcrypt = require("bcrypt");
 const app = require("express");
+const nodemailer = require("nodemailer");
+const config = require("config");
+
 const router = app.Router();
 
 router.post("/", async (req, res) => {
@@ -20,6 +23,84 @@ router.post("/", async (req, res) => {
   );
   try {
     await user.save();
+
+    // Mail
+    const hhhMail = config.get("thhEmail");
+    const hhhPass = config.get("password");
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: hhhMail,
+        pass: hhhPass,
+      },
+    });
+
+    // Email options
+    const mailOptions = {
+      from: '"The Hiring Hub" <thehiringhubx@gmail.com>',
+      to: user.email,
+      subject: "Welcome to, The Hiring Hub",
+      html: `
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              color: #333;
+              margin: 0;
+              padding: 0;
+            }
+            .container {
+              max-width: 600px;
+              margin: 20px auto;
+              padding: 20px;
+              background-color: #f4f4f4;
+              border-radius: 8px;
+            }
+            .header {
+              text-align: center;
+              background-color: #007bff;
+              color: white;
+              padding: 10px;
+              border-radius: 5px;
+            }
+            .content {
+              padding: 20px;
+              background-color: white;
+              border-radius: 5px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .footer {
+              text-align: center;
+              padding: 10px;
+              font-size: 12px;
+              color: #777;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2>Welcome to The Hiring Hub, ${user.name}!</h2>
+            </div>
+            <div class="content">
+              <p>Dear <strong>${user.name}</strong>,</p>
+              <p>Thank you for registering at The Hiring Hub! We are excited to have you onboard and look forward to helping you in your job search journey.</p>
+              <p>Good luck with your job hunt! We’re confident that you’ll find great opportunities with us.</p>
+              <p>If you need any help, feel free to reach out at any time. We’re here to assist you.</p>
+              <p>Looking forward to working with you!</p>
+              <p>Best regards,</p>
+              <p>The Hiring Hub Team</p>
+            </div>
+            <div class="footer">
+              <p>&copy; 2024 The Hiring Hub. All rights reserved.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+      `,
+    };
+    await transporter.sendMail(mailOptions);
     res.header("x-auth-token", token).send(_.pick(user, ["name", "email"]));
   } catch (e) {
     res.status(500).send("Something Failed: " + e.message);

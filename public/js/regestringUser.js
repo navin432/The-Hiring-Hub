@@ -7,6 +7,10 @@ document
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
     const confirmPassword = document.getElementById("confirm-password").value;
+    const button = document.getElementById("signup");
+    const loadingText = document.getElementById("loading-text");
+    button.disabled = true;
+    loadingText.style.display = "block";
 
     // Simple validation to check if passwords match
     if (password !== confirmPassword) {
@@ -38,5 +42,8 @@ document
     } catch (error) {
       console.error("Error during registration:", error);
       alert("An error occurred during registration. Please try again later.");
+    } finally {
+      button.disabled = false;
+      loadingText.style.display = "none";
     }
   });

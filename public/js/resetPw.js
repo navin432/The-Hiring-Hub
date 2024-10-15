@@ -25,17 +25,15 @@ document
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email, // Send email from sessionStorage
-          otp, // OTP entered by the user
-          newPassword, // New password
+          email, 
+          otp, 
+          newPassword, 
         }),
       });
 
       if (response.ok) {
         alert("Password reset successful.");
-        // Clear email from sessionStorage
         sessionStorage.removeItem("email");
-        // Redirect to login page
         window.location.href = "../index.html";
       } else {
         const data = await response.json();

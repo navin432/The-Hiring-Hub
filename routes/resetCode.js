@@ -35,7 +35,7 @@ router.put("/", async (req, res) => {
 
     // Email options
     const mailOptions = {
-      from: '"Password Reset" <thehiringhubx@gmail.com>',
+      from: '"The Hiring Hub" <thehiringhubx@gmail.com>',
       to: user.email,
       subject: "The Hiring Hub Password Reset Code",
       html: `
@@ -44,7 +44,6 @@ router.put("/", async (req, res) => {
           <style>
             body {
               font-family: Arial, sans-serif;
-              color: #333;
               margin: 0;
               padding: 0;
             }
@@ -64,6 +63,7 @@ router.put("/", async (req, res) => {
             }
             .content {
               padding: 20px;
+              color: #111;
               background-color: white;
               border-radius: 5px;
               box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -91,7 +91,7 @@ router.put("/", async (req, res) => {
               <h2>Password Reset Code</h2>
             </div>
             <div class="content">
-              <p>Hi ${user.name},</p>
+              <p>Hi <strong>${user.name}</strong>,</p>
               <p>We received a request to reset your password for your account at The Hiring Hub.</p>
               <p>Your password reset code is: <strong>${resetCode}</strong></p>
               <p>Please use this code to reset your password.</p>
