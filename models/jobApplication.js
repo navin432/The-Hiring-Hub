@@ -1,8 +1,21 @@
 const mongoose = require("mongoose");
 const Joi = require("joi");
 const { Job } = require("./job");
+const { User } = require("./user");
 
 const jobApplicationSchema = new mongoose.Schema({
+  user: {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: User,
+    },
+    applicantName: {
+      type: String,
+    },
+    applicantEmail: {
+      type: String,
+    },
+  },
   job: {
     _id: {
       type: mongoose.Schema.Types.ObjectId,
