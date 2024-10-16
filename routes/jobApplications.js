@@ -1,20 +1,38 @@
+const jwt = require("jsonwebtoken");
 const upload = require("../middleware/fileUpload");
 const express = require("express");
 const { JobApplication, validate } = require("../models/jobApplication");
 const { Job } = require("../models/job");
+const { User } = require("../models/user");
 const fs = require("fs");
 const path = require("path");
 
 const router = express.Router();
 
+const authMiddleware = (req, res, next) => {
+  const token = req.header("Authorization")?.split(" ")[1];
+  if (!token) return res.status(401).send("Access denied. No token provided.");
+
+  try {
+    const decoded = jwt.verify(token, "jwtPrivateKey");
+    req.user = decoded;
+    next();
+  } catch (err) {
+    res.status(400).send("Invalid token.");
+  }
+};
+
 // POST: Create a new job application
 router.post(
   "/",
-  upload.fields([
-    { name: "resume", maxCount: 1 },
-    { name: "coverLetter", maxCount: 1 },
-    { name: "additionalDocs", maxCount: 5 },
-  ]),
+  [
+    authMiddleware,
+    upload.fields([
+      { name: "resume", maxCount: 1 },
+      { name: "coverLetter", maxCount: 1 },
+      { name: "additionalDocs", maxCount: 5 },
+    ]),
+  ],
   async (req, res) => {
     try {
       const { error } = validate(req.body);
@@ -29,7 +47,25 @@ router.post(
         return res.status(400).send("Job not found.");
       }
 
+      // Check if the user has already applied for this job
+      const existingApplication = await JobApplication.findOne({
+        "user._id": req.user._id,
+        "job._id": req.body.jobId,
+      });
+      if (existingApplication) {
+        return res
+          .status(400)
+          .send({ message: "You have already applied for this job." });
+      }
+
+      const user = await User.findById(req.user._id);
+
       const jobApplication = new JobApplication({
+        user: {
+          _id: user._id,
+          applicantName: user.name,
+          applicantEmail: user.email,
+        },
         job: {
           _id: job._id,
           title: job.title,
@@ -61,67 +97,17 @@ router.post(
   }
 );
 
-// PUT: Update an existing job application by ID
-router.put(
-  "/:id",
-  upload.fields([
-    { name: "resume", maxCount: 1 },
-    { name: "coverLetter", maxCount: 1 },
-    { name: "additionalDocs", maxCount: 5 },
-  ]),
-  async (req, res) => {
-    const { error } = validate(req.body);
-    if (error) return res.status(400).send(error.details[0].message);
-
-    const job = await Job.findById(req.body.jobId);
-    if (!job) return res.status(400).send("Job not found.");
-
-    try {
-      const jobApplication = await JobApplication.findByIdAndUpdate(
-        req.params.id,
-        {
-          job: {
-            _id: job._id,
-            title: job.title,
-          },
-          experience: req.body.experience,
-          resume: req.files["resume"]
-            ? `/uploads/${req.files["resume"][0].filename}`
-            : undefined,
-          coverLetter: req.files["coverLetter"]
-            ? `/uploads/${req.files["coverLetter"][0].filename}`
-            : undefined,
-          additionalDocs: req.files["additionalDocs"]
-            ? req.files["additionalDocs"].map(
-                (file) => `/uploads/${file.filename}`
-              )
-            : undefined,
-          comments: req.body.comments,
-        },
-        { new: true }
-      );
-
-      if (!jobApplication)
-        return res.status(404).send("Job application not found.");
-
-      res.send(jobApplication);
-    } catch (err) {
-      res
-        .status(500)
-        .send("Error while updating job application: " + err.message);
-    }
-  }
-);
-
 // GET: Retrieve all job applications
-router.get("/", async (req, res) => {
+router.get("/", authMiddleware, async (req, res) => {
   try {
-    const jobApplications = await JobApplication.find();
+    const jobApplications = await JobApplication.find({
+      "user._id": req.user._id,
+    });
     res.send(jobApplications);
   } catch (err) {
-    res
-      .status(500)
-      .send("Error while retrieving job applications: " + err.message);
+    res.status(500).send({
+      message: "Error while retrieving job applications: " + err.message,
+    });
   }
 });
 
@@ -141,13 +127,16 @@ router.get("/:id", async (req, res) => {
 });
 
 // DELETE: Delete a job application by ID and its associated files
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", authMiddleware, async (req, res) => {
   const applicationId = req.params.id;
 
   try {
-    const jobApplication = await JobApplication.findById(applicationId);
+    const jobApplication = await JobApplication.findOne({
+      _id: applicationId,
+      "user._id": req.user._id,
+    });
     if (!jobApplication) {
-      return res.status(404).send("Job application not found.");
+      return res.status(404).send({ message: "Job application not found." });
     }
 
     // Delete the associated files (if any)

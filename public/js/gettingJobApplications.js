@@ -1,8 +1,13 @@
+const token = localStorage.getItem("authToken");
 document.addEventListener("DOMContentLoaded", async () => {
   const tbody = document.getElementById("jobApplicationsTbody");
-
   // Fetch all job applications
-  const response = await fetch("/api/jobApplications");
+  const response = await fetch("/api/jobApplications", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
   if (!response.ok) {
     alert("Failed to fetch job applications");
     return;
@@ -57,6 +62,9 @@ async function deleteApplication(applicationId) {
   if (confirmation) {
     const response = await fetch(`/api/jobApplications/${applicationId}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
     });
 
     if (response.ok) {
