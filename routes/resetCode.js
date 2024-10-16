@@ -56,7 +56,7 @@ router.put("/", async (req, res) => {
             }
             .header {
               text-align: center;
-              background-color: #007bff;
+              background-color: #8B0000;
               color: white;
               padding: 10px;
               border-radius: 5px;

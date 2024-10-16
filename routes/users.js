@@ -8,6 +8,17 @@ const config = require("config");
 
 const router = app.Router();
 
+// Mail
+const hhhMail = config.get("thhEmail");
+const hhhPass = config.get("password");
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: hhhMail,
+    pass: hhhPass,
+  },
+});
+
 router.post("/", async (req, res) => {
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -23,17 +34,6 @@ router.post("/", async (req, res) => {
   );
   try {
     await user.save();
-
-    // Mail
-    const hhhMail = config.get("thhEmail");
-    const hhhPass = config.get("password");
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: hhhMail,
-        pass: hhhPass,
-      },
-    });
 
     // Email options
     const mailOptions = {
@@ -81,7 +81,7 @@ router.post("/", async (req, res) => {
         <body>
           <div class="container">
             <div class="header">
-              <h2>Welcome to The Hiring Hub, ${user.name}!</h2>
+              <h2>Welcome to The Hiring Hub!</h2>
             </div>
             <div class="content">
               <p>Dear <strong>${user.name}</strong>,</p>
@@ -130,6 +130,73 @@ router.put("/", async (req, res) => {
 
   try {
     await user.save();
+    // Email options for password reset confirmation
+    const mailOptions = {
+      from: '"The Hiring Hub" <thehiringhubx@gmail.com>',
+      to: user.email,
+      subject: "Your Password Has Been Successfully Reset",
+      html: `
+  <html>
+    <head>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          color: #333;
+          margin: 0;
+          padding: 0;
+        }
+        .container {
+          max-width: 600px;
+          margin: 20px auto;
+          padding: 20px;
+          background-color: #f4f4f4;
+          border-radius: 8px;
+        }
+        .header {
+          text-align: center;
+          background-color: #28a745;
+          color: white;
+          padding: 10px;
+          border-radius: 5px;
+        }
+        .content {
+          padding: 20px;
+          background-color: white;
+          border-radius: 5px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .footer {
+          text-align: center;
+          padding: 10px;
+          font-size: 12px;
+          color: #777;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="container">
+        <div class="header">
+          <h2>Password Reset Successful!</h2>
+        </div>
+        <div class="content">
+          <p>Dear <strong>${user.name}</strong>,</p>
+          <p>Your password has been successfully reset. You can now log in using your new password.</p>
+          <p>If you did not request this change, please contact our support team immediately.</p>
+          <p>Thank you for being a part of The Hiring Hub!</p>
+          <p>Best regards,</p>
+          <p>The Hiring Hub Team</p>
+        </div>
+        <div class="footer">
+          <p>&copy; 2024 The Hiring Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </body>
+  </html>
+  `,
+    };
+
+    // Send the email after updating the password
+    await transporter.sendMail(mailOptions);
     return res.status(200).send("Password updated successfully.");
   } catch (error) {
     return res.status(500).send("Error updating password.");
