@@ -44,7 +44,7 @@
                 class="profile-photo"
               />
               <div>
-                <h1>Hello, HR!</h1>
+                <h1 id="user-name"></h1>
                 <p>Status: <span class="status">HR</span></p>
               </div>
             </div>
@@ -112,5 +112,10 @@
         </section>
       </main>
     </div>
+    <script>
+      const profileName = document.getElementById("user-name");
+      let userName = localStorage.getItem("userName");
+      profileName.innerText = "Hello, " + userName;
+    </script>
   </body>
 </html>
