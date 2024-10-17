@@ -1,100 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Posting - HR Dashboard</title>
-  <link rel="stylesheet" href="CSS/ramro.css">
-</head>
-<body>
-  <div class="dashboard-container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-header">
-        <img src="Images/Hiring logo.png" alt="Company Logo" class="logo">
-        <h2>The Hiring Hub</h2>
-      </div>
-      <ul>
-        <li><a href="../hRDashboard.html">Dashboard</a></li>
-        <li><a href="Candidate_Sourcing.html">Candidate Sourcing</a></li>
-        <li><a href="Interview.html">Interview Scheduling</a></li>
-        <li><a href="onboarding.html">Onboarding</a></li>
-        <li><a href="Performance_Tracking.html">Performance Tracking</a></li>
-        <li><a href="Promotion_Planning.html">Promotion Planning</a></li>
-        <li><a href="Job_Posting.html" class="active">Job Posting</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="contact-info.html">Contact Info</a></li>
-        <li><a class="btn-logout" href="logout.html">Logout</a></li>
-      </ul>
-    </aside>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Posting - HR Dashboard</title>
+    <link rel="stylesheet" href="CSS/ramro.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <img src="Images/Hiring logo.png" alt="Company Logo" class="logo" />
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="../hRDashboard.html">Dashboard</a></li>
+          <li><a href="Candidate_Sourcing.html">Candidate Sourcing</a></li>
+          <li><a href="Interview.html">Interview Scheduling</a></li>
+          <li><a href="onboarding.html">Onboarding</a></li>
+          <li><a href="Performance_Tracking.html">Performance Tracking</a></li>
+          <li><a href="Promotion_Planning.html">Promotion Planning</a></li>
+          <li><a href="Job_Posting.html" class="active">Job Posting</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a href="contact-info.html">Contact Info</a></li>
+          <li><a class="btn-logout" href="../../index.html">Logout</a></li>
+        </ul>
+      </aside>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <header>
-        <div class="welcome-section">
-          <div class="user-info">
-            <img src="Images/IMG_4255 (1).jpg" alt="Profile Picture" class="profile-photo">
-            <div>
-              <h1>Hello, HR!</h1>
-              <p>Status: <span class="status">HR</span></p>
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <div class="welcome-section">
+            <div class="user-info">
+              <img
+                src="Images/IMG_4255 (1).jpg"
+                alt="Profile Picture"
+                class="profile-photo"
+              />
+              <div>
+                <h1>Hello, HR!</h1>
+                <p>Status: <span class="status">HR</span></p>
+              </div>
+            </div>
+            <div class="date-notification">
+              <p>October 15, 2024</p>
+              <img
+                src="Images/notification.png"
+                alt="Notifications"
+                class="notification-icon"
+              />
             </div>
           </div>
-          <div class="date-notification">
-            <p>October 15, 2024</p>
-            <img src="Images/notification.png" alt="Notifications" class="notification-icon">
-          </div>
-        </div>
-        <p>Manage and post new jobs efficiently.</p>
-      </header>
+          <p>Manage and post new jobs efficiently.</p>
+        </header>
 
-      <!-- Job Posting Section -->
-      <section class="job-posting-section">
-        <h2>Job Posting Management</h2>
-        <!-- Job Form -->
-        <form id="job-form" class="job-form">
-          <input type="hidden" id="job-id">
-          <div class="form-group">
-            <label for="title">Job Title</label>
-            <input type="text" id="title" placeholder="Enter Job Title" required>
-          </div>
-          <div class="form-group">
-            <label for="location">Location</label>
-            <input type="text" id="location" placeholder="Enter Job Location" required>
-          </div>
-          <div class="form-group">
-            <label for="positionSummary">Position Summary</label>
-            <textarea id="positionSummary" placeholder="Briefly describe the role"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="keyResponsibilities">Key Responsibilities (one per line)</label>
-            <textarea id="keyResponsibilities" placeholder="Enter each responsibility on a new line"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="requirements">Requirements (one per line)</label>
-            <textarea id="requirements" placeholder="Enter each requirement on a new line"></textarea>
-          </div>
-          <div class="form-group">
-            <label for="jobType">Job Type</label>
-            <select id="jobType">
-              <option value="Full-time">Full-time</option>
-              <option value="Part-time">Part-time</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="expectedStartDate">Expected Start Date</label>
-            <input type="date" id="expectedStartDate" required>
-          </div>
-          <button type="submit" class="btn-submit">Post Job</button>
-        </form>
-      </section>
+        <!-- Job Posting Section -->
+        <section class="job-posting-section">
+          <h2>Job Posting Management</h2>
+          <!-- Job Form -->
+          <form id="job-form" class="job-form">
+            <input type="hidden" id="job-id" />
+            <div class="form-group">
+              <label for="title">Job Title</label>
+              <input
+                type="text"
+                id="title"
+                placeholder="Enter Job Title"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="location">Location</label>
+              <input
+                type="text"
+                id="location"
+                placeholder="Enter Job Location"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="positionSummary">Position Summary</label>
+              <textarea
+                id="positionSummary"
+                placeholder="Briefly describe the role"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="keyResponsibilities"
+                >Key Responsibilities (one per line)</label
+              >
+              <textarea
+                id="keyResponsibilities"
+                placeholder="Enter each responsibility on a new line"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="requirements">Requirements (one per line)</label>
+              <textarea
+                id="requirements"
+                placeholder="Enter each requirement on a new line"
+              ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="jobType">Job Type</label>
+              <select id="jobType">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="expectedStartDate">Expected Start Date</label>
+              <input type="date" id="expectedStartDate" required />
+            </div>
+            <button type="submit" class="btn-submit">Post Job</button>
+          </form>
+        </section>
 
-      <!-- Job Listings Section -->
-      <section class="job-listings-section">
-        <h2>Job Listings</h2>
-        <div id="job-list"></div>
-      </section>
-    </main>
-  </div>
-  <script src="JS/app.js"></script>
-</body>
+        <!-- Job Listings Section -->
+        <section class="job-listings-section">
+          <h2>Job Listings</h2>
+          <div id="job-list"></div>
+        </section>
+      </main>
+    </div>
+    <script src="JS/app.js"></script>
+  </body>
 </html>
