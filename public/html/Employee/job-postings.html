@@ -1,66 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Job Postings</title>
-  <link rel="stylesheet" href="CSS/styles.css">
-</head>
-<body>
-  <div class="dashboard-container">
-    <!-- Sidebar -->
-    <nav class="sidebar">
-      <div class="sidebar-header">
-        <img src="Image/Hiring logo.png" alt="Company Logo" class="logo">
-        <h2>The Hiring Hub</h2>
-      </div>
-      <ul>
-        <li><a href="../employee_dashboard.html">Dashboard</a></li>
-        <li><a href="ranking-progress.html">Ranking & Progress</a></li>
-        <li><a href="job-postings.html">Job Postings</a></li>
-        <li><a href="equipments.html" class="active">Equipments</a></li>
-        <li><a href="profile.html">Profile</a></li>
-        <li><a class="btn btn--logout" href="../../index.html">Logout</a> </li>
-      </ul>
-    </nav>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Postings</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img src="Image/Hiring logo.png" alt="Company Logo" class="logo" />
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="../employeeDashboard.html">Dashboard</a></li>
+          <li><a href="ranking-progress.html">Ranking & Progress</a></li>
+          <li><a href="job-postings.html">Job Postings</a></li>
+          <li><a href="equipments.html" class="active">Equipments</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a class="btn btn--logout" href="../../index.html">Logout</a></li>
+        </ul>
+      </nav>
 
-    <!-- Main Content -->
-    <main class="main-content">
-      <header>
-        <div class="welcome-section">
-          <h1>Job Postings</h1>
-          <p>Browse through the latest job opportunities available within the company.</p>
-        </div>
-        <div class="date-notification">
-          <p id="current-date"></p>
-          <img src="Image/notification.png" alt="Notifications" class="notification-icon">
-        </div>
-        <nav class="dashboard__nav">
-          <ul class="dashboard__nav-tabs">
-            <li class="dashboard__nav-item">
-              <a href="applicationStatus.html" class="dashboard__nav-link"
-                >Application Status</a
-              >
-            </li>
-          </ul>
-        </nav>
-      </header>
-
-      <section class="dashboard-section">
-        <div class="section-card">
-          <h2>Software Engineer</h2>
-          <p>Location: New York | Deadline: Oct 5, 2024</p>
-          <button class="view-details-button">Apply Now</button>
-        </div>
-        <div class="section-card">
-          <h2>Project Manager</h2>
-          <p>Location: San Francisco | Deadline: Sep 30, 2024</p>
-          <button class="view-details-button">Apply Now</button>
-        </div>
-      </section>
-    </main>
-  </div>
-  <script src="JS/date.js"></script>
-</body>
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <div class="welcome-section">
+            <h1>Job Postings</h1>
+            <p>
+              Browse through the latest job opportunities available within the
+              company.
+            </p>
+          </div>
+          <div class="date-notification">
+            <p id="current-date"></p>
+            <img
+              src="Image/notification.png"
+              alt="Notifications"
+              class="notification-icon"
+            />
+          </div>
+          <nav class="dashboard__nav">
+            <ul class="dashboard__nav-tabs">
+              <li class="dashboard__nav-item">
+                <a href="applicationStatus.html" class="dashboard__nav-link"
+                  >Application Status</a
+                >
+              </li>
+            </ul>
+          </nav>
+        </header>
+        <section class="dashboard-section" id="job-section">
+          <!-- Job postings will be inserted here -->
+        </section>
+      </main>
+    </div>
+    <script src="JS/date.js"></script>
+    <script src="JS/jobpostings.js"></script>
+  </body>
 </html>
-

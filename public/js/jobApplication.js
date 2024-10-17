@@ -36,11 +36,14 @@ document.addEventListener("DOMContentLoaded", function () {
       }
 
       const data = await response.json();
-      console.log("Job application submitted successfully:", data);
+      console.log(
+        "Job application submitted successfully:",
+        data.jobApplication
+      );
       alert("Application submitted successfully!");
 
       setTimeout(() => {
-        window.location.href = "guestDashboard.html";
+        window.location.href = `${data.role}Dashboard.html`;
       }, 500);
     } catch (error) {
       console.error("Error submitting application:", error);

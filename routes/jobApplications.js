@@ -87,7 +87,7 @@ router.post(
 
       // Save to the database
       await jobApplication.save();
-      res.status(201).send(jobApplication);
+      res.status(201).send({ jobApplication: jobApplication, role: user.role });
     } catch (err) {
       console.log("Server error:", err.message);
       res

@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const jobListingsSection = document.getElementById("job-listings");
+  const jobListingsSection = document.querySelector(".dashboard-section");
 
   async function fetchJobListings() {
     try {
@@ -12,21 +12,20 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function renderJobListings(jobs) {
-    jobListingsSection.innerHTML = "";
+    jobListingsSection.innerHTML = ""; // Clear existing content
 
     jobs.forEach((job) => {
-      const jobListing = document.createElement("article");
-      jobListing.classList.add("job-listing");
+      // Create a section-card for each job listing
+      const jobCard = document.createElement("div");
+      jobCard.classList.add("section-card");
 
-      jobListing.innerHTML = `
-          <h3 class="job-listing__title">${job.title}</h3>
-          <p class="job-listing__location"><strong>Location:</strong> ${
-            job.location
-          }</p>
-          <p class="job-listing__position-summary">${
-            job.jobDetails.positionSummary
-          }</p>
-          <a href="#" class="job-listing__more-details">More details</a>
+      // Create job listing elements
+      jobCard.innerHTML = `
+          <h2 class="job-title">${job.title}</h2>
+          <p class="job-location">Location: ${job.location}</p>
+          <p>${job.jobDetails.positionSummary}</p>
+          
+          <button class="view-details-button">View Details</button>
           
           <div class="job-details" style="display: none;">
             <h4>Key Responsibilities:</h4>
@@ -50,30 +49,31 @@ document.addEventListener("DOMContentLoaded", function () {
                 .split("T")[0]
             }</p>
           </div>
-          
-          <a href="jobApply.html?jobId=${
+  
+          <a href="../jobApply.html?jobId=${
             job._id
-          }" class="btn btn--apply">Apply Now</a>
+          }" class=" btn--apply">Apply Now</a>
         `;
 
-      jobListingsSection.appendChild(jobListing);
-      const moreDetailsLink = jobListing.querySelector(
-        ".job-listing__more-details"
-      );
-      const jobDetailsDiv = jobListing.querySelector(".job-details");
+      // Append the job card to the section
+      jobListingsSection.appendChild(jobCard);
 
-      moreDetailsLink.addEventListener("click", (e) => {
+      // Handle "More details" / "Hide details" toggle
+      const jobDetailsDiv = jobCard.querySelector(".job-details");
+      const viewDetailsButton = jobCard.querySelector(".view-details-button");
+
+      viewDetailsButton.addEventListener("click", (e) => {
         e.preventDefault();
         if (jobDetailsDiv.style.display === "none") {
           jobDetailsDiv.style.display = "block";
-          moreDetailsLink.textContent = "Hide details";
+          viewDetailsButton.textContent = "Hide details";
         } else {
           jobDetailsDiv.style.display = "none";
-          moreDetailsLink.textContent = "More details";
+          viewDetailsButton.textContent = "More details";
         }
       });
     });
   }
 
-  fetchJobListings();
+  fetchJobListings(); // Fetch and render the job listings on page load
 });

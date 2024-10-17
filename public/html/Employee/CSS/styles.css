@@ -111,7 +111,7 @@ header {
 /* Dashboard Section */
 .dashboard-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   gap: 20px;
   margin-top: 20px;
 }
@@ -127,13 +127,18 @@ header {
   margin-top: 0;
 }
 
-.view-details-button {
+.view-details-button,
+.btn--apply {
   background-color: #3c8dbc;
   color: white;
   padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+.btn--apply {
+  background-color: #28a745;
 }
 
 .view-details-button:hover {
@@ -378,6 +383,7 @@ header {
   background: #dd4b39;
   color: #fff;
   display: inline-block;
+  font-size: 10px;
 }
 
 a {
