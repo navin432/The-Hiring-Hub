@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Employee Dashboard</title>
+    <link rel="stylesheet" href="Employee/CSS/styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="Employee/Image/Hiring logo.png"
+            alt="Company Logo"
+            class="logo"
+          />
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="employeedashboard.html">Dashboard</a></li>
+          <li>
+            <a href="Employee/ranking-progress.html">Ranking & Progress</a>
+          </li>
+          <li><a href="Employee/job-postings.html">Job Postings</a></li>
+          <li><a href="Employee/equipments.html">Equipments</a></li>
+          <li><a href="Employee/profile.html">Profile</a></li>
+          <li><a class="btn btn--logout" href="../index.html">Logout</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <div class="welcome-section">
+            <div class="employee-info">
+              <img
+                src="Employee/Image/IMG_4255 (1).jpg"
+                alt="Profile Picture"
+                class="profile-photo"
+              />
+              <div>
+                <h1 id="employee-name"></h1>
+                <p>Status: <span class="status_employee">Employee</span></p>
+                <p>Employee ID: 12345</p>
+              </div>
+            </div>
+            <p>
+              Welcome to your employee dashboard. Here you can track your
+              progress, view job postings, and manage your profile.
+            </p>
+          </div>
+          <div class="date-notification">
+            <p id="current-date"></p>
+            <img
+              src="Employee/Image/notification.png"
+              alt="Notifications"
+              class="notification-icon"
+            />
+          </div>
+        </header>
+
+        <!-- Sections for Employee Dashboard -->
+        <section class="dashboard-section">
+          <div class="section-card">
+            <h2>Ranking & Progress</h2>
+            <p>
+              Track your performance and see where you stand among your peers.
+            </p>
+            <a href="Employee/ranking-progress.html">
+              <button class="view-details-button">View Details</button>
+            </a>
+          </div>
+          <div class="section-card">
+            <h2>Job Postings</h2>
+            <p>Stay updated with the latest job openings within the company.</p>
+            <a href="Employee/job-postings.html">
+              <button class="view-details-button">View Postings</button>
+            </a>
+          </div>
+          <div class="section-card">
+            <h2>Equipments Provided</h2>
+            <p>
+              View the list of equipment provided by the company for your role.
+            </p>
+            <a href="Employee/equipments.html">
+              <button class="view-details-button">View Equipments</button>
+            </a>
+          </div>
+          <div class="section-card">
+            <h2>Profile</h2>
+            <p>
+              Manage your profile information, update details, and upload a new
+              profile picture.
+            </p>
+            <a href="Employee/profile.html">
+              <button class="view-details-button">Update Profile</button>
+            </a>
+          </div>
+        </section>
+
+        <!-- Notifications Section -->
+        <section class="notifications-section">
+          <h2>Notifications</h2>
+          <ul>
+            <li>
+              <p><strong>Project Deadline Reminder</strong></p>
+              <p>Sep 22, 2024</p>
+            </li>
+            <li>
+              <p><strong>New Job Postings Available</strong></p>
+              <p>Sep 20, 2024</p>
+            </li>
+          </ul>
+          <a href="#" class="view-all">View All</a>
+        </section>
+      </main>
+    </div>
+
+    <script src="Employee/JS/date.js"></script>
+    <script>
+      const profileName = document.getElementById("employee-name");
+      const userName = localStorage.getItem("userName");
+      profileName.innerText = userName;
+    </script>
+  </body>
+</html>

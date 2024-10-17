@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>External Monitors Details</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img src="Image/Hiring logo.png" alt="Company Logo" class="logo" />
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="../employeeDashboard.html">Dashboard</a></li>
+          <li><a href="ranking-progress.html">Ranking & Progress</a></li>
+          <li><a href="job-postings.html">Job Postings</a></li>
+          <li><a href="equipments.html" class="active">Equipments</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a class="btn btn--logout" href="../../index.html">Logout</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <a href="equipments.html" class="back-button"> &#8592; </a>
+          <div class="welcome-section">
+            <h1>External Monitors Details</h1>
+          </div>
+          <div class="date-notification">
+            <p id="current-date"></p>
+            <img
+              src="Image/notification.png"
+              alt="Notifications"
+              class="notification-icon"
+            />
+          </div>
+        </header>
+
+        <section class="dashboard-section">
+          <div class="section-card">
+            <h3>External Monitors</h3>
+            <p>
+              <strong>Models:</strong> Dell UltraSharp U2720Q / ASUS ProArt
+              PA278QV
+            </p>
+            <h4>Size:</h4>
+            <p>27 inches</p>
+            <h4>Resolution:</h4>
+            <p>Dell: 4K UHD (3840 x 2160)</p>
+            <p>ASUS: WQHD (2560 x 1440)</p>
+            <h4>Panel Type:</h4>
+            <p>IPS</p>
+            <h4>Connectivity:</h4>
+            <p>USB-C, HDMI, DisplayPort</p>
+            <h4>Adjustability:</h4>
+            <p>Height, tilt, swivel, and pivot.</p>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script src="JS/date.js"></script>
+  </body>
+</html>

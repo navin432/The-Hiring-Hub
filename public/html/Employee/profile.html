@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-header">
+          <img src="Image/Hiring logo.png" alt="Company Logo" class="logo" />
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="../employeeDashboard.html">Dashboard</a></li>
+          <li><a href="ranking-progress.html">Ranking & Progress</a></li>
+          <li><a href="job-postings.html">Job Postings</a></li>
+          <li><a href="equipments.html" class="active">Equipments</a></li>
+          <li><a href="profile.html">Profile</a></li>
+          <li><a class="btn btn--logout" href="../../index.html">Logout</a></li>
+        </ul>
+      </nav>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <div class="welcome-section">
+            <h1>Your Profile</h1>
+            <p>Manage your personal information.</p>
+          </div>
+          <div class="date-notification">
+            <p id="current-date"></p>
+            <img
+              src="Image/notification.png"
+              alt="Notifications"
+              class="notification-icon"
+            />
+          </div>
+        </header>
+
+        <section class="profile-section">
+          <!-- Profile Overview -->
+          <div class="profile-overview">
+            <div class="profile-picture">
+              <img
+                src="Image/IMG_4255 (1).jpg"
+                alt="Profile Picture"
+                id="profile-img"
+                class="clickable-img"
+              />
+              <input
+                type="file"
+                id="upload-profile-picture"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+
+            <div class="profile-info">
+              <h2 id="employee-name"></h2>
+              <p id="employee-status">Enrolled</p>
+              <p><strong>Software Engineer</strong></p>
+            </div>
+          </div>
+
+          <!-- Profile Update Form -->
+          <form class="profile-update-form" id="profileForm">
+            <div class="form-group">
+              <label for="employee-name-input">Employee Name:</label>
+              <input type="text" id="employee-name-input" disabled />
+            </div>
+            <div class="form-group">
+              <label for="employee-email">Email:</label>
+              <input type="email" id="employee-email" disabled />
+            </div>
+            <div class="form-group">
+              <label for="employee-phone">Phone Number:</label>
+              <input type="text" id="employee-phone" disabled />
+            </div>
+            <div class="form-group">
+              <label for="employee-address">Permanent Address:</label>
+              <input type="text" id="employee-address" disabled />
+            </div>
+            <div class="form-group">
+              <label for="mailing-address"
+                >Mailing Address (if different):</label
+              >
+              <input type="text" id="mailing-address" disabled />
+            </div>
+            <div class="form-group">
+              <label for="emergency-contact">Emergency Contact:</label>
+              <input type="text" id="emergency-contact" disabled />
+            </div>
+            <div class="form-group">
+              <label for="date-of-birth">Date of Birth:</label>
+              <input type="date" id="date-of-birth" disabled />
+            </div>
+            <div class="form-group">
+              <label for="employee-description">Description About You:</label>
+              <textarea id="employee-description" disabled></textarea>
+            </div>
+            <div class="form-group">
+              <label for="department">Department:</label>
+              <input type="text" id="department" disabled />
+            </div>
+            <div class="form-group">
+              <label for="linkedin">LinkedIn Profile:</label>
+              <input type="url" id="linkedin" disabled />
+            </div>
+            <div class="form-group">
+              <label for="github">GitHub Profile:</label>
+              <input type="url" id="github" disabled />
+            </div>
+
+            <!-- Edit Profile Button -->
+            <button type="button" id="edit-button" class="update-button">
+              Edit Profile
+            </button>
+            <!-- Save Profile Button (hidden initially) -->
+            <button
+              type="submit"
+              id="save-button"
+              class="update-button"
+              style="display: none"
+            >
+              Save Profile
+            </button>
+          </form>
+        </section>
+      </main>
+    </div>
+
+    <script src="JS/profile.js"></script>
+  </body>
+</html>

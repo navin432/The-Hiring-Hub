@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laptop/Desktop Computer Details</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="Image/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="../employee_dashboard.html">Dashboard</a></li>
+        <li><a href="ranking-progress.html">Ranking & Progress</a></li>
+        <li><a href="job-postings.html">Job Postings</a></li>
+        <li><a href="equipments.html" class="active">Equipments</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a class="btn btn--logout" href="../../index.html">Logout</a> </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <a href="equipments.html" class="back-button">
+            &#8592; 
+          </a>
+        <div class="welcome-section">
+          <h1>Laptop/Desktop Computer Details</h1>
+        </div>
+        <div class="date-notification">
+          <p id="current-date"></p>
+          <img src="Image/notification.png" alt="Notifications" class="notification-icon">
+        </div>
+      </header>
+
+      <section class="dashboard-section">
+        <div class="section-card">
+          <h3>Laptop/Desktop Computer</h3>
+          <p><strong>Models:</strong> Dell XPS 15 (Laptop) / HP Omen 30L (Desktop)</p>
+          <h4>Processor:</h4>
+          <p>Laptop: Intel Core i7-13700H or AMD Ryzen 7 6800H</p>
+          <p>Desktop: AMD Ryzen 9 7900X or Intel Core i9-12900K</p>
+          <h4>RAM:</h4>
+          <p>Laptop: 16GB DDR5 (expandable to 32GB)</p>
+          <p>Desktop: 32GB DDR5 (expandable to 64GB)</p>
+          <h4>Storage:</h4>
+          <p>Laptop: 512GB or 1TB NVMe SSD</p>
+          <p>Desktop: 1TB NVMe SSD (optional 2TB HDD)</p>
+          <h4>Graphics:</h4>
+          <p>Laptop: NVIDIA GeForce RTX 4050 or 4060</p>
+          <p>Desktop: NVIDIA GeForce RTX 4070 or AMD Radeon RX 6800</p>
+          <h4>Display Size:</h4>
+          <p>Laptop: 15.6 inches (FHD or 4K)</p>
+          <p>Desktop: Typically paired with a 27-inch monitor.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="JS/date.js"></script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Postings</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="Image/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="../employeeDashboard.html">Dashboard</a></li>
+        <li><a href="/ranking-progress.html">Ranking & Progress</a></li>
+        <li><a href="job-postings.html">Job Postings</a></li>
+        <li><a href="equipments.html" class="active">Equipments</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a class="btn btn--logout" href="../../index.html">Logout</a> </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      
+
+      <div class="status">
+        <img src="Image/Hiring logo.png" alt="" class="logo" />
+        <h2 class="status__heading">Application Status</h2>
+        <table class="status__table">
+          <thead>
+            <tr>
+              <th>Job Title</th>
+              <th>Company</th>
+              <th>Date Applied</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Software Engineer</td>
+              <td>Tech Corp</td>
+              <td>August 15, 2024</td>
+              <td class="status__item status__item--approved">Approved</td>
+            </tr>
+            <tr>
+              <td>Marketing Specialist</td>
+              <td>Global Marketing</td>
+              <td>September 2, 2024</td>
+              <td class="status__item status__item--pending">Pending</td>
+            </tr>
+            <tr>
+              <td>Data Analyst</td>
+              <td>Data Solutions</td>
+              <td>September 10, 2024</td>
+              <td class="status__item status__item--rejected">Rejected</td>
+            </tr>
+          </tbody>
+        </table>
+        <a href="job-postings.html" class="btn btn--status"
+          >Go Back to Dashboard</a
+        >
+        <div class="status__footer">
+          <p>&copy; 2024 The Hiring Hub. All rights reserved.</p>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

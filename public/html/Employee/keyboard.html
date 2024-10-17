@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keyboard Details</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="Image/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="../employee_dashboard.html">Dashboard</a></li>
+        <li><a href="ranking-progress.html">Ranking & Progress</a></li>
+        <li><a href="job-postings.html">Job Postings</a></li>
+        <li><a href="equipments.html" class="active">Equipments</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a class="btn btn--logout" href="../../index.html">Logout</a> </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <!-- Back Button -->
+        <a href="equipments.html" class="back-button">
+          &#8592; 
+        </a>
+        <div class="welcome-section">
+          <h1>Keyboard Details</h1>
+        </div>
+        <div class="date-notification">
+          <p id="current-date"></p>
+          <img src="Image/notification.png" alt="Notifications" class="notification-icon">
+        </div>
+      </header>
+
+      <section class="dashboard-section">
+        <div class="section-card">
+          <h3>Keyboard</h3>
+          <p><strong>Models:</strong> Keychron K8 / Logitech MX Keys</p>
+          <h4>Type:</h4>
+          <p>Keychron K8: Mechanical with Gateron switches.</p>
+          <p>Logitech MX Keys: Low-profile membrane.</p>
+          <h4>Connectivity:</h4>
+          <p>Bluetooth and USB-C (K8); USB receiver and USB-C (MX Keys).</p>
+          <h4>Layout:</h4>
+          <p>Tenkeyless (K8) or full-size (MX Keys).</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="JS/date.js"></script>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Details</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <img src="Image/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="../employee_dashboard.html">Dashboard</a></li>
+        <li><a href="ranking-progress.html">Ranking & Progress</a></li>
+        <li><a href="job-postings.html">Job Postings</a></li>
+        <li><a href="equipments.html" class="active">Equipments</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a class="btn btn--logout" href="../../index.html">Logout</a> </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <!-- Back Button -->
+        <a href="equipments.html" class="back-button">
+          &#8592;
+        </a>
+        <div class="welcome-section">
+          <h1>Mouse Details</h1>
+        </div>
+        <div class="date-notification">
+          <p id="current-date"></p>
+          <img src="Image/notification.png" alt="Notifications" class="notification-icon">
+        </div>
+      </header>
+
+      <section class="dashboard-section">
+        <div class="section-card">
+          <h3>Mouse</h3>
+          <p><strong>Models:</strong> Logitech MX Master 3 / Razer DeathAdder V2</p>
+          <h4>Type:</h4>
+          <p>Logitech MX Master 3: Ergonomic with programmable buttons.</p>
+          <p>Razer DeathAdder V2: High-precision 20,000 DPI.</p>
+          <h4>Connectivity:</h4>
+          <p>Bluetooth or USB receiver.</p>
+          <h4>Battery Life:</h4>
+          <p>Logitech MX Master 3: Up to 70 days.</p>
+          <p>Razer DeathAdder V2: Wired USB connection.</p>
+          <h4>Customization:</h4>
+          <p>Logitech: Customizable buttons via Logitech Options.</p>
+          <p>Razer: Customizable RGB via Razer Synapse.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="JS/date.js"></script>
+</body>
+</html>
