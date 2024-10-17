@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Performance_Tracking</title>
+  <link rel="stylesheet" href="CSS/ramro.css">
+  <link rel="stylesheet" href="css/CanSou-styles.css">
+  
+ 
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="Images/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="../hRDashboard.html">Dashboard</a></li>
+        <li><a href="Candidate_Sourcing.html">Candidate Sourcing</a></li>
+        <li><a href="Interview.html">Interview Scheduling</a></li>
+        <li><a href="onboarding.html">Onboarding</a></li>
+        <li><a href="Performance_Tracking.html">Performance Tracking</a></li>
+        <li><a href="Promotion_Planning.html">Promotion Planning</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a href="register.html">Register</a></li>
+        <li><a href="contact-info.html">Contact Info</a></li>
+        <li><a class="btn-logout" href="logout.html">Logout</a></li>
+      </ul>
+    </aside>
+
+<!--Candidate Sourcing-->
+    <main>
+    <div class="content">
+        <h2>Candidate Sourcing</h2>
+        <div class="job-shortlisting-wrapper">
+            <!-- Job Requirements Section -->
+            <div class="job-requirements">
+                <h3>Job Requirements</h3>
+                <ul>
+                    <li><strong>Software Engineer</strong><br> 
+                        <span>Requirements:</span> Bachelor's in Computer Science, Expertise in JavaScript and Python<br>
+                        <span>Experience:</span> 5+ years<br>
+                        <span>Date Posted:</span> 2024-09-28
+                    </li>
+                    <li><strong>Product Manager</strong><br> 
+                        <span>Requirements:</span> Strong communication and leadership skills, Familiarity with Agile<br>
+                        <span>Experience:</span> 3+ years<br>
+                        <span>Date Posted:</span> 2024-09-30
+                    </li>
+                    <li><strong>UX Designer</strong><br> 
+                        <span>Requirements:</span> Bachelor's in Design, Proficiency in Adobe XD and Figma<br>
+                        <span>Experience:</span> 2+ years<br>
+                        <span>Date Posted:</span> 2024-10-01
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Shortlisting Section -->
+            <div class="shortlisting">
+                <h3>Shortlisting</h3>
+                <div class="filter-options">
+                    <label for="filter-experience">Filter by Experience:</label>
+                    <select id="filter-experience">
+                        <option value="all">All</option>
+                        <option value="2">2+ years</option>
+                        <option value="3">3+ years</option>
+                        <option value="5">5+ years</option>
+                    </select>
+
+                    <label for="filter-date">Filter by Date:</label>
+                    <input type="date" id="filter-date">
+                </div>
+
+                <ul id="filtered-list">
+                    <li>Using criteria such as skills, experience, and qualifications, candidates are shortlisted...</li>
+                    <li>AI tools or manual reviews can be used to identify the most suitable candidates...</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</main>
+</div>
+
+<script src="JS/CanSou-script.js"></script>
+</body>
+</html>

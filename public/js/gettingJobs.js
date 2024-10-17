@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
   const jobListingsSection = document.getElementById("job-listings");
+  const profileName = document.getElementById("user-name");
+  let userName = localStorage.getItem("userName");
+  userName = userName.split(" ");
+  profileName.innerText = "Welcome, " + userName[0];
 
   async function fetchJobListings() {
     try {
@@ -26,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           <p class="job-listing__position-summary">${
             job.jobDetails.positionSummary
           }</p>
-          <a href="#" class="job-listing__more-details">More details</a>
+          <a href="#" class="btn job-listing__more-details">More details</a>
           
           <div class="job-details" style="display: none;">
             <h4>Key Responsibilities:</h4>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HR Dashboard</title>
+  <link rel="stylesheet" href="HR/CSS/ramro.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="HR/Images/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="hRDashboard.html">Dashboard</a></li>
+        <li><a href="HR/Candidate_Sourcing.html">Candidate Sourcing</a></li>
+        <li><a href="HR/Interview.html">Interview Scheduling</a></li>
+        <li><a href="HR/onboarding.html">Onboarding</a></li>
+        <li><a href="HR/Performance_Tracking.html">Performance Tracking</a></li>
+        <li><a href="HR/Promotion_Planning.html">Promotion Planning</a></li>
+        <li><a href="HR/profile.html">Profile</a></li>
+        <li><a href="HR/register.html">Register</a></li>
+        <li><a href="HR/contact-info.html">Contact Info</a></li>
+        <li><a class="btn-logout" href="logout.html">Logout</a></li>
+      </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <header>
+        <div class="welcome-section">
+          <div class="user-info">
+            <img src="HR/Images/IMG_4255 (1).jpg" alt="Profile Picture" class="profile-photo">
+            <div>
+              <h1>Hello, HR!</h1>
+              <p>Status: <span class="status">HR</span></p>
+            </div>
+          </div>
+          <div class="date-notification">
+            <p>October 15, 2024</p>
+            <img src="HR/Images/notification.png" alt="Notifications" class="notification-icon">
+          </div>
+        </div>
+        <p>Welcome to your HR dashboard. Manage your HR tasks efficiently.</p>
+      </header>
+
+      <!-- Dashboard Sections -->
+      <section class="dashboard-cards">
+        <div class="card">
+          <h3>Candidate Sourcing</h3>
+          <p>Manage the sourcing and shortlisting of candidates.</p>
+          <a href="HR/Candidate_Sourcing.html"><button class="card-btn">View Details</button></a>
+        </div>
+        <div class="card">
+          <h3>Interview Scheduling</h3>
+          <p>Schedule and manage interviews for potential hires.</p>
+          <a href="HR/Interview.html"><button class="card-btn">Schedule Interviews</button></a>
+        </div>
+        <div class="card">
+          <h3>Onboarding</h3>
+          <p>Handle onboarding processes for new employees.</p>
+          <a href="HR/onboarding.html"><button class="card-btn">Start Onboarding</button></a>
+        </div>
+        <div class="card">
+          <h3>Performance Tracking</h3>
+          <p>Track employee performance and reviews.</p>
+          <a href="HR/Performance_Tracking.html"><button class="card-btn">View Performance</button></a>
+        </div>
+        <div class="card">
+          <h3>Promotion Planning</h3>
+          <p>Plan promotions and career growth paths.</p>
+          <a href="HR/Promotion_Planning.html"><button class="card-btn">Plan Promotions</button></a>
+        </div>
+      </section>
+
+      <!-- Notifications Section -->
+      <section class="notifications-section">
+        <h2>Notifications</h2>
+        <div class="notification">
+          <p>New candidate applications available - Oct 15, 2024</p>
+        </div>
+        <div class="notification">
+          <p>Upcoming interview scheduled for Oct 16, 2024</p>
+        </div>
+        <a href="#" class="view-all">View All Notifications</a>
+      </section>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,229 @@
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Container Styling */
+        .container {
+            width: 100%;
+            max-width: auto;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+   
+
+        /* Header Styling */
+        .header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #0047ab;
+            color: #fff;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Section Styling */
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #e1e1e1;
+            border-radius: 8px;
+            transition: background-color 0.3s;
+        }
+
+        .section:hover {
+            background-color: #f0f8ff;
+        }
+
+        .section h2 {
+            color: #0047ab;
+            margin-bottom: 10px;
+        }
+
+        .section p {
+            margin-bottom: 10px;
+        }
+
+        /* Promotion Criteria and Policies Styling */
+        .criteria-list {
+            list-style: none;
+            margin: 10px 0;
+            padding: 0;
+        }
+
+        .criteria-list li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .criteria-list li::before {
+            content: "✔";
+            position: absolute;
+            left: 0;
+            color: #0047ab;
+        }
+
+        /* Employee Performance Data Styling */
+        .performance-chart {
+            background-color: #e3eaf2;
+            padding: 15px;
+            border-radius: 8px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .chart {
+            height: 200px;
+            background-color: #ff0055;
+            border-radius: 8px;
+            position: relative;
+            
+        }
+        .chart1{
+            height: 200px;
+            background-color: #ff9900;
+            border-radius: 8px;
+            position: relative;
+        }
+        .chart2 {
+            height: 200px;
+            background-color: #00ff37;
+            border-radius: 8px;
+            position: relative;
+        }
+        .chart3 {
+            height: 200px;
+            background-color: #0055ff;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .chart div {
+            height:100%;
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            color: #fff;
+            line-height: 3;
+            font-weight: bold;
+            transition: height 0.5s;
+            font-size: 80px;
+        }
+
+        .chart1 div {
+            height:100%;
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            color: #fff;
+            line-height: 3;
+            font-weight: bold;
+            transition: height 0.5s;
+            font-size: 80px;
+        }
+        .chart2 div {
+            height:100%;
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            color: #fff;
+            line-height: 3;
+            font-weight: bold;
+            transition: height 0.5s;
+            font-size: 80px;
+        }
+        .chart3 div {
+            height:100%;
+            border-radius: 8px 8px 0 0;
+            position: absolute;
+            bottom: 0;
+            text-align: center;
+            color: #fff;
+            line-height: 3;
+            font-weight: bold;
+            transition: height 0.5s;
+            font-size: 80px;
+            margin: 15px;
+        }
+        /* Skills and Competency Assessment Styling */
+        .skills-matrix {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill-item {
+            background-color: #e3eaf2;
+            padding: 10px;
+            flex: 1;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .skill-item:hover {
+            transform: scale(1.05);
+        }
+
+        .progress-bar {
+            background-color: #d0d6e1;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 8px 0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .progress-bar div {
+            height: 20px;
+            background-color: #0047ab;
+            text-align: center;
+            color: #fff;
+            line-height: 20px;
+            transition: width 0.5s;
+        }
+
+        /* Employee Info Styling */
+        .employee-info {
+            background-color: #eaf4e3;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .employee-info table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .employee-info th, .employee-info td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .employee-info th {
+            background-color: #0047ab;
+            color: white;
+        }
+
+

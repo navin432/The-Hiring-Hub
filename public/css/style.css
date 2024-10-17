@@ -267,6 +267,11 @@ h3 {
   margin: 5px 0;
 }
 
+.job-listing__more-details {
+  background-color: #28a745;
+  color: #fff;
+}
+
 /* Footer */
 .dashboard__footer {
   text-align: center;

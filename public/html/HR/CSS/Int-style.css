@@ -1,0 +1,62 @@
+ 
+/* Main content container */
+.container {
+    display: flex;
+    justify-content: center;
+    transition: margin-left 0.3s ease;
+    width: 100%;
+}
+
+main {
+    padding: 20px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+.content {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 30px;
+}
+
+h3 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #275380;
+    margin-bottom: 30px;
+}
+
+/* Calendar styling */
+#calendar {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px;
+    min-height: 600px; /* Ensure there is a minimum height */
+    border: 1px solid #ddd;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #275380;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #183859;
+}
+
+ 
