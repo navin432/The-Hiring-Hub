@@ -57,3 +57,45 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Add Event button not found.');
     }
 });
+async function informClient() {
+    const availableTime = document.getElementById('availableTime').value;
+    const clientEmail = document.getElementById('clientEmail').value;
+    const message = document.getElementById('message').value;
+
+    // Check if available time and client email are provided
+    if (!availableTime || !clientEmail) {
+        alert("Please enter your available time and client's email.");
+        return;
+    }
+
+    // Prepare the data for sending to the backend
+    const requestData = {
+        availableTime,
+        clientEmail,
+        message
+    };
+
+    try {
+        // Send the POST request to the backend
+        const response = await fetch('/api/availability', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        // Handle the response
+        if (response.ok) {
+            alert("Email sent successfully!");
+            // Clear the form after successful submission
+            document.getElementById('timeForm').reset();
+        } else {
+            const errorText = await response.text();
+            alert("Failed to send the email: " + errorText);
+        }
+    } catch (error) {
+        console.error('Error while sending the email:', error);
+        alert("An error occurred while trying to send the email.");
+    }
+}

@@ -43,6 +43,23 @@
           </div>
         </main>
       </div>
+           
+      <div class="time-slot">
+      <h2>Set Your Available Time</h2>
+      <form id="timeForm">
+          <label for="availableTime">Available Time:</label>
+          <input type="datetime-local" id="availableTime" name="availableTime" placeholder="Enter your available time">
+          <br><br>
+          <label for="clientEmail">Client Email:</label>
+          <input type="email" id="clientEmail" name="clientEmail" placeholder="Enter the client's email">
+          <br><br>
+          <label for="message">Message (Optional):</label>
+          <textarea id="message" name="message" placeholder="Enter an optional message"></textarea>
+          <br><br>
+          <button type="button" onclick="informClient()">Inform Client</button>
+      </form>
+      </div>
+      </div>
       <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
       <script src="JS/Int-script.js"></script>
     </div>

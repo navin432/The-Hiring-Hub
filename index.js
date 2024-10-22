@@ -14,6 +14,7 @@ const jobs = require("./routes/jobs");
 const jobApplication = require("./routes/jobApplications");
 const resetCode = require("./routes/resetCode");
 const userProfiles = require("./routes/userProfiles");
+const availability = require("./routes/availabilities");
 
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -31,6 +32,7 @@ app.use("/api/jobs", jobs);
 app.use("/api/jobapplications", jobApplication);
 app.use("/api/forgotpassword", resetCode);
 app.use("/api/profiles", userProfiles);
+app.use("/api/availability",availability);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
