@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initialize FullCalendar with time-based views
     const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'timeGridWeek', // Set initial view to week with time slots
+        initialView: 'dayGridMonth', // Set initial view to week with time slots
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
