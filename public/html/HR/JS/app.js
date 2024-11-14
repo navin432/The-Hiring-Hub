@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function displayJobs(jobs) {
-    jobList.innerHTML = ""; // Clear existing jobs
+    jobList.innerHTML = "";
 
     jobs.forEach((job) => {
       const jobDiv = document.createElement("div");
@@ -38,6 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
               .map((item) => `<li>${item}</li>`)
               .join("")}
           </ul>
+  
+          <h4>Education Level:</h4>
+          <p>${job.jobDetails.educationLevel}</p>
+  
+          <h4>Required Skills:</h4>
+          <ul>
+            ${job.jobDetails.requiredSkills
+              .map((item) => `<li>${item}</li>`)
+              .join("")}
+          </ul>
         </div>
   
         <div class="job-actions">
@@ -45,6 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
           <button class="delete-btn" onclick="deleteJob('${
             job._id
           }')">Delete</button>
+          <button onclick="window.location.href='view-applicants.html?id=${
+            job._id
+          }'">View Applicants</button>
         </div>
       `;
 
