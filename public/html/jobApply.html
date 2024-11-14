@@ -16,6 +16,7 @@
           id="jobApplicationForm"
           enctype="multipart/form-data"
         >
+          <!-- Experience Field -->
           <div class="application__form-group">
             <label class="application__form-label" for="experience"
               >Years of Experience</label
@@ -26,9 +27,47 @@
               name="experience"
               class="application__form-input"
               placeholder="Enter your experience in years"
+              required
             />
           </div>
 
+          <!-- Education Level Field -->
+          <div class="application__form-group">
+            <label class="application__form-label" for="educationLevel"
+              >Education Level</label
+            >
+            <select
+              id="educationLevel"
+              name="educationLevel"
+              class="application__form-input"
+              required
+            >
+              <option value="" disabled selected>
+                Select your highest education level
+              </option>
+              <option value="High School">High School</option>
+              <option value="Bachelor's">Bachelor's</option>
+              <option value="Master's">Master's</option>
+              <option value="PhD">PhD</option>
+            </select>
+          </div>
+
+          <!-- Skills Field -->
+          <div class="application__form-group">
+            <label class="application__form-label" for="skills"
+              >Relevant Skills</label
+            >
+            <input
+              type="text"
+              id="skills"
+              name="skills"
+              class="application__form-input"
+              placeholder="Enter skills separated by commas (e.g., JavaScript, Node.js, MongoDB)"
+              required
+            />
+          </div>
+
+          <!-- Resume Upload -->
           <div class="application__form-group">
             <label class="application__form-label" for="resume"
               >Upload Resume (PDF/DOC)</label
@@ -43,26 +82,28 @@
             />
           </div>
 
+          <!-- Cover Letter Upload (Optional) -->
           <div class="application__form-group">
-            <label class="application__form-label" for="cover-letter"
+            <label class="application__form-label" for="coverLetter"
               >Upload Cover Letter (Optional)</label
             >
             <input
               type="file"
-              id="cover-letter"
+              id="coverLetter"
               name="coverLetter"
               class="application__form-input"
               accept=".pdf, .doc, .docx"
             />
           </div>
 
+          <!-- Additional Documents Upload -->
           <div class="application__form-group">
-            <label class="application__form-label" for="additional-docs"
+            <label class="application__form-label" for="additionalDocs"
               >Upload Additional Documents</label
             >
             <input
               type="file"
-              id="additional-docs"
+              id="additionalDocs"
               name="additionalDocs"
               class="application__form-input"
               accept=".pdf, .doc, .docx"
@@ -70,6 +111,7 @@
             />
           </div>
 
+          <!-- Comments Field (Optional) -->
           <div class="application__form-group">
             <label class="application__form-label" for="comments"
               >Comments (Optional)</label
@@ -82,7 +124,7 @@
             ></textarea>
           </div>
 
-          <!-- Submit button -->
+          <!-- Submit Button -->
           <button type="submit" class="btn btn--jobSubmit btn--stretched">
             Submit Application
           </button>

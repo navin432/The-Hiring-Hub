@@ -82,6 +82,7 @@
               <textarea
                 id="positionSummary"
                 placeholder="Briefly describe the role"
+                required
               ></textarea>
             </div>
             <div class="form-group">
@@ -91,6 +92,7 @@
               <textarea
                 id="keyResponsibilities"
                 placeholder="Enter each responsibility on a new line"
+                required
               ></textarea>
             </div>
             <div class="form-group">
@@ -98,11 +100,12 @@
               <textarea
                 id="requirements"
                 placeholder="Enter each requirement on a new line"
+                required
               ></textarea>
             </div>
             <div class="form-group">
               <label for="jobType">Job Type</label>
-              <select id="jobType">
+              <select id="jobType" required>
                 <option value="Full-time">Full-time</option>
                 <option value="Part-time">Part-time</option>
               </select>
@@ -110,6 +113,32 @@
             <div class="form-group">
               <label for="expectedStartDate">Expected Start Date</label>
               <input type="date" id="expectedStartDate" required />
+            </div>
+            <div class="form-group">
+              <label for="minExperience">Minimum Experience (years)</label>
+              <input
+                type="number"
+                id="minExperience"
+                min="0"
+                max="20"
+                placeholder="Enter minimum experience required"
+              />
+            </div>
+            <div class="form-group">
+              <label for="educationLevel">Education Level</label>
+              <select id="educationLevel" required>
+                <option value="High School">High School</option>
+                <option value="Bachelor's">Bachelor's</option>
+                <option value="Master's">Master's</option>
+                <option value="PhD">PhD</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="requiredSkills">Required Skills</label>
+              <textarea
+                id="requiredSkills"
+                placeholder="Enter required skills (one per line)"
+              ></textarea>
             </div>
             <button type="submit" class="btn-submit">Post Job</button>
           </form>

@@ -13,7 +13,7 @@ const transporter = nodemailer.createTransport({
         pass: hhhPass
     },
     tls: {
-        rejectUnauthorized: false // Allow self-signed certificates
+        rejectUnauthorized: false 
     }
 });
 // Create (POST) - Add a new available time

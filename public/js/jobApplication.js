@@ -18,7 +18,16 @@ document.addEventListener("DOMContentLoaded", function () {
     event.preventDefault();
 
     const formData = new FormData(form);
-
+    const skillsInput = formData.get("skills");
+    if (skillsInput) {
+      if (skillsInput) {
+        const skillsArray = skillsInput.split(",").map((skill) => skill.trim());
+        formData.delete("skills");
+        skillsArray.forEach((skill) => {
+          formData.append("skills[]", skill);
+        });
+      }
+    }
     formData.append("jobId", jobId);
 
     try {
@@ -29,13 +38,23 @@ document.addEventListener("DOMContentLoaded", function () {
           Authorization: `Bearer ${token}`,
         },
       });
-
+      const data = await response.json();
       if (!response.ok) {
-        const error = await response.json();
-        return alert(error.message);
+        const errorMsg = data.message;
+        alert(errorMsg);
+        if (
+          errorMsg ===
+          "Your application has been rejected as it did not meet the job criteria."
+        ) {
+          setTimeout(() => {
+            window.location.href = `${data.role}Dashboard.html`;
+          }, 500);
+          return;
+        }
+
+        return;
       }
 
-      const data = await response.json();
       console.log(
         "Job application submitted successfully:",
         data.jobApplication
