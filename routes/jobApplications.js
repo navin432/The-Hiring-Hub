@@ -4,6 +4,7 @@ const express = require("express");
 const { JobApplication, validate } = require("../models/jobApplication");
 const { Job } = require("../models/job");
 const { User } = require("../models/user");
+const Rejection = require("../models/rejection");
 const fs = require("fs");
 const path = require("path");
 const config = require("config");
@@ -158,6 +159,29 @@ router.post(
           message: "You have already applied for this job.",
         });
       }
+
+      const rejectionStatus = await Rejection.findOne({
+        userId: req.user._id,
+        jobId: req.body.jobId,
+        status: "rejected",
+      });
+
+      if (rejectionStatus) {
+        const rejectionDate = rejectionStatus.date;
+        const currentDate = new Date();
+        const diffTime = currentDate - rejectionDate;
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+        if (diffDays < 30) {
+          return res.status(400).json({
+            role: user.role,
+            message: `You cannot apply for this job again for 30 days after rejection.
+              Try again after ${30 - diffDays} days`,
+            redirect: true,
+          });
+        }
+      }
+
       const applicantDetails = {
         experience: req.body.experience,
         educationLevel: req.body.educationLevel,
@@ -165,14 +189,18 @@ router.post(
       };
 
       if (!meetsJobCriteria(job, applicantDetails)) {
+        const rejection = new Rejection({
+          userId: req.user._id,
+          jobId: req.body.jobId,
+        });
+        await rejection.save();
         await sendRejectionEmail(user.email, job.title, user.name);
-        return res
-          .status(400)
-          .send({
-            role: user.role,
-            message:
-              "Your application has been rejected as it did not meet the job criteria.",
-          });
+        return res.status(400).send({
+          role: user.role,
+          message:
+            "Your application has been rejected as it did not meet the job criteria.",
+          redirect: true,
+        });
       }
 
       const jobApplication = new JobApplication({

@@ -42,10 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!response.ok) {
         const errorMsg = data.message;
         alert(errorMsg);
-        if (
-          errorMsg ===
-          "Your application has been rejected as it did not meet the job criteria."
-        ) {
+        if (data.redirect === true) {
           setTimeout(() => {
             window.location.href = `${data.role}Dashboard.html`;
           }, 500);
