@@ -141,9 +141,10 @@
                   application.comments || "No comments provided"
                 }</p>
             </div>
-            <button class="button">Hire <strong>${
-              application.user.applicantName
-            }</strong></button>
+            <div>
+              <button class="button hire-button" data-id="${application.id}">Hire <strong>${application.user.applicantName}</strong></button>
+              <button class="button reject-button" data-id="${application.id}" style="background-color: #dc3545;">Reject <strong>${application.user.applicantName}</strong></button>
+          </div>
         </div>
     `
           )
