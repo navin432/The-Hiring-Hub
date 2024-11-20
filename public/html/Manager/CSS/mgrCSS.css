@@ -1,4 +1,4 @@
- Basic Reset
+Basic Reset
 * {
     margin: 0;
     padding: 0;
@@ -14,16 +14,11 @@
   
   /* Sidebar Styles */
   .sidebar {
-     
-    float:left;
-    position:absolute;
-    min-height: 100%;
-    width:260px;
-    height:100%;
+    width: 260px;
     background-color: #3a3f44;
     color: #fff;
     padding: 20px;
-
+    
   
   }
   
@@ -69,9 +64,16 @@
   /* Main Content Styles */
   .main-content {
     flex: 1;
-    padding-left: 310px;
+    padding: 20px;
     width:100%;
+    overflow-y: auto;
+    width:100%;
+    box-sizing: border-box;
   }
+  .main-content * {
+    max-width: 100%; /* Ensures child elements do not exceed container width */
+}
+  
   
   .welcome-section {
     display: flex;

@@ -4,12 +4,14 @@
     display: flex;
     justify-content: space-evenly;
     transition: margin-left 0.3s ease;
+    padding-left: 265px;
     width: 100%;
 }
 
 main{
     flex-grow: 1;
 }
+ 
 
 .booki{
     flex-grow: 0;
@@ -18,7 +20,7 @@ main{
 .content {
   width:80%;
     background-color: white;
-    padding: 30px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     margin: 20px;
@@ -28,8 +30,11 @@ main{
 h2 {
     font-size: 24px;
     font-weight: bold;
-    color: #275380;
+    color: #fff;
     margin-bottom: 30px;
+}
+.altercolor{
+    color:#275380;
 }
 
 h3 {
