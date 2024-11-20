@@ -281,12 +281,18 @@ router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const jobApplication = await JobApplication.findOne({
       _id: applicationId,
-      "user._id": req.user._id,
     });
     if (!jobApplication) {
       return res.status(404).send({ message: "Job application not found." });
     }
+    console.log(req.user.role);
+    if (req.user.role === "hR") {
+      const { applicantEmail, applicantName } = jobApplication.user;
+      const jobTitle = jobApplication.job.title;
 
+      await sendRejectionEmail(applicantEmail, jobTitle, applicantName);
+      console.log("Rejection email sent.");
+    }
     // Delete the associated files (if any)
     const filesToDelete = [
       jobApplication.resume,
