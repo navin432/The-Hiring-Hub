@@ -1,276 +1,21 @@
-/* General styling
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  header {
-    background-color: #3c8dbc;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  nav {
-    background-color: #2a2a2a;
-    padding: 10px;
-  }
-  
-  nav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul li {
-    margin: 0 15px;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  section {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h2 {
-    color: #3c8dbc;
-  }
-  
-  .card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  .progress-bar {
-    background-color: #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 20px;
-    margin: 10px 0;
-  }
-  
-  .progress {
-    background-color: #3c8dbc;
-    height: 100%;
-  }
-  
-  footer {
-    background-color: #3c8dbc;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-  }
-  
-  a {
-    color: #3c8dbc;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-   */
-
-
-   /* General styling */
-/* body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  header {
-    background-color: #3c8dbc;
-    color: white;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  header a {
-    color: white;
-    text-decoration: none;
-  }
-  
-  header a:hover {
-    text-decoration: underline;
-  }
-  
-  section {
-    padding: 20px;
-    margin: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card, .profile-card {
-    background-color: #f9f9f9;
-    padding: 15px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-  }
-  
-  .profile-card {
-    text-align: center;
-  }
-  
-  .profile-card img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 15px;
-    object-fit: cover;
-  }
-  
-  .profile-card p {
-    font-size: 1.2em;
-  }
-  
-  .profile-card form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .profile-card input {
-    padding: 8px;
-    margin: 10px 0;
-    width: 80%;
-    max-width: 300px;
-  }
-  
-  .profile-card button {
-    padding: 10px 20px;
-    background-color: #3c8dbc;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .profile-card button:hover {
-    background-color: #3279a8;
-  }
-  
-  .progress-bar {
-    background-color: #ddd;
-    border-radius: 5px;
-    overflow: hidden;
-    height: 20px;
-    margin: 10px 0;
-  }
-  
-  .progress {
-    background-color: #3c8dbc;
-    height: 100%;
-  }
-  
-  footer {
-    background-color: #3c8dbc;
-    color: white;
-    text-align: center;
-    padding: 10px;
-    position: fixed;
-    width: 100%;
-    bottom: 0;
-  }
-  
-  a {
-    color: #3c8dbc;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-   
-
-
 /* General Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+    margin:0;
     background-color: #f4f4f4;
   }
   
   .dashboard-container {
     display: flex;
     height: 100vh;
+   
   }
-  
-  /* Sidebar Styles */
-  .sidebar {
-    width: 200px;
-    background-color: #766f6f;
-    color: white;
-    padding: 20px;
-    position: fixed;
-    height: 100vh;
-  }
-  
-  .sidebar-header {
-    text-align: center;
-  }
-  
-  .sidebar-header img.logo {
-    width: 100px;
-  }
-  
-  .sidebar ul {
-    list-style: none;
-    padding: 0;
-  }
-  .sidebar ul li:last-child{
-    margin-top: 55vh;
-  }
-  .sidebar ul li {
-    margin: 20px 0;
-  }
-  
-  .sidebar ul li a {
-    color: white;
-    text-decoration: none;
-    display: block;
-  }
-  
-  .sidebar ul li a:hover {
-    background-color: #6f6969;
-    padding-left: 10px;
-    transition: all 0.3s;
-  }
-  
+   
   /* Main Content Styles */
   .main-content {
     flex: 1;
-    padding: 20px;
+    padding-left: 60px;
     margin-left: 15rem;
+    overflow-y: auto;
   }
   
   header {
@@ -282,6 +27,7 @@ body {
   .welcome-section {
     display: flex;
     flex-direction: column;
+    
   }
   
   .employee-info {
@@ -427,7 +173,7 @@ body {
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  position: relative;
+  position:static;
 }
 
 .profile-picture img {

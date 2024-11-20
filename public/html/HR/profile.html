@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile</title>
-    <link rel="stylesheet" href="CSS/Profile-styles.css" />
+    <link rel="stylesheet" href="CSS/ramro.css"/>
+   <link rel="stylesheet" href="CSS/Profile-styles.css" />
   </head>
   <body>
     <div class="dashboard-container">
@@ -18,12 +19,9 @@
           <li><a href="../hRDashboard.html">Dashboard</a></li>
 
           <li><a href="Interview.html">Interview Scheduling</a></li>
-          <li><a href="onboarding.html">Onboarding</a></li>
+          <li><a href="onboarding.html">Job Posting</a></li>
           <li><a href="Performance_Tracking.html">Performance Tracking</a></li>
-          <li><a href="Promotion_Planning.html">Promotion Planning</a></li>
           <li><a href="profile.html">Profile</a></li>
-          <li><a href="register.html">Register</a></li>
-          <li><a href="contact-info.html">Contact Info</a></li>
           <li><a class="btn-logout" href="../../index.html">Logout</a></li>
         </ul>
       </aside>
@@ -34,20 +32,18 @@
           <div class="welcome-section">
             <h1>Your Profile</h1>
             <p>Manage your personal information and update your details.</p>
+            <div class="date-notification">
+              <p>September 23, 2024</p>
+            </div>
           </div>
-          <div class="date-notification">
-            <p>September 23, 2024</p>
-          </div>
+          
         </header>
 
         <section class="profile-section">
           <!-- Profile Overview -->
           <div class="profile-overview">
             <div class="profile-picture">
-              <img
-                src="Images/IMG_4255 (1).jpg"
-                alt="Profile Picture"
-                id="profile-img"
+              <img src="" alt="Profile Picture" id="profile-img"
               />
               <input type="file" id="upload-profile-picture" accept="image/*" />
             </div>
@@ -59,108 +55,72 @@
           </div>
 
           <!-- Profile Update Form -->
-          <form class="profile-update-form">
+          <form class="profile-update-form" id="profileForm">
             <div class="form-group">
               <label for="employee-name-input">Employee Name:</label>
-              <input
-                type="text"
-                id="employee-name-input"
-                value="Sabin Neupane"
-              />
+              <input type="text" id="employee-name-input" disabled />
             </div>
             <div class="form-group">
               <label for="employee-email">Email:</label>
-              <input
-                type="email"
-                id="employee-email"
-                value="sawbeen@email.com"
-              />
+              <input type="email" id="employee-email" disabled />
             </div>
             <div class="form-group">
               <label for="employee-phone">Phone Number:</label>
-              <input type="text" id="employee-phone" value="123-456-7890" />
+              <input type="text" id="employee-phone" disabled />
             </div>
             <div class="form-group">
               <label for="employee-address">Permanent Address:</label>
-              <input
-                type="text"
-                id="employee-address"
-                value="670 Parliament st, Toronto, ON, Ca"
-              />
+              <input type="text" id="employee-address" disabled />
             </div>
             <div class="form-group">
               <label for="mailing-address"
                 >Mailing Address (if different):</label
               >
-              <input type="text" id="mailing-address" value="" />
+              <input type="text" id="mailing-address" disabled />
             </div>
             <div class="form-group">
               <label for="emergency-contact">Emergency Contact:</label>
-              <input
-                type="text"
-                id="emergency-contact"
-                value="Navin Gharti - 987-654-3210"
-              />
+              <input type="text" id="emergency-contact" disabled />
             </div>
             <div class="form-group">
               <label for="date-of-birth">Date of Birth:</label>
-              <input type="date" id="date-of-birth" value="1990-01-15" />
+              <input type="date" id="date-of-birth" disabled />
             </div>
             <div class="form-group">
               <label for="employee-description">Description About You:</label>
-              <textarea id="employee-description">
-Dedicated team member with over 5 years of experience in software development...</textarea
-              >
-            </div>
-            <div class="form-group">
-              <label for="job-title">Job Title:</label>
-              <input type="text" id="job-title" value="Software Engineer" />
-            </div>
-            <div class="form-group">
-              <label for="hire-date">Date of Hire:</label>
-              <input type="date" id="hire-date" value="2020-08-15" />
+              <textarea id="employee-description" disabled></textarea>
             </div>
             <div class="form-group">
               <label for="department">Department:</label>
-              <input type="text" id="department" value="Engineering" />
+              <input type="text" id="department" disabled />
             </div>
             <div class="form-group">
               <label for="linkedin">LinkedIn Profile:</label>
-              <input
-                type="url"
-                id="linkedin"
-                value="https://www.linkedin.com/in/sabin/"
-              />
+              <input type="url" id="linkedin" disabled />
             </div>
             <div class="form-group">
               <label for="github">GitHub Profile:</label>
-              <input type="url" id="github" value="https://github.com/sabin" />
+              <input type="url" id="github" disabled />
             </div>
 
-            <!-- Submit Button -->
-            <button type="submit" class="update-button">Update Profile</button>
+            <!-- Edit Profile Button -->
+            <button type="button" id="edit-button" class="update-button">
+              Edit Profile
+            </button>
+            <!-- Save Profile Button (hidden initially) -->
+            <button
+              type="submit"
+              id="save-button"
+              class="update-button"
+              style="display: none"
+            >
+              Save Profile
+            </button>
           </form>
         </section>
       </main>
     </div>
 
-    <script>
-      // JavaScript to preview uploaded profile picture
-      const profileImg = document.getElementById("profile-img");
-      const uploadProfilePicture = document.getElementById(
-        "upload-profile-picture"
-      );
-
-      uploadProfilePicture.addEventListener("change", function () {
-        const file = this.files[0];
-        if (file) {
-          const reader = new FileReader();
-          reader.onload = function (event) {
-            profileImg.setAttribute("src", event.target.result);
-          };
-          reader.readAsDataURL(file);
-        }
-      });
-    </script>
+    <script src="../Employee/JS/profile.js"></script>
   </body>
 </html>

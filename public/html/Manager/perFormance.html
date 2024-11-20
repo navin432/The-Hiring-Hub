@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Performance_Tracking</title>
-    <link rel="stylesheet" href="CSS/ramro.css" />
-    <script src="PerTra-script.js" defer></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manager Dashboard</title>
+    <link rel="stylesheet" href="css/mgrCSS.css" />
+    <script src="perf-trac.js" defer></script>
+ 
+    
   </head>
+
   <body>
     <div class="dashboard-container">
       <!-- Sidebar -->
@@ -16,16 +19,12 @@
           <h2>The Hiring Hub</h2>
         </div>
         <ul>
-          <li><a href="../hRDashboard.html">Dashboard</a></li>
-          <li><a href="Interview.html">Interview Scheduling</a></li>
-          <li><a href="onboarding.html">Job Posting</a></li>
-          <li><a href="Performance_Tracking.html">Performance Tracking</a></li>
-          <li><a href="profile.html">Profile</a></li>
-          <li><a class="btn-logout" href="../../index.html">Logout</a></li>
-        </ul>
-      </aside>
+          <li><a href="../Manager/mgrDashboard.html">Dashboard</a></li>
+          <li><a href="perFormance.html">Performance Tracking</a>
+          </ul>
+        </aside>
 
-      <!-- Main Content -->
+         <!-- Main Content -->
       <main class="main-content">
         <header>
           <div class="welcome-section">
@@ -36,18 +35,22 @@
                 class="profile-photo"
               />
               <div>
-                <h1>Hello, HR!</h1>
+                <h1>Hello, Manager!</h1>
                 <p>Status: <span class="status">HR</span></p>
               </div>
             </div>
             <div class="date-notification">
-              <p id="current-date"></p>
-               
+              <p>October 15, 2024</p>
+              <img
+                src="Images/notification.png"
+                alt="Notifications"
+                class="notification-icon"
+              />
             </div>
           </div>
          
             <p>
-              Welcome to your HR dashboard. Manage your HR tasks efficiently.
+              Welcome to your Manager dashboard. Manage your tasks efficiently.
             </p>
           
         </header>
@@ -57,18 +60,6 @@
           </header>
           <main>
             <section>
-              <h1>Candidate List</h1>
-  <div class="candidate">
-    <p>Candidate Name: Sabin Neupane</p>
-    <button onclick="hireCandidate('neupanesabin143@gmail.com')">Hire</button>
-  </div>
-  <!-- Add more candidates as needed -->
-  <script src="../Employee/JS/date.js"></script>
-  <script src="JS/hire_mail.js"></script>
-  
-            </section>
-            <section>
-            
               <h2>Performance and Rating</h2>
               <p>Rate your performance based on key metrics.</p>
               <div class="rating">
@@ -94,7 +85,6 @@
                 value="0"
               />
               <p>Progress: <span id="progressValue">0</span>%</p>
-              <script src="JS/PerTra-script.js"></script>
             </section>
           </main>
         </div>
@@ -114,3 +104,5 @@
     </div>
   </body>
 </html>
+
+  

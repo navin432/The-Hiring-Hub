@@ -2,10 +2,10 @@
 /* Main content container */
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     transition: margin-left 0.3s ease;
-    width: 100% auto;
-    height: 100% auto;
+    padding-left: 265px;
+    width: 100%;
 }
 
 main {
