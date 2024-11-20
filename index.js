@@ -18,7 +18,6 @@ const availability = require("./routes/availabilities");
 const hr = require("./routes/hr");
 const onboarding= require("./utils/sendOnboardingEmail");
 const profile= require("./routes/userProfiles");
-const tasks= require("./routes/tasks");
 
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -39,7 +38,7 @@ app.use("/api/profiles", profile);
 app.use("/api/availability",availability);
 app.use("/hire",onboarding);
 // app.use("/hire",hr);
-app.use("/complete-task",tasks);
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
