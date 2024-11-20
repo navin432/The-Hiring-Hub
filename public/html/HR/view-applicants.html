@@ -44,10 +44,16 @@
         padding: 10px 15px;
         border-radius: 5px;
         cursor: pointer;
-        margin-top: 10px; 
+        margin-top: 10px;
       }
       .button:hover {
         background-color: #218838;
+      }
+      .reject-button {
+        background-color: #ff4d4f;
+      }
+      .reject-button:hover {
+        background-color: #d7393e;
       }
       .resume-link,
       .additional-docs {
@@ -98,93 +104,148 @@
     <div id="applications-list"></div>
 
     <script>
+      const token = localStorage.getItem("authToken");
       async function fetchJobApplications() {
         const urlParams = new URLSearchParams(window.location.search);
         const jobId = urlParams.get("id");
 
-        // Fetch job applications for the job ID
-        const response = await fetch(`/api/jobapplications/${jobId}`);
+        try {
+          const response = await fetch(`/api/jobapplications/${jobId}`);
 
-        if (!response.ok) {
+          if (!response.ok) {
+            throw new Error(
+              `Error fetching job applications: ${response.statusText}`
+            );
+          }
+
+          const { job, jobApplications } = await response.json();
+          document.getElementById("job-title").textContent = job.title;
+
+          if (!jobApplications || jobApplications.length === 0) {
+            document.getElementById("applications-list").innerHTML =
+              "<p>No job applications found for this job.</p>";
+            return;
+          }
+
+          const applicationsList = jobApplications
+            .map(
+              (application) => `
+                        <div class="applicant-container" id="application-${
+                          application._id
+                        }">
+                            <div class="applicant-header">
+                                <h4>${application.user.applicantName}</h4>
+                            </div>
+                            <div class="applicant-details">
+                                <p><strong>Email:</strong> ${
+                                  application.user.applicantEmail
+                                }</p>
+                                <p><strong>Experience:</strong> ${
+                                  application.experience
+                                } years</p>
+                                <p><strong>Education Level:</strong> ${
+                                  application.educationLevel
+                                }</p>
+                                <p><strong>Skills:</strong> ${
+                                  application.skills.join(", ") || "None"
+                                }</p>
+                                <p class="resume-link"><strong>Resume:</strong> <a href="${
+                                  application.resume
+                                }" target="_blank">View Resume</a></p>
+                                <p class="cover-letter"><strong>Cover Letter:</strong> ${
+                                  application.coverLetter || "Not provided"
+                                }</p>
+                                <p class="additional-docs"><strong>Additional Documents:</strong> 
+                                    ${
+                                      application.additionalDocs.length > 0
+                                        ? application.additionalDocs
+                                            .map(
+                                              (doc) =>
+                                                `<a href="${doc}" target="_blank">View Document</a>`
+                                            )
+                                            .join(", ")
+                                        : "None"
+                                    }
+                                </p>
+                                <p><strong>Comments:</strong> ${
+                                  application.comments || "No comments provided"
+                                }</p>
+                            </div>
+                            <div>
+                                <button class="button hire-button" data-id="${
+                                  application._id
+                                }">Hire <strong>${
+                application.user.applicantName
+              }</strong></button>
+                                <button class="button reject-button" data-id="${
+                                  application._id
+                                }">Reject <strong>${
+                application.user.applicantName
+              }</strong></button>
+                            </div>
+                        </div>
+                    `
+            )
+            .join("");
+
+          document.getElementById("applications-list").innerHTML =
+            applicationsList;
+
+          
+          document
+            .getElementById("applications-list")
+            .addEventListener("click", async (e) => {
+              if (e.target.classList.contains("reject-button")) {
+                const applicationId = e.target.getAttribute("data-id");
+
+                if (!applicationId) {
+                  console.error("No application ID found!");
+                  return;
+                }
+
+                const confirmReject = confirm(
+                  "Are you sure you want to reject this application?"
+                );
+
+                if (confirmReject) {
+                  try {
+                    const rejectResponse = await fetch(
+                      `/api/jobApplications/${applicationId}`,
+                      {
+                        method: "DELETE",
+                        headers: {
+                          Authorization: `Bearer ${token}`,
+                        },
+                      }
+                    );
+
+                    if (!rejectResponse.ok) {
+                      alert("Error rejecting application. Please try again.");
+                      console.error(
+                        "Error rejecting application:",
+                        rejectResponse.statusText
+                      );
+                      return;
+                    }
+
+                    // Update UI to reflect rejection
+                    const rejectedContainer = document.getElementById(
+                      `application-${applicationId}`
+                    );
+                    rejectedContainer.classList.add("rejected");
+                    alert("Application rejected successfully.");
+                    fetchJobApplications();
+                  } catch (error) {
+                    console.error("Error rejecting application:", error);
+                  }
+                }
+              }
+            });
+        } catch (error) {
           document.getElementById("applications-list").innerHTML =
             "<p>Error fetching job applications.</p>";
-          console.error(
-            "Error fetching job applications:",
-            response.statusText
-          );
-          return;
+          console.error(error);
         }
-
-        const { job, jobApplications } = await response.json();
-        document.getElementById("job-title").textContent = job.title;
-
-        // Check if there are job applications
-        if (jobApplications.length === 0) {
-          document.getElementById("applications-list").innerHTML =
-            "<p>No job applications found for this job.</p>";
-          return;
-        }
-
-        // Set the job title
-        if (jobApplications.length > 0) {
-          document.getElementById("job-title").textContent =
-            jobApplications[0].job.title;
-        }
-
-        // Generate the applications list HTML
-        const applicationsList = jobApplications
-          .map(
-            (application) => `
-        <div class="applicant-container">
-            <div class="applicant-header">
-                <h4>${application.user.applicantName}</h4>
-            </div>
-            <div class="applicant-details">
-                <p><strong>Email:</strong> ${
-                  application.user.applicantEmail
-                }</p>
-                <p><strong>Experience:</strong> ${
-                  application.experience
-                } years</p>
-                <p><strong>Education Level:</strong> ${
-                  application.educationLevel
-                }</p>
-                <p><strong>Skills:</strong> ${
-                  application.skills.join(", ") || "None"
-                }</p>
-                <p class="resume-link"><strong>Resume:</strong> <a href="${
-                  application.resume
-                }" target="_blank">View Resume</a></p>
-                <p class="cover-letter"><strong>Cover Letter:</strong> ${
-                  application.coverLetter || "Not provided"
-                }</p>
-                <p class="additional-docs"><strong>Additional Documents:</strong> 
-                    ${
-                      application.additionalDocs.length > 0
-                        ? application.additionalDocs
-                            .map(
-                              (doc) =>
-                                `<a href="${doc}" target="_blank">View Document</a>`
-                            )
-                            .join(", ")
-                        : "None"
-                    }
-                </p>
-                <p><strong>Comments:</strong> ${
-                  application.comments || "No comments provided"
-                }</p>
-            </div>
-            <div>
-              <button class="button hire-button" data-id="${application.id}">Hire <strong>${application.user.applicantName}</strong></button>
-              <button class="button reject-button" data-id="${application.id}" style="background-color: #dc3545;">Reject <strong>${application.user.applicantName}</strong></button>
-          </div>
-        </div>
-    `
-          )
-          .join("");
-
-        document.getElementById("applications-list").innerHTML =
-          applicationsList;
       }
       fetchJobApplications();
     </script>
