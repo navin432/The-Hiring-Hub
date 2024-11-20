@@ -64,7 +64,7 @@ router.put("/:id", async (req, res) => {
 // DELETE: Remove a specific job by ID
 router.delete("/:id", async (req, res) => {
   try {
-    const job = await Job.findByIdAndRemove(req.params.id);
+    const job = await Job.findByIdAndDelete(req.params.id);
     if (!job) return res.status(404).send("Job not found");
     res.send(job);
   } catch (err) {

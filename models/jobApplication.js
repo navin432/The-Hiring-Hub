@@ -36,6 +36,15 @@ const jobApplicationSchema = new mongoose.Schema({
     min: 0,
     max: 20,
   },
+  educationLevel: {
+    type: String,
+    enum: ["High School", "Bachelor's", "Master's", "PhD"],
+    required: true,
+  },
+  skills: {
+    type: [String],
+    default: [],
+  },
   resume: {
     type: String,
     required: true,
@@ -57,6 +66,7 @@ const jobApplicationSchema = new mongoose.Schema({
   },
   applicationStatus: {
     type: String,
+    enum: ["Pending", "Rejected", "Shortlisted"],
     default: "Pending",
   },
 });
@@ -67,6 +77,10 @@ function validateJobApplication(application) {
   const schema = Joi.object({
     jobId: Joi.objectId().required(),
     experience: Joi.number().required().min(0).max(20),
+    educationLevel: Joi.string()
+      .valid("High School", "Associate's", "Bachelor's", "Master's", "PhD")
+      .required(),
+    skills: Joi.array().items(Joi.string()).optional(),
     comments: Joi.string().max(500).allow("").optional(),
   });
 

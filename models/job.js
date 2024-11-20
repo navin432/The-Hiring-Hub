@@ -39,6 +39,21 @@ const jobSchema = new mongoose.Schema({
         type: Date,
         required: true,
       },
+      minExperience: {
+        type: Number,
+        default: 0,
+        min: 0,
+        max: 20,
+      },
+      requiredSkills: {
+        type: [String],
+        default: [],
+      },
+      educationLevel: {
+        type: String,
+        enum: ["High School", "Bachelor's", "Master's", "PhD"],
+        required: true,
+      },
     },
     required: true,
   },
@@ -55,6 +70,12 @@ function validateJob(job) {
       requirements: Joi.array().items(Joi.string()).required(),
       jobType: Joi.string().valid("Full-time", "Part-time").required(),
       expectedStartDate: Joi.date().required(),
+      minExperience: Joi.number().min(0).max(20).optional(),
+      requiredSkills: Joi.array().items(Joi.string()).optional(),
+      educationLevel: Joi.string()
+        .valid("High School", "Bachelor's", "Master's", "PhD")
+        .required(),
+      preferredQualifications: Joi.array().items(Joi.string()).optional(),
     }).required(),
   });
 

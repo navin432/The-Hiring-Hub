@@ -3,14 +3,12 @@ document.addEventListener("DOMContentLoaded", function () {
   const jobList = document.getElementById("job-list");
   const jobIdField = document.getElementById("job-id");
 
-  // Fetch and display jobs
   async function fetchJobs() {
     const response = await fetch("/api/jobs");
     const jobs = await response.json();
     displayJobs(jobs);
   }
 
-  // Display jobs in the job list
   function displayJobs(jobs) {
     jobList.innerHTML = "";
 
@@ -40,6 +38,16 @@ document.addEventListener("DOMContentLoaded", function () {
               .map((item) => `<li>${item}</li>`)
               .join("")}
           </ul>
+  
+          <h4>Education Level:</h4>
+          <p>${job.jobDetails.educationLevel}</p>
+  
+          <h4>Required Skills:</h4>
+          <ul>
+            ${job.jobDetails.requiredSkills
+              .map((item) => `<li>${item}</li>`)
+              .join("")}
+          </ul>
         </div>
   
         <div class="job-actions">
@@ -47,28 +55,29 @@ document.addEventListener("DOMContentLoaded", function () {
           <button class="delete-btn" onclick="deleteJob('${
             job._id
           }')">Delete</button>
+          <button onclick="window.location.href='view-applicants.html?id=${
+            job._id
+          }'">View Applicants</button>
         </div>
       `;
 
-      // Append the job div to the job list container
+      // Add the job item to the list
       jobList.appendChild(jobDiv);
 
-      // Select the More Details link and the job details div
+      // Toggle job details visibility
       const moreDetailsLink = jobDiv.querySelector(
         ".job-listing__more-details"
       );
       const jobDetailsDiv = jobDiv.querySelector(".job-details");
 
-      // Add event listener to toggle the job details visibility
       moreDetailsLink.addEventListener("click", (e) => {
-        e.preventDefault(); // Prevent the default anchor link behavior
-        if (jobDetailsDiv.style.display === "none") {
-          jobDetailsDiv.style.display = "block"; // Show job details
-          moreDetailsLink.textContent = "Hide Details"; // Change the link text
-        } else {
-          jobDetailsDiv.style.display = "none"; // Hide job details
-          moreDetailsLink.textContent = "More Details"; // Change the link text back
-        }
+        e.preventDefault();
+        jobDetailsDiv.style.display =
+          jobDetailsDiv.style.display === "none" ? "block" : "none";
+        moreDetailsLink.textContent =
+          jobDetailsDiv.style.display === "none"
+            ? "More Details"
+            : "Hide Details";
       });
     });
   }
@@ -93,6 +102,12 @@ document.addEventListener("DOMContentLoaded", function () {
           .map((item) => item.trim()),
         jobType: document.getElementById("jobType").value,
         expectedStartDate: document.getElementById("expectedStartDate").value,
+        minExperience: document.getElementById("minExperience").value || 0,
+        educationLevel: document.getElementById("educationLevel").value,
+        requiredSkills: document
+          .getElementById("requiredSkills")
+          .value.split("\n")
+          .map((item) => item.trim()),
       },
     };
 
@@ -112,9 +127,10 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
 
+    // Clear form after submission
     jobForm.reset();
-    jobIdField.value = ""; // Reset jobId after submission
-    fetchJobs();
+    jobIdField.value = "";
+    fetchJobs(); // Refresh the job list
   });
 
   // Edit job function
