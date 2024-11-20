@@ -64,44 +64,36 @@
         margin-right: 10px;
         color: #007bff;
       }
+
+      .job-applications {
+        margin-left: 20rem;
+      }
     </style>
-     <link rel="stylesheet" href="CSS/ramro.css" />
+    <link rel="stylesheet" href="CSS/ramro.css" />
   </head>
   <body>
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
     <!-- Sidebar -->
     <aside class="sidebar">
       <div class="sidebar-header">
-        <img
-          src="Images/Hiring logo.png"
-          alt="Company Logo"
-          class="logo"
-        />
+        <img src="Images/Hiring logo.png" alt="Company Logo" class="logo" />
         <h2>The Hiring Hub</h2>
       </div>
       <ul>
-        <li><a href="hRDashboard.html">Dashboard</a></li>
-        <li><a href="HR/Interview.html">Interview Scheduling</a></li>
-        <li><a href="HR/onboarding.html">Job Posting</a></li>
+        <li><a href="../hRDashboard.html">Dashboard</a></li>
+        <li><a href="Interview.html">Interview Scheduling</a></li>
+        <li><a href="onboarding.html">Job Posting</a></li>
         <li>
-          <a href="HR/Performance_Tracking.html">Performance Tracking</a>
+          <a href="Performance_Tracking.html">Performance Tracking</a>
         </li>
-         
-        <li><a href="HR/profile.html">Profile</a></li>
-         <li><a class="btn-logout" href="../index.html">Logout</a></li>
+
+        <li><a href="profile.html">Profile</a></li>
+        <li><a class="btn-logout" href="../../index.html">Logout</a></li>
       </ul>
     </aside>
->>>>>>> d82c482c2d41eb3ac09ce3d82adc101818ee38ea
-    <h1>Applicants for <span id="job-title"></span></h1>
-    <div id="applications-list"></div>
+    <div class="job-applications">
+      <h1>Applicants for <span id="job-title"></span></h1>
+      <div id="applications-list"></div>
+    </div>
 
     <script>
       const token = localStorage.getItem("authToken");
