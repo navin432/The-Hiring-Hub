@@ -314,3 +314,16 @@ input[type="range"] {
 .job-item button.delete-btn:hover {
   background-color: #d73a3a;
 }
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}

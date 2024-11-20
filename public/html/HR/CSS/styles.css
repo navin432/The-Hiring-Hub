@@ -1,0 +1,89 @@
+/* Profile Input Section */
+.profile-input-form {
+  padding: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+}
+
+/* Form Group */
+.profile-input-form .form-group {
+  margin-bottom: 15px;
+}
+
+.profile-input-form .form-group label {
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.profile-input-form .form-group input,
+.profile-input-form .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #dcdcdc;
+  border-radius: 5px;
+  background-color: #ffffff;
+  box-sizing: border-box;
+}
+
+.profile-input-form .form-group textarea {
+  resize: none;
+  height: 80px;
+}
+
+/* Nested Bank Information Fields */
+.profile-input-form .form-group > div {
+  margin-bottom: 10px;
+}
+
+.profile-input-form .form-group > div label {
+  font-weight: normal;
+  font-size: 13px;
+  color: #555;
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* Submit Button */
+.profile-input-form .submit-button {
+  background-color: #1abc9c;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+}
+
+.profile-input-form .submit-button:hover {
+  background-color: #16a085;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .profile-input-form {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+}
