@@ -12,6 +12,12 @@ const profileSchema = new mongoose.Schema({
   department: { type: String, required: true },
   linkedIn: { type: String },
   github: { type: String },
+  sinNumber: { type: String, required: true },
+  bankInfo: {
+      institutionNumber: { type: String, required: true },
+      transitNumber: { type: String, required: true },
+      accountNumber: { type: String, required: true },
+  },
 });
 
 const Profile = mongoose.model("Profile", profileSchema);

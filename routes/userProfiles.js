@@ -2,6 +2,7 @@ const Profile = require("../models/userProfile");
 const app = require("express");
 const router = app.Router();
 
+// GET request to fetch profile by email
 router.get("/:email", async (req, res) => {
   try {
     const profile = await Profile.findOne({ email: req.params.email });
@@ -15,11 +16,11 @@ router.get("/:email", async (req, res) => {
   }
 });
 
-// POST or UPDATE profile data
+// POST request to create a new profile
 router.post("/", async (req, res) => {
   const {
     email,
-    name,
+    name=req.body.employeeName,
     phone,
     permanentAddress,
     mailingAddress,
@@ -29,60 +30,78 @@ router.post("/", async (req, res) => {
     department,
     linkedIn,
     github,
+    sinNumber,
+    bankInfo,
   } = req.body;
 
   try {
-    // Ensure email is provided
-    if (!email) {
-      return res
-        .status(400)
-        .json({ message: "Email is required to update profile" });
-    }
-
-    // Find the profile by email
+    // Check if a profile with the same email already exists
     let profile = await Profile.findOne({ email });
-
     if (profile) {
-      // Update the profile if it exists
-      profile.name = name || profile.name;
-      profile.phone = phone || profile.phone;
-      profile.permanentAddress = permanentAddress || profile.permanentAddress;
-      profile.mailingAddress = mailingAddress || profile.mailingAddress;
-      profile.emergencyContact = emergencyContact || profile.emergencyContact;
-      profile.dateOfBirth = dateOfBirth || profile.dateOfBirth;
-      profile.description = description || profile.description;
-      profile.department = department || profile.department;
-      profile.linkedIn = linkedIn || profile.linkedIn;
-      profile.github = github || profile.github;
-
-      await profile.save();
-      return res
-        .status(200)
-        .json({ message: "Profile updated successfully", profile });
-    } else {
-      // Create a new profile if it doesn't exist
-      const newProfile = new Profile({
-        email,
-        name,
-        phone,
-        permanentAddress,
-        mailingAddress,
-        emergencyContact,
-        dateOfBirth,
-        description,
-        department,
-        linkedIn,
-        github,
-      });
-
-      await newProfile.save();
-      return res
-        .status(201)
-        .json({ message: "Profile created successfully", profile: newProfile });
+      return res.status(400).json({ message: "Profile already exists" });
     }
+
+    // Create a new profile
+    const newProfile = new Profile({
+      email,
+      name,
+      phone,
+      permanentAddress,
+      mailingAddress,
+      emergencyContact,
+      dateOfBirth,
+      description,
+      department,
+      linkedIn,
+      github,
+      sinNumber,
+      bankInfo,
+    });
+
+    await newProfile.save();
+    res.status(201).json({ message: "Profile created successfully", profile: newProfile });
   } catch (error) {
-    console.error("Error updating profile:", error);
-    return res.status(500).json({ message: "Error updating profile", error });
+    console.error("Error creating profile:", error);
+    res.status(500).json({ message: "Error creating profile", error });
   }
 });
+
+// PUT request to update an existing profile by email
+router.put("/:email", async (req, res) => {
+  const { email } = req.params;
+  const updateData = req.body;
+
+  try {
+    // Find the profile by email and update it
+    const profile = await Profile.findOneAndUpdate(
+      { email },
+      { $set: updateData },
+      { new: true, runValidators: true }
+    );
+
+    if (!profile) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
+
+    res.json({ message: "Profile updated successfully", profile });
+  } catch (error) {
+    console.error("Error updating profile:", error);
+    res.status(500).json({ message: "Error updating profile", error });
+  }
+});
+
+// DELETE request to delete a profile by email
+router.delete("/:email", async (req, res) => {
+  try {
+    const profile = await Profile.findOneAndDelete({ email: req.params.email });
+    if (!profile) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
+    res.json({ message: "Profile deleted successfully" });
+  } catch (error) {
+    console.error("Error deleting profile:", error);
+    res.status(500).json({ message: "Error deleting profile", error });
+  }
+});
+
 module.exports = router;

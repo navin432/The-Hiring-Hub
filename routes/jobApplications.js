@@ -259,15 +259,18 @@ router.get("/", authMiddleware, async (req, res) => {
 // GET: Retrieve a specific job application by ID
 router.get("/:id", async (req, res) => {
   try {
-    const jobApplication = await JobApplication.findById(req.params.id);
-    if (!jobApplication)
-      return res.status(404).send("Job application not found.");
-
-    res.send(jobApplication);
+    const job = await Job.findById(req.params.id);
+    if (!job) {
+      return res.status(404).send("Job not found.");
+    }
+    const jobApplications = await JobApplication.find({
+      "job._id": req.params.id,
+    }).exec();
+    res.send({ job, jobApplications });
   } catch (err) {
     res
       .status(500)
-      .send("Error while retrieving job application: " + err.message);
+      .send("Error while retrieving job applications: " + err.message);
   }
 });
 

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Job Applications</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f4f4f4;
+      }
+      h1 {
+        text-align: center;
+        color: #333;
+      }
+      .applicant-container {
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+        padding: 15px;
+      }
+      .applicant-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .applicant-header h4 {
+        margin: 0;
+        color: #007bff;
+      }
+      .applicant-details {
+        margin: 10px 0;
+      }
+      .applicant-details p {
+        margin: 5px 0;
+      }
+      .button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px; 
+      }
+      .button:hover {
+        background-color: #218838;
+      }
+      .resume-link,
+      .additional-docs {
+        margin-top: 10px;
+      }
+      .additional-docs a {
+        display: inline-block;
+        margin-right: 10px;
+        color: #007bff;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Applicants for <span id="job-title"></span></h1>
+    <div id="applications-list"></div>
+
+    <script>
+      async function fetchJobApplications() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const jobId = urlParams.get("id");
+
+        // Fetch job applications for the job ID
+        const response = await fetch(`/api/jobapplications/${jobId}`);
+
+        if (!response.ok) {
+          document.getElementById("applications-list").innerHTML =
+            "<p>Error fetching job applications.</p>";
+          console.error(
+            "Error fetching job applications:",
+            response.statusText
+          );
+          return;
+        }
+
+        const { job, jobApplications } = await response.json();
+        document.getElementById("job-title").textContent = job.title;
+
+        // Check if there are job applications
+        if (jobApplications.length === 0) {
+          document.getElementById("applications-list").innerHTML =
+            "<p>No job applications found for this job.</p>";
+          return;
+        }
+
+        // Set the job title
+        if (jobApplications.length > 0) {
+          document.getElementById("job-title").textContent =
+            jobApplications[0].job.title;
+        }
+
+        // Generate the applications list HTML
+        const applicationsList = jobApplications
+          .map(
+            (application) => `
+        <div class="applicant-container">
+            <div class="applicant-header">
+                <h4>${application.user.applicantName}</h4>
+            </div>
+            <div class="applicant-details">
+                <p><strong>Email:</strong> ${
+                  application.user.applicantEmail
+                }</p>
+                <p><strong>Experience:</strong> ${
+                  application.experience
+                } years</p>
+                <p><strong>Education Level:</strong> ${
+                  application.educationLevel
+                }</p>
+                <p><strong>Skills:</strong> ${
+                  application.skills.join(", ") || "None"
+                }</p>
+                <p class="resume-link"><strong>Resume:</strong> <a href="${
+                  application.resume
+                }" target="_blank">View Resume</a></p>
+                <p class="cover-letter"><strong>Cover Letter:</strong> ${
+                  application.coverLetter || "Not provided"
+                }</p>
+                <p class="additional-docs"><strong>Additional Documents:</strong> 
+                    ${
+                      application.additionalDocs.length > 0
+                        ? application.additionalDocs
+                            .map(
+                              (doc) =>
+                                `<a href="${doc}" target="_blank">View Document</a>`
+                            )
+                            .join(", ")
+                        : "None"
+                    }
+                </p>
+                <p><strong>Comments:</strong> ${
+                  application.comments || "No comments provided"
+                }</p>
+            </div>
+            <div>
+              <button class="button hire-button" data-id="${application.id}">Hire <strong>${application.user.applicantName}</strong></button>
+              <button class="button reject-button" data-id="${application.id}" style="background-color: #dc3545;">Reject <strong>${application.user.applicantName}</strong></button>
+          </div>
+        </div>
+    `
+          )
+          .join("");
+
+        document.getElementById("applications-list").innerHTML =
+          applicationsList;
+      }
+      fetchJobApplications();
+    </script>
+  </body>
+</html>
