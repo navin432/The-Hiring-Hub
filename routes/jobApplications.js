@@ -290,7 +290,6 @@ router.delete("/:id", authMiddleware, async (req, res) => {
       const jobTitle = jobApplication.job.title;
 
       await sendRejectionEmail(applicantEmail, jobTitle, applicantName);
-      console.log("Rejection email sent.");
     }
     // Delete the associated files (if any)
     const filesToDelete = [
