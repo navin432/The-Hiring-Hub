@@ -285,7 +285,6 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     if (!jobApplication) {
       return res.status(404).send({ message: "Job application not found." });
     }
-    console.log(req.user.role);
     if (req.user.role === "hR") {
       const { applicantEmail, applicantName } = jobApplication.user;
       const jobTitle = jobApplication.job.title;

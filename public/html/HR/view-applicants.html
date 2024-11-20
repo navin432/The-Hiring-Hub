@@ -158,17 +158,16 @@
           document.getElementById("applications-list").innerHTML =
             applicationsList;
 
-          // Attach event listeners for reject buttons
+          
           document
             .getElementById("applications-list")
             .addEventListener("click", async (e) => {
               if (e.target.classList.contains("reject-button")) {
                 const applicationId = e.target.getAttribute("data-id");
-                console.log("Application ID:", applicationId); // Debugging line
 
                 if (!applicationId) {
-                  console.error("No application ID found!"); // Log an error if ID is null
-                  return; // Exit if applicationId is null
+                  console.error("No application ID found!");
+                  return;
                 }
 
                 const confirmReject = confirm(
