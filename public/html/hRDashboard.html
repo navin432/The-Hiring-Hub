@@ -27,9 +27,7 @@
           </li>
            
           <li><a href="HR/profile.html">Profile</a></li>
-          <li><a href="HR/register.html">Register</a></li>
-          <li><a href="HR/contact-info.html">Contact Info</a></li>
-          <li><a class="btn-logout" href="../index.html">Logout</a></li>
+           <li><a class="btn-logout" href="../index.html">Logout</a></li>
         </ul>
       </aside>
 
@@ -49,12 +47,8 @@
               </div>
             </div>
             <div class="date-notification">
-              <p>October 15, 2024</p>
-              <img
-                src="HR/Images/notification.png"
-                alt="Notifications"
-                class="notification-icon"
-              />
+              <p id="current-date"></p>
+               
             </div>
           </div>
           <p>Welcome to your HR dashboard. Manage your HR tasks efficiently.</p>
@@ -62,13 +56,7 @@
 
         <!-- Dashboard Sections -->
         <section class="dashboard-cards">
-          <div class="card">
-            <h3>Candidate Sourcing</h3>
-            <p>Manage the sourcing and shortlisting of candidates.</p>
-            <a href="HR/Candidate_Sourcing.html"
-              ><button class="card-btn">View Details</button></a
-            >
-          </div>
+           
           <div class="card">
             <h3>Interview Scheduling</h3>
             <p>Schedule and manage interviews for potential hires.</p>
@@ -77,10 +65,10 @@
             >
           </div>
           <div class="card">
-            <h3>Onboarding</h3>
-            <p>Handle onboarding processes for new employees.</p>
+            <h3>Job Posting</h3>
+            <p>Start posting jobs for new employees.</p>
             <a href="HR/onboarding.html"
-              ><button class="card-btn">Start Onboarding</button></a
+              ><button class="card-btn">Start Posting</button></a
             >
           </div>
           <div class="card">
@@ -90,13 +78,7 @@
               ><button class="card-btn">View Performance</button></a
             >
           </div>
-          <div class="card">
-            <h3>Promotion Planning</h3>
-            <p>Plan promotions and career growth paths.</p>
-            <a href="HR/Promotion_Planning.html"
-              ><button class="card-btn">Plan Promotions</button></a
-            >
-          </div>
+           
         </section>
 
         <!-- Notifications Section -->
@@ -112,6 +94,7 @@
         </section>
       </main>
     </div>
+    <script src="Employee/JS/date.js"></script>
     <script>
       const profileName = document.getElementById("user-name");
       let userName = localStorage.getItem("userName");

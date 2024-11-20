@@ -21,7 +21,6 @@
           <li><a href="onboarding.html">Job Posting</a></li>
           <li><a href="Performance_Tracking.html">Performance Tracking</a></li>
           <li><a href="profile.html">Profile</a></li>
-          <li><a href="contact-info.html">Contact Info</a></li>
           <li><a class="btn-logout" href="../../index.html">Logout</a></li>
         </ul>
       </aside>
@@ -42,12 +41,8 @@
               </div>
             </div>
             <div class="date-notification">
-              <p>October 15, 2024</p>
-              <img
-                src="Images/notification.png"
-                alt="Notifications"
-                class="notification-icon"
-              />
+              <p id="current-date"></p>
+               
             </div>
           </div>
          
@@ -68,9 +63,12 @@
     <button onclick="hireCandidate('neupanesabin143@gmail.com')">Hire</button>
   </div>
   <!-- Add more candidates as needed -->
+  <script src="../Employee/JS/date.js"></script>
   <script src="JS/hire_mail.js"></script>
+  
             </section>
             <section>
+            
               <h2>Performance and Rating</h2>
               <p>Rate your performance based on key metrics.</p>
               <div class="rating">
@@ -96,6 +94,7 @@
                 value="0"
               />
               <p>Progress: <span id="progressValue">0</span>%</p>
+              <script src="JS/PerTra-script.js"></script>
             </section>
           </main>
         </div>

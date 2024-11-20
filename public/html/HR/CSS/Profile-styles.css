@@ -1,7 +1,6 @@
 /* General Styles */
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
+    margin:0;
     background-color: #f4f4f4;
   }
   
@@ -14,7 +13,7 @@ body {
   /* Main Content Styles */
   .main-content {
     flex: 1;
-    padding-left: 265px;
+    padding-left: 60px;
     margin-left: 15rem;
     overflow-y: auto;
   }
@@ -28,6 +27,7 @@ body {
   .welcome-section {
     display: flex;
     flex-direction: column;
+    
   }
   
   .employee-info {
