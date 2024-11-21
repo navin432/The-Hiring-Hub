@@ -2,6 +2,17 @@ const Profile = require("../models/userProfile");
 const app = require("express");
 const router = app.Router();
 
+router.get("/", async (req, res) => {
+  try {
+    const employees = await Profile.find(); // You can add filters if needed
+
+    res.json(employees);
+  } catch (err) {
+    console.error("Error fetching employees:", err);
+    res.status(500).send("Server error");
+  }
+});
+
 // GET request to fetch profile by email
 router.get("/:email", async (req, res) => {
   try {
@@ -20,7 +31,7 @@ router.get("/:email", async (req, res) => {
 router.post("/", async (req, res) => {
   const {
     email,
-    name=req.body.employeeName,
+    name = req.body.employeeName,
     phone,
     permanentAddress,
     mailingAddress,
@@ -59,7 +70,9 @@ router.post("/", async (req, res) => {
     });
 
     await newProfile.save();
-    res.status(201).json({ message: "Profile created successfully", profile: newProfile });
+    res
+      .status(201)
+      .json({ message: "Profile created successfully", profile: newProfile });
   } catch (error) {
     console.error("Error creating profile:", error);
     res.status(500).json({ message: "Error creating profile", error });
