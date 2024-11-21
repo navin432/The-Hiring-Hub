@@ -5,8 +5,6 @@ const mongoose = require("mongoose");
 const Joi = require("joi");
 Joi.objectId = require("joi-objectid")(Joi);
 
-// Adding Comment for Testing
-
 // Routes
 const users = require("./routes/users");
 const auth = require("./routes/auth");
@@ -17,6 +15,7 @@ const availability = require("./routes/availabilities");
 const onboarding = require("./routes/hire");
 const profile = require("./routes/userProfiles");
 const onBoardData = require("./routes/userDataOnBoard");
+const employee = require("./routes/employeeRoutes");
 
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -37,6 +36,7 @@ app.use("/api/profiles", profile);
 app.use("/api/availability", availability);
 app.use("/hire", onboarding);
 app.use("/onboarding-data", onBoardData);
+app.use("/api/employeeRating", employee);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

@@ -1,28 +1,37 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  try {
-    const response = await fetch("/api/profiles");
+// Employee Ratings Data Structure
+const employees = {
+  emp1: {
+    name: "John Doe",
+    role: "Software Engineer",
+    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
+    remarks: "",
+  },
+  emp2: {
+    name: "Jane Smith",
+    role: "Marketing Specialist",
+    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
+    remarks: "",
+  },
+  emp3: {
+    name: "Alice Brown",
+    role: "HR Manager",
+    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
+    remarks: "",
+  },
+  emp4: {
+    name: "Chris Evans",
+    role: "Data Analyst",
+    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
+    remarks: "",
+  },
+  emp5: {
+    name: "Emily Davis",
+    role: "Product Manager",
+    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
+    remarks: "",
+  },
+};
 
-    if (response.ok) {
-      const employees = await response.json();
-      console.log(employees);
-      const selectElement = document.getElementById("employeeSelector");
-
-      selectElement.innerHTML =
-        '<option value="" disabled selected>Choose an employee...</option>';
-
-      employees.forEach((employee) => {
-        const option = document.createElement("option");
-        option.value = employee._id;
-        option.textContent = `${employee.name} - ${employee.department}`;
-        selectElement.appendChild(option);
-      });
-    } else {
-      console.error("Failed to fetch employees");
-    }
-  } catch (error) {
-    console.error("Error loading employees:", error);
-  }
-});
 // Current Selected Employee
 let currentEmployee = "emp1";
 

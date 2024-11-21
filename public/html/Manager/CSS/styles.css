@@ -294,7 +294,6 @@ table th {
   background-color: #27ae60;
 }
 
-<<<<<<< HEAD
 
 /* General Styling */
 .dashboard-container {
@@ -362,16 +361,4 @@ table th {
 
 .btn-submit:hover {
   background-color: #1abc9c;
-=======
-.logo-bg {
-  background-color: #f0f0f0;
-  border-radius: 50%;
-  padding: 1rem;
-  display: inline-block;
-  margin: 0 auto;
-}
-
-.logo-bg img {
-  filter: drop-shadow(10px 10px 20px rgb(229, 255, 0));
->>>>>>> a0cc40118eac75b2857ce49090106d6772b91afa
 }

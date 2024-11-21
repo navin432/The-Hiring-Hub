@@ -1,8 +1,22 @@
 const mongoose = require("mongoose");
+const Employee = require("./userProfile");
 
 const EmployeeSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  position: { type: String, required: true },
+  employee: {
+    _id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: Employee,
+      required: true,
+    },
+    employeeName: {
+      type: String,
+      required: true,
+    },
+    employeeDepartment: {
+      type: String,
+      required: true,
+    },
+  },
   performance: {
     productivity: { type: Number, default: 0 },
     teamwork: { type: Number, default: 0 },
