@@ -188,88 +188,91 @@
 
       // Attach click listeners to buttons
       function attachButtonListeners() {
-  // Handle rejection buttons
-  document.querySelectorAll(".reject-button").forEach((button) => {
-    button.addEventListener("click", async (e) => {
-      const applicationId = e.currentTarget.getAttribute("data-id");
+        // Handle rejection buttons
+        document.querySelectorAll(".reject-button").forEach((button) => {
+          button.addEventListener("click", async (e) => {
+            const applicationId = e.currentTarget.getAttribute("data-id");
 
-      if (!applicationId) {
-        console.error("No application ID found!");
-        return;
-      }
-
-      const confirmReject = confirm(
-        "Are you sure you want to reject this application?"
-      );
-
-      if (confirmReject) {
-        try {
-          const rejectResponse = await fetch(
-            `/api/jobApplications/${applicationId}`,
-            {
-              method: "DELETE",
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
+            if (!applicationId) {
+              console.error("No application ID found!");
+              return;
             }
-          );
 
-          if (!rejectResponse.ok) {
-            alert("Error rejecting application. Please try again.");
-            console.error(
-              "Error rejecting application:",
-              rejectResponse.statusText
+            const confirmReject = confirm(
+              "Are you sure you want to reject this application?"
             );
-            return;
-          }
 
-          const rejectedContainer = document.getElementById(
-            `application-${applicationId}`
-          );
-          rejectedContainer.remove();
-          alert("Application rejected successfully.");
-        } catch (error) {
-          console.error("Error rejecting application:", error);
-        }
-      }
-    });
-  });
+            if (confirmReject) {
+              try {
+                const rejectResponse = await fetch(
+                  `/api/jobApplications/${applicationId}`,
+                  {
+                    method: "DELETE",
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
+                );
 
-  // Handle hiring buttons
-  document.querySelectorAll(".hire-button").forEach((button) => {
-    button.addEventListener("click", async (e) => {
-      const applicationId = e.currentTarget.getAttribute("data-id");
-      const userEmail = e.currentTarget.getAttribute("data-extra");
+                if (!rejectResponse.ok) {
+                  alert("Error rejecting application. Please try again.");
+                  console.error(
+                    "Error rejecting application:",
+                    rejectResponse.statusText
+                  );
+                  return;
+                }
 
-      if (!applicationId) {
-        console.error("No application ID found!");
-        return;
-      }
-
-      try {
-        const response = await fetch("/hire", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: userEmail, applicationId }),
+                const rejectedContainer = document.getElementById(
+                  `application-${applicationId}`
+                );
+                rejectedContainer.remove();
+                alert("Application rejected successfully.");
+              } catch (error) {
+                console.error("Error rejecting application:", error);
+              }
+            }
+          });
         });
 
-        // Check if the response is successful
-        if (response.ok) {
-          const result = await response.json();
-          console.log("User hired successfully:", result);
-          alert("User hired successfully.");
-        } else {
-          console.error("Failed to hire user. Status:", response.status);
-          alert("Error hiring user. Please try again.");
-        }
-      } catch (error) {
-        console.error("An error occurred while hiring the user:", error);
+        // Handle hiring buttons
+        document.querySelectorAll(".hire-button").forEach((button) => {
+          button.addEventListener("click", async (e) => {
+            const applicationId = e.currentTarget.getAttribute("data-id");
+            const userEmail = e.currentTarget.getAttribute("data-extra");
+
+            if (!applicationId) {
+              console.error("No application ID found!");
+              return;
+            }
+
+            try {
+              const response = await fetch("/hire", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email: userEmail, applicationId }),
+              });
+
+              // Check if the response is successful
+              if (response.ok) {
+                console.log("User hired successfully:");
+                const acceptedContainer = document.getElementById(
+                  `application-${applicationId}`
+                );
+                acceptedContainer.remove();
+                alert("User hired successfully.");
+              } else {
+                console.error("Failed to hire user.");
+                alert("Error hiring user. Please try again.");
+              }
+            } catch (error) {
+              console.error("An error occurred while hiring the user:", error);
+            }
+          });
+        });
       }
-    });
-  });
-}
 
       // Initial fetch
       fetchJobApplications();
