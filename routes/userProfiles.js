@@ -69,6 +69,7 @@ router.post("/", async (req, res) => {
 // PUT request to update an existing profile by email
 router.put("/:email", async (req, res) => {
   const { email } = req.params;
+  console.log(req.body);
   const updateData = req.body;
 
   try {

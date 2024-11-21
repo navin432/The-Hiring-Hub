@@ -16,18 +16,19 @@ router.post("/", async (req, res) => {
   if (!validPassword) return res.status(400).send("Invalid email or password");
   const role = user.role;
   const userName = user.name;
+  const userEmail= user.email;
   if (req.body.role === "employee" && access.includes(role)) {
     const token = jwt.sign(
       { _id: user._id, name: user.name, role: user.role },
       "jwtPrivateKey"
     );
-    res.send({ role, token ,userName});
+    res.send({ role, token ,userName,userEmail});
   } else if (req.body.role === "guest" && role === "guest") {
     const token = jwt.sign(
       { _id: user._id, name: user.name, role: user.role },
       "jwtPrivateKey"
     );
-    res.send({ role, token, userName });
+    res.send({ role, token, userName, userEmail});
   } else {
     return res.status(400).send("Authorization Failed, Invalid Role");
   }

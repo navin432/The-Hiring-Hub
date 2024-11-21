@@ -3,11 +3,13 @@ document.addEventListener("DOMContentLoaded", function () {
   const editButton = document.getElementById("edit-button");
   const profileName = document.getElementById("employee-name");
   const userName = localStorage.getItem("userName");
+  const userEmail = localStorage.getItem("userEmail");
   profileName.innerText = userName;
   const saveButton = document.getElementById("save-button");
   const formFields = document.querySelectorAll(
     ".profile-update-form input, .profile-update-form textarea"
   );
+
 
   editButton.addEventListener("click", function () {
     // Make all fields editable except name and email
@@ -39,11 +41,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Fetch profile data on page load
 
+  function formateDate(date){
+    const  d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth()+1).padStart(2,'0');
+    const day = String(d.getDate()).padStart(2,'0');
+    return `${year}-${month}-${day}`;
+
+  }
   const getProfileData = async () => {
     try {
-      const response = await fetch("/api/profiles/neupanesabin143@gmail.com");
+      const response = await fetch(`/api/profiles/${userEmail}`);
       if (!response.ok) throw new Error("Failed to fetch profile", error[0]);
       const data = await response.json();
+      let dob = data.dateOfBirth;
+      let formatdob = formateDate(dob);
+
 
       // Populate the fields with the fetched data
       document.getElementById("employee-name-input").value = data.name;
@@ -53,7 +66,7 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById("mailing-address").value = data.mailingAddress;
       document.getElementById("emergency-contact").value =
         data.emergencyContact;
-      document.getElementById("date-of-birth").value = data.dateOfBirth;
+      document.getElementById("date-of-birth").value = formatdob;
       document.getElementById("employee-description").value = data.description;
       document.getElementById("department").value = data.department;
       document.getElementById("linkedin").value = data.linkedIn;
@@ -87,8 +100,8 @@ document.addEventListener("DOMContentLoaded", function () {
       };
 
       try {
-        const response = await fetch("/api/profiles", {
-          method: "POST",
+        const response = await fetch(`/api/profiles/${userEmail}`, {
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },

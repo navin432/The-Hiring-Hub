@@ -24,8 +24,10 @@ document
 
       if (response.ok) {
         const data = await response.json();
+        console.log(data);
         localStorage.setItem("authToken", data.token);
         localStorage.setItem("userName", data.userName);
+        localStorage.setItem("userEmail", data.userEmail);
 
         // Redirect to guest dashboard on successful login
         window.location.href = `html/${data.role}Dashboard.html`;
