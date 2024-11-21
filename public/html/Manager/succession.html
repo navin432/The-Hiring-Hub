@@ -7,6 +7,82 @@
   <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
+<<<<<<< HEAD
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <img src="../../images/Hiring.png" alt="Company Logo" class="logo">
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="Manager.html">Dashboard</a></li>
+          <li><a href="promotions.html">Promotions</a></li>
+          <li><a href="succession.html" class="active">Succession Planning</a></li>
+        </ul>
+      </aside>
+  
+      <!-- Main Content -->
+      <main class="main-content">
+        <header>
+          <h1>Succession Planning</h1>
+        </header>
+  
+        <!-- Current Positions and Potential Successors -->
+        <section>
+          <h2>Key Roles and Potential Successors</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Key Role</th>
+                <th>Current Holder</th>
+                <th>Potential Successors</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="keyRolesTable">
+              <!-- Rows populated dynamically -->
+            </tbody>
+          </table>
+        </section>
+  
+        <!-- Add Successor -->
+        <section>
+          <h2>Add a Successor</h2>
+          <form id="addSuccessorForm">
+            <label for="role">Select Role:</label>
+            <select id="role">
+              <!-- Options populated dynamically -->
+            </select>
+  
+            <label for="successor">Select Successor:</label>
+            <select id="successor">
+              <!-- Options populated dynamically -->
+            </select>
+  
+            <label for="readiness">Readiness Level:</label>
+            <select id="readiness">
+              <option value="Ready Now">Ready Now</option>
+              <option value="1-2 Years">1-2 Years</option>
+              <option value="3-5 Years">3-5 Years</option>
+            </select>
+  
+            <label for="developmentPlan">Development Plan:</label>
+            <textarea id="developmentPlan" placeholder="Outline the plan to prepare the successor" rows="4"></textarea>
+  
+            <button type="submit" class="btn-submit">Add Successor</button>
+          </form>
+        </section>
+  
+        <!-- Succession Readiness Chart -->
+        <section>
+          <h2>Succession Readiness Overview</h2>
+          <canvas id="successionChart" width="400" height="200"></canvas>
+        </section>
+      </main>
+    </div>
+  </body>
+=======
   <div class="dashboard-container">
     <aside class="sidebar">
       <div class="sidebar-header">
@@ -52,5 +128,6 @@
     </main>
   </div>
 </body>
+>>>>>>> a0cc40118eac75b2857ce49090106d6772b91afa
 <script src="JS/succession.js" defer></script>
 </html>
