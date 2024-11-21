@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manager's Dashboard</title>
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="CSS/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js -->
+    <script src="JS/scripts.js" defer></script>
+  </head>
+  <body>
+    <div class="dashboard-container">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <img src="Images/Hiring logo.png" alt="Company Logo" class="logo" />
+          <h2>The Hiring Hub</h2>
+        </div>
+        <ul>
+          <li><a href="Manager.html" class="active">Dashboard</a></li>
+          <li><a href="promotions.html">Promotions</a></li>
+          <li><a href="succession.html">Succession Planning</a></li>
+          <li><a href="settings.html">Settings</a></li>
+        </ul>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <!-- Header Section -->
+        <header>
+          <div class="welcome-section">
+            <div class="user-info">
+              <img
+                src="Images/IMG_4255 (1).jpg"
+                alt="Profile Picture"
+                class="profile-photo"
+              />
+              <div>
+                <h1>Welcome, Manager!</h1>
+                <p>Status: <span class="status">Manager</span></p>
+              </div>
+            </div>
+            <div class="date-notification">
+              <p id="current-date"></p>
+              <img
+                src="Images/notification.png"
+                alt="Notifications"
+                class="notification-icon"
+              />
+            </div>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="content">
+          <!-- Dashboard Overview -->
+          <section class="overview-section">
+            <h2>Manager's Performance Dashboard</h2>
+            <p>Select an employee to view and rate their performance, and analyze their performance trends over time.</p>
+          </section>
+
+          <!-- Employee Selector -->
+          <section class="employee-section">
+            <h2>Select Employee</h2>
+            <select id="employeeSelector">
+              <option value="" disabled selected>Choose an employee...</option>
+              <option value="emp1">John Doe - Software Engineer</option>
+              <option value="emp2">Jane Smith - Marketing Specialist</option>
+              <option value="emp3">Alice Brown - HR Manager</option>
+              <option value="emp4">Chris Evans - Data Analyst</option>
+              <option value="emp5">Emily Davis - Product Manager</option>
+            </select>
+          </section>
+
+          <!-- Performance Rating -->
+          <section class="rating-section">
+            <h2>Rate Employee Performance</h2>
+            <div class="rating-categories">
+              <div>
+                <h3>Productivity</h3>
+                <div class="stars" data-category="productivity"></div>
+              </div>
+              <div>
+                <h3>Teamwork</h3>
+                <div class="stars" data-category="teamwork"></div>
+              </div>
+              <div>
+                <h3>Punctuality</h3>
+                <div class="stars" data-category="punctuality"></div>
+              </div>
+              <div>
+                <h3>Innovation</h3>
+                <div class="stars" data-category="innovation"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Remarks Section -->
+          <section class="remarks-section">
+            <h2>Remarks</h2>
+            <textarea
+              id="remarks"
+              rows="4"
+              placeholder="Write your review or additional remarks here..."
+            ></textarea>
+          </section>
+
+          <!-- Submit Button -->
+          <button class="btn-submit">Submit Rating</button>
+
+          <!-- Performance Chart -->
+          <section class="chart-section">
+            <h2>Performance Over Time</h2>
+            <canvas id="performanceChart" width="400" height="200"></canvas>
+          </section>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

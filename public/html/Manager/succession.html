@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Succession Planning</title>
+  <link rel="stylesheet" href="CSS/styles.css">
+</head>
+<body>
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="Images/Hiring logo.png" alt="Company Logo" class="logo">
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="Manager.html">Dashboard</a></li>
+        <li><a href="promotions.html">Promotions</a></li>
+        <li><a href="succession.html">Succession Planning</a></li>
+        <li><a href="settings.html">Settings</a></li>
+      </ul>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Succession Planning</h1>
+      </header>
+
+      <section>
+        <h2>Plan Successors</h2>
+        <form id="successionForm">
+          <label for="currentPosition">Current Position:</label>
+          <select id="currentPosition" name="currentPosition">
+            <option value="manager">Manager</option>
+            <option value="teamLead">Team Lead</option>
+          </select>
+
+          <label for="successor">Select Successor:</label>
+          <select id="successor" name="successor">
+            <option value="emp1">John Doe</option>
+            <option value="emp2">Jane Smith</option>
+          </select>
+
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Succession History</h2>
+        <ul id="successionHistory"></ul>
+      </section>
+    </main>
+  </div>
+</body>
+<script src="JS/succession.js" defer></script>
+</html>
