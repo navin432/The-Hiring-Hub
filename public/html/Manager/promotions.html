@@ -1,33 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Promotions</title>
-  <link rel="stylesheet" href="CSS/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Promotions</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+  <body>
     <div class="dashboard-container">
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-header">
-          <img src="Images/Hiring logo.png" alt="Company Logo" class="logo">
+          <div class="logo-bg">
+            <img
+              src="../../images/Hiring.png"
+              alt="Company Logo"
+              class="logo"
+            />
+          </div>
           <h2>The Hiring Hub</h2>
         </div>
         <ul>
-          <li><a href="Manager.html">Dashboard</a></li>
+          <li><a href="../managerDashboard.html">Dashboard</a></li>
           <li><a href="promotions.html" class="active">Promotions</a></li>
           <li><a href="succession.html">Succession Planning</a></li>
-          <li><a href="settings.html">Settings</a></li>
         </ul>
       </aside>
-  
+
       <!-- Main Content -->
       <main class="main-content">
         <header>
           <h1>Promotions</h1>
         </header>
-  
+
         <!-- Filter and Search Section -->
         <section>
           <h2>Filter Employees</h2>
@@ -40,12 +45,16 @@
               <option value="hr">Human Resources</option>
               <option value="finance">Finance</option>
             </select>
-  
+
             <label for="searchEmployee">Search Employee:</label>
-            <input type="text" id="searchEmployee" placeholder="Search by name or ID">
+            <input
+              type="text"
+              id="searchEmployee"
+              placeholder="Search by name or ID"
+            />
           </div>
         </section>
-  
+
         <!-- Promote Employee Section -->
         <section>
           <h2>Promote an Employee</h2>
@@ -54,17 +63,27 @@
             <select id="employee">
               <!-- Options populated dynamically -->
             </select>
-  
+
             <label for="newPosition">New Position:</label>
-            <input type="text" id="newPosition" placeholder="Enter new position" required>
-  
+            <input
+              type="text"
+              id="newPosition"
+              placeholder="Enter new position"
+              required
+            />
+
             <label for="justification">Justification:</label>
-            <textarea id="justification" placeholder="Provide reasons for promotion" rows="4" required></textarea>
-  
+            <textarea
+              id="justification"
+              placeholder="Provide reasons for promotion"
+              rows="4"
+              required
+            ></textarea>
+
             <button type="submit" class="btn-submit">Submit Promotion</button>
           </form>
         </section>
-  
+
         <!-- Promotion History Section -->
         <section>
           <h2>Promotion History</h2>
@@ -86,5 +105,5 @@
       </main>
     </div>
   </body>
-<script src="JS/promotions.js" defer></script>
+  <script src="JS/promotions.js" defer></script>
 </html>

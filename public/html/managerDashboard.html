@@ -9,23 +9,31 @@
       rel="stylesheet"
     />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="CSS/styles.css" />
+    <link rel="stylesheet" href="Manager/CSS/styles.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Chart.js -->
-    <script src="JS/scripts.js" defer></script>
+    <script src="Manager/JS/scripts.js" defer></script>
   </head>
   <body>
     <div class="dashboard-container">
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-header">
-          <img src="Images/Hiring logo.png" alt="Company Logo" class="logo" />
+          <div class="logo-bg">
+            <img src="../images/Hiring.png" alt="Company Logo" class="logo" />
+          </div>
           <h2>The Hiring Hub</h2>
         </div>
         <ul>
+<<<<<<< HEAD:public/html/Manager/Manager.html
           <li><a href="Manager.html" class="active">Dashboard</a></li>
           <li><a href="promotions.html">Promotions</a></li>
           <li><a href="succession.html">Succession Planning</a></li>
+=======
+          <li><a href="managerDashboard.html" class="active">Dashboard</a></li>
+          <li><a href="Manager/promotions.html">Promotions</a></li>
+          <li><a href="Manager/succession.html">Succession Planning</a></li>
+>>>>>>> a0cc40118eac75b2857ce49090106d6772b91afa:public/html/managerDashboard.html
         </ul>
       </aside>
 
@@ -36,7 +44,7 @@
           <div class="welcome-section">
             <div class="user-info">
               <img
-                src="Images/IMG_4255 (1).jpg"
+                src="Employee/Image/IMG_4255 (1).jpg"
                 alt="Profile Picture"
                 class="profile-photo"
               />
@@ -44,14 +52,6 @@
                 <h1>Welcome, Manager!</h1>
                 <p>Status: <span class="status">Manager</span></p>
               </div>
-            </div>
-            <div class="date-notification">
-              <p id="current-date"></p>
-              <img
-                src="Images/notification.png"
-                alt="Notifications"
-                class="notification-icon"
-              />
             </div>
           </div>
         </header>
@@ -61,7 +61,10 @@
           <!-- Dashboard Overview -->
           <section class="overview-section">
             <h2>Manager's Performance Dashboard</h2>
-            <p>Select an employee to view and rate their performance, and analyze their performance trends over time.</p>
+            <p>
+              Select an employee to view and rate their performance, and analyze
+              their performance trends over time.
+            </p>
           </section>
 
           <!-- Employee Selector -->

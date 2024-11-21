@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
+<<<<<<< HEAD
     <div class="dashboard-container">
       <!-- Sidebar -->
       <aside class="sidebar">
@@ -81,5 +82,52 @@
       </main>
     </div>
   </body>
+=======
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-bg">
+          <img src="../../images/Hiring.png" alt="Company Logo" class="logo" />
+        </div>
+        <h2>The Hiring Hub</h2>
+      </div>
+      <ul>
+        <li><a href="../managerDashboard.html">Dashboard</a></li>
+        <li><a href="promotions.html">Promotions</a></li>
+        <li><a href="succession.html">Succession Planning</a></li>
+    </aside>
+
+    <main class="main-content">
+      <header>
+        <h1>Succession Planning</h1>
+      </header>
+
+      <section>
+        <h2>Plan Successors</h2>
+        <form id="successionForm">
+          <label for="currentPosition">Current Position:</label>
+          <select id="currentPosition" name="currentPosition">
+            <option value="manager">Manager</option>
+            <option value="teamLead">Team Lead</option>
+          </select>
+
+          <label for="successor">Select Successor:</label>
+          <select id="successor" name="successor">
+            <option value="emp1">John Doe</option>
+            <option value="emp2">Jane Smith</option>
+          </select>
+
+          <button type="submit" class="btn-submit">Submit</button>
+        </form>
+      </section>
+
+      <section>
+        <h2>Succession History</h2>
+        <ul id="successionHistory"></ul>
+      </section>
+    </main>
+  </div>
+</body>
+>>>>>>> a0cc40118eac75b2857ce49090106d6772b91afa
 <script src="JS/succession.js" defer></script>
 </html>
