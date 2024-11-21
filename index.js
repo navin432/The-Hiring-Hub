@@ -13,10 +13,10 @@ const auth = require("./routes/auth");
 const jobs = require("./routes/jobs");
 const jobApplication = require("./routes/jobApplications");
 const resetCode = require("./routes/resetCode");
-const userProfiles = require("./routes/userProfiles");
 const availability = require("./routes/availabilities");
 const onboarding = require("./routes/hire");
 const profile = require("./routes/userProfiles");
+const onBoardData = require("./routes/userDataOnBoard");
 
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -36,6 +36,7 @@ app.use("/api/forgotpassword", resetCode);
 app.use("/api/profiles", profile);
 app.use("/api/availability", availability);
 app.use("/hire", onboarding);
+app.use("/onboarding-data", onBoardData);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

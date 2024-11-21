@@ -83,7 +83,7 @@ router.post("/", async (req, res) => {
               <p>Dear <strong>${user.name}</strong>,</p>
               <p>We are delighted to inform you that you have been selected for the <strong>${jobApplication.job.title}</strong> position at The Hiring Hub!</p>
               <p>We were impressed by your skills and qualifications, and we are excited to have you join our team. Please click the link below to begin your onboarding process:</p>
-              <p><a href="http://localhost:3000/html/HR/OnboardingPage.html">Start Onboarding</a></p>
+              <p><a href="http://localhost:3000/html/HR/OnboardingPage.html?id=${user._id}">Start Onboarding</a></p>
               <p>Also, your role has been updated to <strong>employee</strong>. Next time you log in, please select "employee" as your role, as you are no longer a guest.</p>
               <p>We look forward to working with you and supporting your success in this new role.</p>
               <p>Best regards,</p>
@@ -110,13 +110,13 @@ router.post("/", async (req, res) => {
 
     filesToDelete.forEach((filePath) => {
       if (filePath) {
-        const file = path.join(__dirname, "../", filePath); //Join to get the full file path
+        const file = path.join(__dirname, "../", filePath);
         if (fs.existsSync(file)) {
           fs.unlinkSync(file); // Delete the file
         }
       }
     });
-    
+
     await JobApplication.findByIdAndDelete(req.body.applicationId);
     res.send(
       "Candidate successfully hired and associated files and job application deleted"
