@@ -1,4 +1,8 @@
 // Employee Ratings Data Structure
+
+const profileName = document.getElementById("employee-name");
+const userName = localStorage.getItem("userName");
+profileName.innerText = userName;
 const employees = {
   emp1: {
     name: "John Doe",
