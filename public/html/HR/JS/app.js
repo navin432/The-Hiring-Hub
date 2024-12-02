@@ -18,8 +18,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
       jobDiv.innerHTML = `
         <h3>${job.title}</h3>
-        <p>Location: ${job.location}</p>
-        <p>Type: ${job.jobDetails.jobType}</p>
+        <p><strong>Location:</strong> ${job.location}</p>
+        <p><strong>Type:</strong> ${job.jobDetails.jobType}</p>
+        <p><strong>Applicants :</strong> ${job.jobCategory}</p>
         <p>${job.jobDetails.positionSummary}</p>
   
         <a href="javascript:void(0);" class="job-listing__more-details">More Details</a>
@@ -31,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
               .map((item) => `<li>${item}</li>`)
               .join("")}
           </ul>
-  
+
           <h4>Requirements:</h4>
           <ul>
             ${job.jobDetails.requirements
@@ -39,9 +40,12 @@ document.addEventListener("DOMContentLoaded", function () {
               .join("")}
           </ul>
   
-          <h4>Education Level:</h4>
-          <p>${job.jobDetails.educationLevel}</p>
-  
+          <p><strong>Education Level:</strong> ${
+            job.jobDetails.educationLevel
+          }<p>
+          <p><strong>Minimum Experience:</strong> ${
+            job.jobDetails.minExperience
+          } years<p>
           <h4>Required Skills:</h4>
           <ul>
             ${job.jobDetails.requiredSkills
@@ -90,6 +94,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const job = {
       title: document.getElementById("title").value,
       location: document.getElementById("location").value,
+      jobCategory: document.querySelector('input[name="jobCategory"]:checked')
+        .value,
       jobDetails: {
         positionSummary: document.getElementById("positionSummary").value,
         keyResponsibilities: document

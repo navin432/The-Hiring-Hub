@@ -41,7 +41,6 @@
             </div>
             <div class="date-notification">
               <p id="current-date"></p>
-               
             </div>
           </div>
           <p>Manage and post new jobs efficiently.</p>
@@ -133,6 +132,27 @@
                 id="requiredSkills"
                 placeholder="Enter required skills (one per line)"
               ></textarea>
+            </div>
+            <div class="form-group">
+              <label for="jobCategory">Intendend Applicants</label>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    name="jobCategory"
+                    value="Internal"
+                    required
+                  />
+                  Internal
+                </label>
+                <label>
+                  <input type="radio" name="jobCategory" value="External" />
+                  External
+                </label>
+                <label>
+                  <input type="radio" name="jobCategory" value="Both" /> Both
+                </label>
+              </div>
             </div>
             <button type="submit" class="btn-submit">Post Job</button>
           </form>

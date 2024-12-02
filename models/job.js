@@ -57,6 +57,11 @@ const jobSchema = new mongoose.Schema({
     },
     required: true,
   },
+  jobCategory: {
+    type: String,
+    enum: ["Internal", "External", "Both"],
+    default: "Both",
+  },
 });
 
 const Job = mongoose.model("Job", jobSchema);
@@ -77,6 +82,7 @@ function validateJob(job) {
         .required(),
       preferredQualifications: Joi.array().items(Joi.string()).optional(),
     }).required(),
+    jobCategory: Joi.string().valid("Internal", "External", "Both").required(),
   });
 
   return schema.validate(job);

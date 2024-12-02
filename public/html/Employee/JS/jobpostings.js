@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function renderJobListings(jobs) {
     jobListingsSection.innerHTML = ""; // Clear existing content
-
     jobs.forEach((job) => {
       // Create a section-card for each job listing
-      const jobCard = document.createElement("div");
-      jobCard.classList.add("section-card");
+      if (job.jobCategory === "Internal" || job.jobCategory === "Both") {
+        const jobCard = document.createElement("div");
+        jobCard.classList.add("section-card");
 
-      // Create job listing elements
-      jobCard.innerHTML = `
+        // Create job listing elements
+        jobCard.innerHTML = `
           <h2 class="job-title">${job.title}</h2>
           <p class="job-location">Location: ${job.location}</p>
           <p>${job.jobDetails.positionSummary}</p>
@@ -55,23 +55,24 @@ document.addEventListener("DOMContentLoaded", function () {
           }" class=" btn--apply">Apply Now</a>
         `;
 
-      // Append the job card to the section
-      jobListingsSection.appendChild(jobCard);
+        // Append the job card to the section
+        jobListingsSection.appendChild(jobCard);
 
-      // Handle "More details" / "Hide details" toggle
-      const jobDetailsDiv = jobCard.querySelector(".job-details");
-      const viewDetailsButton = jobCard.querySelector(".view-details-button");
+        // Handle "More details" / "Hide details" toggle
+        const jobDetailsDiv = jobCard.querySelector(".job-details");
+        const viewDetailsButton = jobCard.querySelector(".view-details-button");
 
-      viewDetailsButton.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (jobDetailsDiv.style.display === "none") {
-          jobDetailsDiv.style.display = "block";
-          viewDetailsButton.textContent = "Hide details";
-        } else {
-          jobDetailsDiv.style.display = "none";
-          viewDetailsButton.textContent = "More details";
-        }
-      });
+        viewDetailsButton.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (jobDetailsDiv.style.display === "none") {
+            jobDetailsDiv.style.display = "block";
+            viewDetailsButton.textContent = "Hide details";
+          } else {
+            jobDetailsDiv.style.display = "none";
+            viewDetailsButton.textContent = "More details";
+          }
+        });
+      }
     });
   }
 

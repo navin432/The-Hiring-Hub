@@ -19,10 +19,11 @@ document.addEventListener("DOMContentLoaded", function () {
     jobListingsSection.innerHTML = "";
 
     jobs.forEach((job) => {
-      const jobListing = document.createElement("article");
-      jobListing.classList.add("job-listing");
+      if (job.jobCategory === "External" || job.jobCategory === "Both") {
+        const jobListing = document.createElement("article");
+        jobListing.classList.add("job-listing");
 
-      jobListing.innerHTML = `
+        jobListing.innerHTML = `
           <h3 class="job-listing__title">${job.title}</h3>
           <p class="job-listing__location"><strong>Location:</strong> ${
             job.location
@@ -60,22 +61,23 @@ document.addEventListener("DOMContentLoaded", function () {
           }" class="btn btn--apply">Apply Now</a>
         `;
 
-      jobListingsSection.appendChild(jobListing);
-      const moreDetailsLink = jobListing.querySelector(
-        ".job-listing__more-details"
-      );
-      const jobDetailsDiv = jobListing.querySelector(".job-details");
+        jobListingsSection.appendChild(jobListing);
+        const moreDetailsLink = jobListing.querySelector(
+          ".job-listing__more-details"
+        );
+        const jobDetailsDiv = jobListing.querySelector(".job-details");
 
-      moreDetailsLink.addEventListener("click", (e) => {
-        e.preventDefault();
-        if (jobDetailsDiv.style.display === "none") {
-          jobDetailsDiv.style.display = "block";
-          moreDetailsLink.textContent = "Hide details";
-        } else {
-          jobDetailsDiv.style.display = "none";
-          moreDetailsLink.textContent = "More details";
-        }
-      });
+        moreDetailsLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          if (jobDetailsDiv.style.display === "none") {
+            jobDetailsDiv.style.display = "block";
+            moreDetailsLink.textContent = "Hide details";
+          } else {
+            jobDetailsDiv.style.display = "none";
+            moreDetailsLink.textContent = "More details";
+          }
+        });
+      }
     });
   }
 

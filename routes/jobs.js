@@ -9,6 +9,7 @@ router.post("/", async (req, res) => {
     title: req.body.title,
     location: req.body.location,
     jobDetails: req.body.jobDetails,
+    jobCategory: req.body.jobCategory,
   });
 
   try {
@@ -49,6 +50,7 @@ router.put("/:id", async (req, res) => {
         title: req.body.title,
         location: req.body.location,
         jobDetails: req.body.jobDetails,
+        jobCategory: req.body.jobCategory,
       },
       { new: true }
     );
