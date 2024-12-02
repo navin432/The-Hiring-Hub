@@ -55,6 +55,12 @@
       .reject-button:hover {
         background-color: #d7393e;
       }
+      .schedule-button {
+        background-color: rgb(0, 128, 255);
+      }
+      .schedule-button:hover {
+        background-color: rgb(25, 112, 199);
+      }
       .resume-link,
       .additional-docs {
         margin-top: 10px;
@@ -169,6 +175,11 @@
               }">Reject <strong>${
                 application.user.applicantName
               }</strong></button>
+              <button class="button schedule-button" data-email="${
+                application.user.applicantEmail
+              }">
+  Schedule Interview
+</button>
             </div>
           </div>`
             )
@@ -272,10 +283,111 @@
             }
           });
         });
+
+        // Schedule Interview
+        document.querySelectorAll(".schedule-button").forEach((button) => {
+          button.addEventListener("click", (e) => {
+            const userEmail = e.currentTarget.getAttribute("data-email");
+            openScheduleModal(userEmail);
+          });
+        });
+      }
+
+      function openScheduleModal(email) {
+        const modal = document.getElementById("scheduleModal");
+        const backdrop = document.getElementById("modalBackdrop");
+        modal.style.display = "block";
+        backdrop.style.display = "block";
+
+        const confirmButton = document.getElementById("confirmScheduleButton");
+        const cancelButton = document.getElementById("cancelScheduleButton");
+
+        // Confirm Interview
+        confirmButton.onclick = async () => {
+          const interviewDate = document.getElementById("interviewDate").value;
+
+          if (!interviewDate) {
+            alert("Please select a date and time.");
+            return;
+          }
+
+          try {
+            const response = await fetch("/api/interview", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ applicantEmail: email, interviewDate }),
+            });
+
+            if (response.ok) {
+              alert("Interview scheduled successfully.");
+              closeScheduleModal();
+            } else {
+              console.log(response);
+              console.error("Error scheduling interview:", response.statusText);
+              alert("Failed to schedule the interview.", response.statusText);
+            }
+          } catch (error) {
+            console.error("Error scheduling interview:", error);
+            alert("An error occurred. Please try again.");
+          }
+        };
+
+        // Cancel button
+        cancelButton.onclick = closeScheduleModal;
+      }
+
+      function closeScheduleModal() {
+        const modal = document.getElementById("scheduleModal");
+        const backdrop = document.getElementById("modalBackdrop");
+        modal.style.display = "none";
+        backdrop.style.display = "none";
       }
 
       // Initial fetch
       fetchJobApplications();
     </script>
+    <div
+      id="scheduleModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 5px;
+        z-index: 1000;
+      "
+    >
+      <h3>Schedule Interview</h3>
+      <label for="interviewDate">Select Date and Time:</label>
+      <input type="datetime-local" id="interviewDate" />
+      <div style="margin-top: 10px">
+        <button id="confirmScheduleButton" class="button">
+          Confirm Interview
+        </button>
+        <button id="cancelScheduleButton" class="button reject-button">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div
+      id="modalBackdrop"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      "
+    ></div>
   </body>
 </html>

@@ -1,6 +1,7 @@
 const nodemailer = require("nodemailer");
 const { User } = require("../models/user");
 const { JobApplication } = require("../models/jobApplication");
+const Interview = require("../models/interview");
 const config = require("config");
 const app = require("express");
 const router = app.Router();
@@ -13,7 +14,9 @@ router.post("/", async (req, res) => {
     _id: req.body.applicationId,
   });
   if (!jobApplication) return res.status(404).send("Application not found");
-
+  const interview = await Interview.findOne({
+    _id: req.body.interviewId,
+  });
   // Fetch user
   let user = await User.findOne({ email });
   if (!user) return res.status(404).send("User not found");
@@ -118,6 +121,9 @@ router.post("/", async (req, res) => {
     });
 
     await JobApplication.findByIdAndDelete(req.body.applicationId);
+    if (interview) {
+      await Interview.findByIdAndDelete(req.body.interviewId);
+    }
     res.send(
       "Candidate successfully hired and associated files and job application deleted"
     );

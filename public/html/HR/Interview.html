@@ -7,8 +7,63 @@
     <link rel="stylesheet" href="CSS/ramro.css" />
     <link rel="stylesheet" href="CSS/Int-style.css" />
     <link
-      href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/main.min.css"
+      rel="stylesheet"
     />
+    <style>
+      .fc-toolbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+      }
+
+      .fc-toolbar-title {
+        color: black;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      th,
+      td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .hire-btn {
+        background-color: #4caf50;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+      }
+      .hire-btn:hover {
+        background-color: #45a049;
+      }
+      .reject-btn {
+        background-color: #ff0000;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+      }
+      .reject-btn:hover {
+        background-color: #b80d0d;
+      }
+      .fc-event-title {
+        white-space: normal;
+        word-wrap: break-word;
+      }
+      #calendar {
+        width: 100%;
+        overflow: hidden;
+      }
+    </style>
   </head>
 
   <body>
@@ -29,38 +84,34 @@
         </ul>
       </aside>
 
-      <!-- Maile Fereko kura -->
+      <!-- Main Content -->
       <div class="container">
-        <main >
+        <main>
           <div class="content">
+            <h3>Scheduled Interviews</h3>
+            <!-- Table for displaying scheduled interviews -->
+            <table id="interviews-table">
+              <thead>
+                <tr>
+                  <th>Applicant Name</th>
+                  <th>Job Title</th>
+                  <th>Interview Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="interviews-list">
+                <!-- Interviews will be dynamically inserted here -->
+              </tbody>
+            </table>
+
             <h3>Integrated Calendar</h3>
             <div id="calendar"></div>
-            <button id="add-event">Add Event</button>
           </div>
         </main>
-        <main class="booki">
-          <div class="time-slot">
-          <h2 class="altercolor">Set Your Available Time</h2>
-          <form id="timeForm">
-              <label for="availableTime">Available Time:</label>
-              <input type="datetime-local" id="availableTime" name="availableTime" placeholder="Enter your available time">
-              <br><br>
-              <label for="clientEmail">Client Email:</label>
-              <input type="email" id="clientEmail" name="clientEmail" placeholder="Enter the client's email">
-              <br><br>
-              <label for="message">Message (Optional):</label>
-              <textarea id="message" name="message" placeholder="Enter an optional message"></textarea>
-              <br><br>
-              <button type="button" onclick="informClient()">Inform Client</button>
-          </form>
-          </div>
-        </main>  
-      
       </div>
-         
-      </div>
-      <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
-      <script src="JS/Int-script.js"></script>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
+    <script src="JS/interview.js"></script>
   </body>
 </html>

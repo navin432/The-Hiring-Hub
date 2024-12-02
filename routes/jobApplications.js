@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 const upload = require("../middleware/fileUpload");
+const Interview = require("../models/interview");
 const express = require("express");
 const { JobApplication, validate } = require("../models/jobApplication");
 const { Job } = require("../models/job");
@@ -285,6 +286,9 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     if (!jobApplication) {
       return res.status(404).send({ message: "Job application not found." });
     }
+    const interview = await Interview.findOne({
+      "applicant.application_id": applicationId,
+    });
     if (req.user.role === "hR") {
       const { applicantEmail, applicantName } = jobApplication.user;
       const jobTitle = jobApplication.job.title;
@@ -309,6 +313,9 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     });
 
     await JobApplication.findByIdAndDelete(applicationId);
+    if (interview) {
+      await Interview.findByIdAndDelete(interview._id);
+    }
 
     res.send("Job application and associated files deleted successfully.");
   } catch (err) {
