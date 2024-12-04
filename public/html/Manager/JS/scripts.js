@@ -1,43 +1,48 @@
-// Employee Ratings Data Structure
-
 const profileName = document.getElementById("employee-name");
 const userName = localStorage.getItem("userName");
 profileName.innerText = userName;
-const employees = {
-  emp1: {
-    name: "John Doe",
-    role: "Software Engineer",
-    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
-    remarks: "",
-  },
-  emp2: {
-    name: "Jane Smith",
-    role: "Marketing Specialist",
-    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
-    remarks: "",
-  },
-  emp3: {
-    name: "Alice Brown",
-    role: "HR Manager",
-    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
-    remarks: "",
-  },
-  emp4: {
-    name: "Chris Evans",
-    role: "Data Analyst",
-    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
-    remarks: "",
-  },
-  emp5: {
-    name: "Emily Davis",
-    role: "Product Manager",
-    ratings: { productivity: 0, teamwork: 0, punctuality: 0, innovation: 0 },
-    remarks: "",
-  },
-};
+
+let employees = {};
+
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    const response = await fetch("/api/ratings");
+    const employeesArray = await response.json();
+
+    const employeeSelector = document.getElementById("employeeSelector");
+
+    // Map the employeesArray to the employees object using _id as the key
+    employees = employeesArray.reduce((acc, curr) => {
+      const employeeKey = curr._id; // Use _id as the key for the employee
+
+      acc[employeeKey] = {
+        name: curr.employee.employeeName,
+        role: "Unknown", // You can update this if you have a role field
+        ratings: curr.ratings,
+        remarks: curr.remarks,
+        _id: curr._id,
+      };
+
+      return acc;
+    }, {});
+
+    // Loop over the employees object and create option elements
+    Object.values(employees).forEach((employee) => {
+      const option = document.createElement("option");
+      option.value = employee._id; // Ensure _id is the value
+      option.textContent = employee.name; // Display employee name
+      employeeSelector.appendChild(option);
+    });
+
+    // Initialize UI with the first employee
+    updateUIForEmployee(Object.keys(employees)[0]); // Use the first employee's _id
+  } catch (error) {
+    console.error("Error fetching employee names:", error);
+  }
+});
 
 // Current Selected Employee
-let currentEmployee = "emp1";
+let currentEmployee = null;
 
 // Star Rating System
 const categories = ["productivity", "teamwork", "punctuality", "innovation"];
@@ -55,8 +60,10 @@ categories.forEach((category) => {
 
     // Star click event
     star.addEventListener("click", () => {
-      employees[currentEmployee].ratings[category] = i;
-      updateStars(starContainer, i);
+      if (currentEmployee) {
+        employees[currentEmployee].ratings[category] = i;
+        updateStars(starContainer, i);
+      }
     });
 
     starContainer.appendChild(star);
@@ -73,51 +80,85 @@ function updateStars(container, value) {
 
 // Update the UI for the selected employee
 function updateUIForEmployee(employeeId) {
-  const employee = employees[employeeId];
-  currentEmployee = employeeId;
+  if (employeeId && employees[employeeId]) {
+    const employee = employees[employeeId];
+    currentEmployee = employeeId;
 
-  // Update stars for each category
-  categories.forEach((category) => {
-    const starContainer = document.querySelector(
-      `.stars[data-category="${category}"]`
-    );
-    const rating = employee.ratings[category];
-    updateStars(starContainer, rating);
-  });
+    // Update stars for each category
+    categories.forEach((category) => {
+      const starContainer = document.querySelector(
+        `.stars[data-category="${category}"]`
+      );
+      const rating = employee.ratings[category];
+      updateStars(starContainer, rating);
+    });
 
-  // Update remarks
-  document.getElementById("remarks").value = employee.remarks;
+    // Update remarks
+    document.getElementById("remarks").value = employee.remarks;
+  } else {
+    console.log("Data is still being fetched or invalid employeeId");
+  }
 }
 
 // Handle Employee Selection Change
 document
   .getElementById("employeeSelector")
   .addEventListener("change", (event) => {
-    const selectedEmployee = event.target.value;
+    const selectedEmployeeId = event.target.value;
 
-    // Save current employee remarks
-    employees[currentEmployee].remarks =
-      document.getElementById("remarks").value;
+    // Save current employee remarks before switching
+    if (currentEmployee) {
+      employees[currentEmployee].remarks =
+        document.getElementById("remarks").value;
+    }
 
-    // Update UI for the newly selected employee
-    updateUIForEmployee(selectedEmployee);
+    // Check if the selected employee exists
+    if (selectedEmployeeId && employees[selectedEmployeeId]) {
+      // Update UI for the newly selected employee
+      updateUIForEmployee(selectedEmployeeId);
+    } else {
+      console.error("Selected employee not found:", selectedEmployeeId);
+    }
   });
-
 // Submit Button Functionality
-document.querySelector(".btn-submit").addEventListener("click", () => {
-  const employee = employees[currentEmployee];
+document.querySelector(".btn-submit").addEventListener("click", async () => {
+  // Ensure currentEmployee is an index or an object with necessary details
+  const employee = employees[currentEmployee]; // Assuming currentEmployee is the index in the employees array
   employee.remarks = document.getElementById("remarks").value;
 
-  alert(`
-      Ratings Submitted for ${employee.name} (${employee.role}):
-      Productivity: ${employee.ratings.productivity}
-      Teamwork: ${employee.ratings.teamwork}
-      Punctuality: ${employee.ratings.punctuality}
-      Innovation: ${employee.ratings.innovation}
-      Remarks: ${employee.remarks}
-    `);
+  // Send the PUT request to update the employee's data in the database
+  try {
+    const response = await fetch(`/api/ratings/${employee._id}`, {
+      // Use employee._id directly
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        ratings: employee.ratings,
+        remarks: employee.remarks,
+      }),
+    });
 
-  updateChart();
+    if (response.ok) {
+      // Show alert with submitted ratings and remarks after a successful response
+      alert(`
+        Ratings Submitted for ${employee.name}
+        Productivity: ${employee.ratings.productivity}
+        Teamwork: ${employee.ratings.teamwork}
+        Punctuality: ${employee.ratings.punctuality}
+        Innovation: ${employee.ratings.innovation}
+        Remarks: ${employee.remarks}
+      `);
+
+      console.log("Employee ratings and remarks updated successfully.");
+      updateChart(); // Update the chart after successfully updating the employee's data
+    } else {
+      console.error("Failed to update employee data:", await response.text());
+    }
+  } catch (error) {
+    console.error("Error sending PUT request:", error);
+  }
 });
 
 // Performance Chart

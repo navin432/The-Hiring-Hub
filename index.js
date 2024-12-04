@@ -17,6 +17,7 @@ const profile = require("./routes/userProfiles");
 const onBoardData = require("./routes/userDataOnBoard");
 const employee = require("./routes/employeeRoutes");
 const training = require("./routes/trainings");
+const rating = require("./routes/ratings");
 
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
@@ -39,6 +40,7 @@ app.use("/hire", onboarding);
 app.use("/onboarding-data", onBoardData);
 app.use("/api/employeeRating", employee);
 app.use("/api/training", training);
+app.use("/api/ratings", rating);
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));

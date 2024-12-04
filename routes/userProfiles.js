@@ -2,6 +2,7 @@ const Profile = require("../models/userProfile");
 const app = require("express");
 const router = app.Router();
 const Training = require("../models/training");
+const Rating = require("../models/rating");
 
 router.get("/", async (req, res) => {
   try {
@@ -71,14 +72,29 @@ router.post("/", async (req, res) => {
     });
 
     await newProfile.save();
-    const trainingChecklist = new Training({
-      employee: {
-        _id: newProfile._id,
-        employeeName: newProfile.name,
-        employeeEmail: newProfile.email,
-      },
-    });
-    await trainingChecklist.save();
+    let training = await Training.findOne({ email });
+    if (!training) {
+      const trainingChecklist = new Training({
+        employee: {
+          _id: newProfile._id,
+          employeeName: newProfile.name,
+          employeeEmail: newProfile.email,
+        },
+      });
+      await trainingChecklist.save();
+    }
+    let rating = await Rating.findOne({ email });
+    if (!rating) {
+      const ratings = new Rating({
+        employee: {
+          _id: newProfile._id,
+          employeeName: newProfile.name,
+          employeeEmail: newProfile.email,
+        },
+      });
+      await ratings.save();
+    }
+
     res
       .status(201)
       .json({ message: "Profile created successfully", profile: newProfile });
