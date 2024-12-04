@@ -486,3 +486,78 @@ a {
 .btn--save:hover {
   background-color: #218838;
 }
+
+/* Training Page */
+.btn--mark-completed {
+  background-color: dodgerblue;
+  font-size: 1rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.status-label::before {
+  margin-left: auto;
+}
+
+.status-label:after,
+.status-label:before {
+  content: "";
+  width: 0%;
+  height: 2px;
+  background: #f44336;
+  display: block;
+  transition: 0.5s;
+}
+
+.status-label:hover::after,
+.status-label:hover::before {
+  width: 100%;
+}
+
+.training-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.training-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.training-title {
+  font-weight: 600;
+}
+
+.status-label {
+  font-weight: bold;
+  color: #666;
+  margin-right: 1rem;
+}
+
+.status-label.status-completed {
+  color: #28a745; /* Green for completed */
+}
+
+.status-label.status-pending {
+  color: #dc3545; /* Red for pending */
+}
+
+.action button {
+  padding: 0.3rem 0.6rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.action button:hover {
+  background-color: #0056b3;
+}

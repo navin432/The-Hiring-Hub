@@ -1,6 +1,7 @@
 const Profile = require("../models/userProfile");
 const app = require("express");
 const router = app.Router();
+const Training = require("../models/training");
 
 router.get("/", async (req, res) => {
   try {
@@ -70,6 +71,14 @@ router.post("/", async (req, res) => {
     });
 
     await newProfile.save();
+    const trainingChecklist = new Training({
+      employee: {
+        _id: newProfile._id,
+        employeeName: newProfile.name,
+        employeeEmail: newProfile.email,
+      },
+    });
+    await trainingChecklist.save();
     res
       .status(201)
       .json({ message: "Profile created successfully", profile: newProfile });

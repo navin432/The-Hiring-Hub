@@ -1,12 +1,11 @@
-const apiBaseUrl = "http://localhost:3000/training"; // Replace with your actual API base URL
-const employeeEmail = "john.doe@example.com"; // Replace with actual dynamic email if available
+const employeeEmail = localStorage.getItem("userEmail"); // Replace with actual dynamic email if available
 
 let trainingUpdates = {}; // To store any changes made
 
 // Fetch and populate training data
 async function fetchTrainingData() {
   try {
-    const response = await fetch(`${apiBaseUrl}/${employeeEmail}`);
+    const response = await fetch(`/api/training/${employeeEmail}`);
     if (!response.ok) throw new Error("Failed to fetch training data");
 
     const data = await response.json();
@@ -20,6 +19,7 @@ async function fetchTrainingData() {
         item.querySelector(".status-label").textContent = "Completed";
         item.querySelector(".status-label").classList.add("status-completed");
         item.querySelector(".action").textContent = ""; // No action needed for completed items
+        item.setAttribute("data-status", "completed"); // Update status attribute
       } else {
         // Update status label and add action button
         item.querySelector(".status-label").textContent = "Pending";
@@ -27,6 +27,7 @@ async function fetchTrainingData() {
         item.querySelector(
           ".action"
         ).innerHTML = `<button class="btn btn--mark-completed" data-key="${key}">Mark Completed</button>`;
+        item.setAttribute("data-status", "pending"); // Update status attribute
       }
     });
   } catch (error) {
@@ -49,6 +50,9 @@ document.addEventListener("click", (event) => {
     // Remove action button
     parent.querySelector(".action").textContent = "";
 
+    // Update the status attribute
+    parent.setAttribute("data-status", "completed");
+
     // Track the update
     trainingUpdates[key] = true;
   }
@@ -62,7 +66,7 @@ async function saveTrainingUpdates() {
   }
 
   try {
-    const response = await fetch(`${apiBaseUrl}/${employeeEmail}`, {
+    const response = await fetch(`/api/training/${employeeEmail}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
