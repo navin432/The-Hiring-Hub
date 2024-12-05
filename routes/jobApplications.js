@@ -292,6 +292,7 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     if (req.user.role === "hR") {
       const { applicantEmail, applicantName } = jobApplication.user;
       const jobTitle = jobApplication.job.title;
+      console.log("Sending Email");
 
       await sendRejectionEmail(applicantEmail, jobTitle, applicantName);
     }

@@ -106,6 +106,7 @@ router.post("/", async (req, res) => {
               <h2>Congrats !! Interview is Scheduled for ${jobApplication.job.title}</h2>
             </div>
             <div class="content">
+            <p>Dear ${jobApplication.user.applicantName},</p>
               <p>Thank you for your interest at The Hiring Hub! We are excited to meet you and get familiar with your knowledge and skills.</p>
               <p>We have scheduled your interview for the position of <strong>${jobApplication.job.title}</strong> on ${interviewDate}.</p>
               <p>If you need further help with modifying or rescheduling, feel free to reach out at any time. We’re here to assist you.</p>
@@ -168,6 +169,101 @@ router.delete("/:id", async (req, res) => {
   } catch (err) {
     console.error("Error deleting interview:", err);
     res.status(500).send("Server error");
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  const { interviewDate } = req.body;
+
+  try {
+    // Find the interview by ID
+    const interview = await Interview.findById(req.params.id);
+    if (!interview) {
+      return res.status(404).send("Interview not found");
+    }
+
+    // Update the interview date
+    interview.interviewDate = interviewDate;
+    interview.round++;
+    await interview.save();
+
+    // Send email notification
+    const mailOptions = {
+      from: '"The Hiring Hub" <thehiringhubx@gmail.com>',
+      to: interview.applicant.applicantEmail,
+      subject: "Interview Rescheduled",
+      html: `
+      <html>
+        <head>
+          <style>
+            body {
+              font-family: Arial, sans-serif;
+              color: #333;
+              margin: 0;
+              padding: 0;
+            }
+            .container {
+              max-width: 600px;
+              margin: 20px auto;
+              padding: 20px;
+              background-color: #f4f4f4;
+              border-radius: 8px;
+            }
+            .header {
+              text-align: center;
+              background-color: #007bff;
+              color: white;
+              padding: 10px;
+              border-radius: 5px;
+            }
+            .content {
+              padding: 20px;
+              background-color: white;
+              border-radius: 5px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            .footer {
+              text-align: center;
+              padding: 10px;
+              font-size: 12px;
+              color: #777;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <h2>Your Interview has been Rescheduled</h2>
+            </div>
+            <div class="content">
+              <p>Dear ${interview.applicant.applicantName},</p>
+              <p>Congratulations, on passing interview ${
+                interview.round - 1
+              } for the position of <strong>${interview.jobTitle}</strong> </p>
+              <p>Now your ${
+                interview.round
+              } interview has been scheduled to <strong>${interviewDate}</strong>.</p>
+              <p>If you have any questions or need further assistance, please feel free to reach out.</p>
+              <p>Looking forward to meeting you!</p>
+              <p>Best regards,</p>
+              <p>HR</p>
+              <p>The Hiring Hub Team</p>
+            </div>
+            <div class="footer">
+              <p>&copy; 2024 The Hiring Hub. All rights reserved.</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `,
+    };
+
+    // Send the email
+    await transporter.sendMail(mailOptions);
+    res.status(200).send("Interview updated and email sent successfully");
+  } catch (error) {
+    console.error("Error updating interview or sending email:", error);
+    res.status(500).send("Failed to update the interview or send the email");
   }
 });
 

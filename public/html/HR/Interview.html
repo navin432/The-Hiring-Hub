@@ -55,6 +55,13 @@
       .reject-btn:hover {
         background-color: #b80d0d;
       }
+      .schedule-btn {
+        padding: 5px 10px;
+        color: white;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+      }
       .fc-event-title {
         white-space: normal;
         word-wrap: break-word;
@@ -95,6 +102,7 @@
                   <th>Applicant Name</th>
                   <th>Job Title</th>
                   <th>Interview Date</th>
+                  <th>Round</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -109,6 +117,46 @@
         </main>
       </div>
     </div>
+    <div
+      id="scheduleModal"
+      style="
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: #fff;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 5px;
+        z-index: 1000;
+      "
+    >
+      <h3>Schedule Another Interview</h3>
+      <label for="interviewDate">Select Date and Time:</label>
+      <input type="datetime-local" id="interviewDate" />
+      <div style="margin-top: 10px">
+        <button id="confirmScheduleButton" class="button">
+          Confirm Interview
+        </button>
+        <button id="cancelScheduleButton" class="button reject-button">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div
+      id="modalBackdrop"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+      "
+    ></div>
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.15/index.global.min.js"></script>
     <script src="JS/interview.js"></script>

@@ -25,6 +25,10 @@ const interviewSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  round: {
+    type: Number,
+    default: 1,
+  },
 });
 
 const Interview = mongoose.model("Interview", interviewSchema);

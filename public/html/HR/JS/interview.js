@@ -2,6 +2,14 @@ const token = localStorage.getItem("authToken");
 
 document.addEventListener("DOMContentLoaded", function () {
   fetchAndRenderInterviews(); // Fetch and render interviews on page load
+
+  // Add event listener for the cancel button
+  document
+    .getElementById("cancelScheduleButton")
+    .addEventListener("click", function () {
+      document.getElementById("scheduleModal").style.display = "none";
+      document.getElementById("modalBackdrop").style.display = "none"; // Hide backdrop
+    });
 });
 
 // Function to fetch and render interviews
@@ -27,9 +35,11 @@ async function fetchAndRenderInterviews() {
           <td>${applicantName}</td>
           <td>${jobTitle}</td>
           <td>${formattedDate}</td>
+          <td>${interview.round}</td>
           <td>
-            <button class="hire-btn" data-id="${interview.applicant.application_id}" data-extra="${interview.applicant.applicantEmail}" data-ivId="${interview._id}">Hire <strong>${applicantName}</strong></button>
-            <button class="reject-btn" data-id="${interview.applicant.application_id}" data-extra="${interview._id}">Reject <strong>${applicantName}</strong></button>
+            <button class="hire-btn" data-id="${interview.applicant.application_id}" data-extra="${interview.applicant.applicantEmail}" data-ivId="${interview._id}">Hire</button>
+            <button class="reject-btn" data-id="${interview.applicant.application_id}" data-extra="${interview._id}">Reject</button>
+            <button class="schedule-btn" data-id="${interview._id}">Schedule Another Interview</button>
           </td>
         `;
       interviewsList.appendChild(interviewElement);
@@ -64,6 +74,7 @@ async function fetchAndRenderInterviews() {
 
     // Attach event listeners for hire and reject buttons
     attachButtonListeners();
+    attachScheduleButtonListeners(); // Attach listeners for schedule buttons
   } catch (error) {
     console.error("Error fetching interviews:", error);
   }
@@ -146,6 +157,53 @@ function attachButtonListeners() {
           console.error("Error rejecting applicant:", error);
         }
       }
+    });
+  });
+}
+
+// Function to attach event listeners to schedule buttons
+function attachScheduleButtonListeners() {
+  document.querySelectorAll(".schedule-btn").forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const interviewId = e.currentTarget.getAttribute("data-id");
+      document.getElementById("scheduleModal").style.display = "block";
+      document.getElementById("modalBackdrop").style.display = "block"; // Show backdrop
+
+      // Add event listener for the confirm button
+      document.getElementById("confirmScheduleButton").onclick =
+        async function () {
+          const interviewDate = document.getElementById("interviewDate").value;
+
+          if (!interviewDate) {
+            alert("Please select a date and time for the interview.");
+            return;
+          }
+
+          try {
+            const response = await fetch(`/api/interview/${interviewId}`, {
+              method: "PUT",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+              },
+              body: JSON.stringify({ interviewDate }),
+            });
+
+            if (response.ok) {
+              alert("Interview scheduled successfully.");
+              fetchAndRenderInterviews(); // Refresh the table
+              document.getElementById("scheduleModal").style.display = "none"; // Close modal
+              document.getElementById("modalBackdrop").style.display = "none"; // Hide backdrop
+            } else {
+              alert("Error scheduling the interview. Please try again.");
+            }
+          } catch (error) {
+            console.error(
+              "An error occurred while scheduling the interview:",
+              error
+            );
+          }
+        };
     });
   });
 }
