@@ -34,37 +34,22 @@
           <h1>Promotions</h1>
         </header>
 
-        <!-- Filter and Search Section -->
-        <section>
-          <h2>Filter Employees</h2>
-          <div class="filter-container">
-            <label for="department">Department:</label>
-            <select id="department">
-              <option value="all">All</option>
-              <option value="software">Software</option>
-              <option value="marketing">Marketing</option>
-              <option value="hr">Human Resources</option>
-              <option value="finance">Finance</option>
-            </select>
-
-            <label for="searchEmployee">Search Employee:</label>
-            <input
-              type="text"
-              id="searchEmployee"
-              placeholder="Search by name or ID"
-            />
-          </div>
-        </section>
-
         <!-- Promote Employee Section -->
         <section>
           <h2>Promote an Employee</h2>
           <form id="promotionForm">
             <label for="employee">Select Employee:</label>
             <select id="employee">
+              <option value="" disabled selected>Select an Employee</option>
               <!-- Options populated dynamically -->
             </select>
-
+            <label for="previousPosition">Previous Position:</label>
+            <input
+              type="text"
+              id="previousPosition"
+              placeholder="Previous Position"
+              disabled
+            />
             <label for="newPosition">New Position:</label>
             <input
               type="text"

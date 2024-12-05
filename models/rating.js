@@ -30,6 +30,14 @@ const ratingSchema = new mongoose.Schema({
       date: { type: String },
     },
   ],
+  promotions: [
+    {
+      newPosition: { type: String },
+      previousPosition: { type: String },
+      justification: { type: String },
+      date: { type: Date },
+    },
+  ],
 });
 
 const Rating = mongoose.model("Rating", ratingSchema);
