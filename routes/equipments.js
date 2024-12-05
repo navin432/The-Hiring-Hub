@@ -14,6 +14,7 @@ router.post("/", async (req, res) => {
     other = {},
   } = req.body;
 
+  console.log(req.body);
   // Validate the request body
   if (!employeeEmail) {
     return res.status(400).json({ error: "Employee email is required" });
@@ -57,8 +58,7 @@ router.post("/", async (req, res) => {
 // Route to get all equipment details
 router.get("/", async (req, res) => {
   try {
-    // Fetch all equipment details from the database
-    const equipmentList = await Equipment.find().populate("employee");
+    const equipmentList = await Equipment.find();
     if (equipmentList.length === 0) {
       return res.status(404).json({ message: "No equipment found" });
     }

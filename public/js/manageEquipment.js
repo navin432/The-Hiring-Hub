@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     const response = await fetch("/api/profiles");
     if (!response.ok) throw new Error("Failed to fetch employee data");
     let employeeData = await response.json();
-    console.log(employeeData);
 
     // Populate the employee table
     employeeData.forEach((employee) => {
@@ -44,8 +43,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   // Function to open the modal
   function openModal(email) {
     assignEquipmentModal.style.display = "block";
-    // You can set the email of the employee in the form if needed
-    // For example, to send the employee email along with the equipment details
     const emailField = document.createElement("input");
     emailField.type = "hidden";
     emailField.name = "employeeEmail";
@@ -63,12 +60,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     event.preventDefault(); // Prevent the default form submission
 
     const formData = new FormData(assignEquipmentForm);
-    const data = {};
-    formData.forEach((value, key) => {
-      data[key] = value;
-    });
+    const data = {
+      employeeEmail: formData.get("employeeEmail"),
+      laptop: {
+        isProvided: formData.get("laptop") ? true : false,
+        brand: formData.get("laptop") || "",
+      },
+      smartphone: {
+        isProvided: formData.get("smartphone") ? true : false,
+        brand: formData.get("smartphone") || "",
+      },
+      vehicle: {
+        isProvided: formData.get("vehicle") ? true : false,
+        brand: formData.get("vehicle") || "",
+      },
+      transportationFacility: {
+        isProvided: formData.get("transportation") ? true : false,
+        brand: formData.get("transportation") || "",
+      },
+      other: {
+        isProvided: formData.get("other") ? true : false,
+        brand: formData.get("other") || "",
+      },
+    };
 
-    // POST request to create equipment assignment
     try {
       const response = await fetch("/api/equipments", {
         method: "POST",
@@ -83,7 +98,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         // Optionally, close the modal after success
         assignEquipmentModal.style.display = "none";
         // Refresh the equipment table to reflect changes
-        location.reload();
+        loadEquipmentData();
       } else {
         throw new Error("Failed to assign equipment");
       }
@@ -91,4 +106,55 @@ document.addEventListener("DOMContentLoaded", async () => {
       console.error("Error assigning equipment:", error);
     }
   });
+
+  // Function to load equipment data into the table
+  async function loadEquipmentData() {
+    try {
+      const response = await fetch("/api/equipments");
+      if (!response.ok) throw new Error("Failed to fetch equipment data");
+      const responseData = await response.json();
+      const equipmentData = responseData.equipmentList;
+      console.log(equipmentData);
+
+      // Clear the existing rows in the table
+      equipmentTable.innerHTML = "";
+
+      // Populate the equipment table with the latest data
+      equipmentData.forEach((equipment) => {
+        const row = equipmentTable.insertRow();
+        row.innerHTML = `
+          <td>${equipment.employee.employeeName}</td>
+          <td>${equipment.employee.employeeEmail}</td>
+          <td>${
+            equipment.laptop.isProvided
+              ? equipment.laptop.brand
+              : "Not Provided"
+          }</td>
+          <td>${
+            equipment.smartphone.isProvided
+              ? equipment.smartphone.brand
+              : "Not Provided"
+          }</td>
+          <td>${
+            equipment.vehicle.isProvided
+              ? equipment.vehicle.brand
+              : "Not Provided"
+          }</td>
+          <td>${
+            equipment.transportationFacility.isProvided
+              ? equipment.transportationFacility.brand
+              : "Not Provided"
+          }</td>
+          <td>${
+            equipment.other.isProvided ? equipment.other.brand : "Not Provided"
+          }</td>
+        `;
+      });
+    } catch (error) {
+      console.error("Error loading equipment data:", error);
+    }
+  }
+
+  // Load the equipment data when the page is ready
+  loadEquipmentData();
 });
