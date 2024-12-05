@@ -204,4 +204,42 @@ router.put("/", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  try {
+    const users = await User.find().select("-password"); // Exclude the password field
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(500).send("Error retrieving users: " + error.message);
+  }
+});
+
+router.put("/it/:id", async (req, res) => {
+  const { name, email, role } = req.body;
+  const userId = req.params.id;
+
+  // Validate the input
+  if (!name || !email || !role) {
+    return res.status(400).send("Name, email, and role are required.");
+  }
+
+  try {
+    // Find the user by ID and update the fields
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { name, email, role },
+      { new: true } // Return the updated user object
+    );
+
+    if (!updatedUser) {
+      return res.status(404).send("User not found.");
+    }
+
+    // Return the updated user object as the response
+    res.status(200).send(updatedUser);
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).send("Server error");
+  }
+});
+
 module.exports = router;
