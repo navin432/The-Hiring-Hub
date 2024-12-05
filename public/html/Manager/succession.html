@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Succession Planning</title>
-  <link rel="stylesheet" href="CSS/styles.css">
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Succession Planning</title>
+    <link rel="stylesheet" href="CSS/styles.css" />
+  </head>
+  <body>
     <div class="dashboard-container">
       <!-- Sidebar -->
       <aside class="sidebar">
@@ -22,71 +22,74 @@
         </div>
         <ul>
           <li><a href="../managerDashboard.html">Dashboard</a></li>
-          <li><a href="promotions.html" >Promotions</a></li>
-          <li><a href="succession.html" class="active">Succession Planning</a></li>
+          <li><a href="promotions.html">Promotions</a></li>
+          <li>
+            <a href="succession.html" class="active">Succession Planning</a>
+          </li>
           <li><a class="btn-logout" href="../../index.html">Logout</a></li>
         </ul>
       </aside>
-  
+
       <!-- Main Content -->
       <main class="main-content">
         <header>
           <h1>Succession Planning</h1>
         </header>
-  
-        <!-- Current Positions and Potential Successors -->
+
+        <!-- Ready for Promotion Section -->
         <section>
-          <h2>Key Roles and Potential Successors</h2>
+          <h2>Employees Ready for Promotion</h2>
           <table>
             <thead>
               <tr>
-                <th>Key Role</th>
-                <th>Current Holder</th>
-                <th>Potential Successors</th>
-                <th>Action</th>
+                <th>Employee Name</th>
+                <th>Email</th>
+                <th>Average Rating</th>
+                <th>Ready For Promotion?</th>
               </tr>
             </thead>
-            <tbody id="keyRolesTable">
+            <tbody id="readyForPromotionTable">
               <!-- Rows populated dynamically -->
             </tbody>
           </table>
         </section>
-  
-        <!-- Add Successor -->
+
+        <!-- Employee Details Section -->
         <section>
-          <h2>Add a Successor</h2>
-          <form id="addSuccessorForm">
-            <label for="role">Select Role:</label>
-            <select id="role">
-              <!-- Options populated dynamically -->
-            </select>
-  
-            <label for="successor">Select Successor:</label>
-            <select id="successor">
-              <!-- Options populated dynamically -->
-            </select>
-  
-            <label for="readiness">Readiness Level:</label>
-            <select id="readiness">
-              <option value="Ready Now">Ready Now</option>
-              <option value="1-2 Years">1-2 Years</option>
-              <option value="3-5 Years">3-5 Years</option>
-            </select>
-  
-            <label for="developmentPlan">Development Plan:</label>
-            <textarea id="developmentPlan" placeholder="Outline the plan to prepare the successor" rows="4"></textarea>
-  
-            <button type="submit" class="btn-submit">Add Successor</button>
+          <h2>Employee Details</h2>
+          <form id="employeeForm">
+            <label for="employeeIdOrEmail">Employee ID or Email:</label>
+            <input
+              type="text"
+              id="employeeIdOrEmail"
+              placeholder="Enter ID or Email"
+              required
+            />
+            <button type="submit">Search</button>
           </form>
-        </section>
-  
-        <!-- Succession Readiness Chart -->
-        <section>
-          <h2>Succession Readiness Overview</h2>
-          <canvas id="successionChart" width="400" height="200"></canvas>
+
+          <div id="employeeDetails" class="employee-details-container">
+            <h3 class="employee-details-heading">Employee Information</h3>
+            <div class="employee-info">
+              <p><strong>Name:</strong> <span id="employeeName"></span></p>
+              <p><strong>Email:</strong> <span id="employeeEmail"></span></p>
+            </div>
+            <div class="employee-ratings">
+              <p><strong>Ratings:</strong></p>
+              <ul class="ratings-list">
+                <li>Productivity: <span id="productivity"></span></li>
+                <li>Teamwork: <span id="teamwork"></span></li>
+                <li>Punctuality: <span id="punctuality"></span></li>
+                <li>Innovation: <span id="innovation"></span></li>
+              </ul>
+            </div>
+            <p class="average-rating">
+              <strong>Average Rating:</strong> <span id="averageRating"></span>
+            </p>
+          </div>
         </section>
       </main>
     </div>
+    <script src="JS/succession.js" defer></script>
   </body>
-<script src="JS/succession.js" defer></script>
 </html>

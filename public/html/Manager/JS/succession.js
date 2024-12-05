@@ -1,71 +1,116 @@
-document.addEventListener("DOMContentLoaded", async () => {
-  const keyRolesTable = document.getElementById("keyRolesTable");
-  const roleSelector = document.getElementById("role");
-  const successorSelector = document.getElementById("successor");
+document.addEventListener("DOMContentLoaded", () => {
+  const readyForPromotionTable = document.getElementById(
+    "readyForPromotionTable"
+  );
+  const employeeForm = document.getElementById("employeeForm");
+  const employeeDetails = document.getElementById("employeeDetails");
 
-  // Fetch roles and populate dropdowns and table
-  async function fetchRoles() {
-    const response = await fetch("http://localhost:5000/api/succession");
-    const roles = await response.json();
+  // Elements for displaying employee details
+  const employeeName = document.getElementById("employeeName");
+  const employeeEmail = document.getElementById("employeeEmail");
+  const productivity = document.getElementById("productivity");
+  const teamwork = document.getElementById("teamwork");
+  const punctuality = document.getElementById("punctuality");
+  const innovation = document.getElementById("innovation");
+  const averageRating = document.getElementById("averageRating");
 
-    // Populate role dropdown
-    roles.forEach(role => {
-      const option = document.createElement("option");
-      option.value = role._id;
-      option.textContent = role.name;
-      roleSelector.appendChild(option);
-    });
+  // Hide employee details initially
+  employeeDetails.style.display = "none";
 
-    // Populate key roles table
-    roles.forEach(role => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${role.name}</td>
-        <td>${role.currentHolder?.name || "Vacant"}</td>
-        <td>
-          ${role.successors.map(s => `${s.name} (${s.readiness})`).join(", ") || "None"}
-        </td>
-        <td><button data-role-id="${role._id}" class="btn-remove">Remove</button></td>
-      `;
-      keyRolesTable.appendChild(row);
-    });
+  // Fetch all ratings and display employees ready for promotion
+  async function fetchRatings() {
+    try {
+      const response = await fetch("/api/ratings");
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+      const ratings = await response.json();
+
+      // Clear table before populating
+      readyForPromotionTable.innerHTML = "";
+
+      ratings.forEach((rating) => {
+        const { employee, ratings: scores } = rating;
+        const average =
+          (scores.productivity +
+            scores.teamwork +
+            scores.punctuality +
+            scores.innovation) /
+          4;
+
+        const row = document.createElement("tr");
+        const status = average >= 4 ? "Ready" : "Not Ready";
+        const statusClass = average >= 4 ? "ready" : "not-ready";
+
+        row.innerHTML = `
+          <td>${employee.employeeName}</td>
+          <td>${employee.employeeEmail}</td>
+          <td>${average.toFixed(2)}</td>
+          <td class="${statusClass}">${status}</td>
+        `;
+        readyForPromotionTable.appendChild(row);
+      });
+    } catch (error) {
+      console.error("Error fetching ratings:", error);
+      readyForPromotionTable.innerHTML =
+        "<tr><td colspan='4'>Failed to load data.</td></tr>";
+    }
   }
 
-  // Fetch employees and populate successors dropdown
-  async function fetchEmployees() {
-    const response = await fetch("http://localhost:5000/api/employees");
-    const employees = await response.json();
+  // Fetch specific employee details by ID or email
+  async function fetchEmployeeDetails(identifier) {
+    try {
+      const response = await fetch(`/api/ratings`);
+      if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+      const ratings = await response.json();
 
-    employees.forEach(employee => {
-      const option = document.createElement("option");
-      option.value = employee._id;
-      option.textContent = employee.name;
-      successorSelector.appendChild(option);
-    });
+      // Find employee by ID or email
+      const rating = ratings.find(
+        (rating) =>
+          rating.employee._id === identifier ||
+          rating.employee.employeeEmail === identifier
+      );
+
+      if (!rating) {
+        alert("No details found for the provided Employee ID or Email.");
+        return;
+      }
+
+      const { employee, ratings: scores } = rating;
+      const average =
+        (scores.productivity +
+          scores.teamwork +
+          scores.punctuality +
+          scores.innovation) /
+        4;
+
+      // Display employee details
+      employeeName.textContent = employee.employeeName;
+      employeeEmail.textContent = employee.employeeEmail;
+      productivity.textContent = scores.productivity;
+      teamwork.textContent = scores.teamwork;
+      punctuality.textContent = scores.punctuality;
+      innovation.textContent = scores.innovation;
+      averageRating.textContent = average.toFixed(2);
+
+      employeeDetails.style.display = "block";
+    } catch (error) {
+      console.error("Error fetching employee details:", error);
+      alert("Failed to fetch employee details.");
+    }
   }
 
-  // Add successor
-  document.getElementById("addSuccessorForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const roleId = roleSelector.value;
-    const successorId = successorSelector.value;
-    const readiness = document.getElementById("readiness").value;
-    const developmentPlan = document.getElementById("developmentPlan").value;
-
-    const response = await fetch("http://localhost:5000/api/succession/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ roleId, successorId, readiness, developmentPlan }),
-    });
-
-    const data = await response.json();
-    alert(data.message);
-    location.reload(); // Refresh to reflect changes
+  // Event listener for fetching specific employee details
+  employeeForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const identifier = document
+      .getElementById("employeeIdOrEmail")
+      .value.trim();
+    if (identifier) {
+      fetchEmployeeDetails(identifier);
+    } else {
+      alert("Please enter a valid Employee ID or Email.");
+    }
   });
 
-  await fetchRoles();
-  await fetchEmployees();
+  // Fetch ratings on page load
+  fetchRatings();
 });
-
-  

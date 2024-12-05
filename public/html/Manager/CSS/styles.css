@@ -305,3 +305,95 @@ table th {
 .btn-logout {
   color: #ff4d4d;
 }
+
+/* Succession Planning */
+.ready {
+  color: green;
+  font-weight: bold;
+}
+.not-ready {
+  color: red;
+  font-weight: bold;
+}
+
+.employee-details-container {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+/* Heading */
+.employee-details-heading {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  color: #333;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+/* Employee info section */
+.employee-info p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Ratings section */
+.employee-ratings {
+  margin-top: 15px;
+}
+
+.employee-ratings p {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.ratings-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ratings-list li {
+  font-size: 1rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Average rating */
+.average-rating {
+  font-size: 1.2rem;
+  margin-top: 15px;
+  color: #333;
+  text-align: center;
+}
+
+.average-rating span {
+  font-weight: bold;
+  color: #007bff; /* Highlight average rating */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .employee-details-container {
+    padding: 15px;
+  }
+
+  .employee-details-heading {
+    font-size: 1.2rem;
+  }
+
+  .employee-info p,
+  .ratings-list li,
+  .average-rating {
+    font-size: 0.9rem;
+  }
+}
