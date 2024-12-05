@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         ratings: curr.ratings,
         remarks: curr.remarks,
         _id: curr._id,
+        average: curr.average,
       };
 
       return acc;
@@ -98,6 +99,7 @@ function updateUIForEmployee(employeeId) {
   } else {
     console.log("Data is still being fetched or invalid employeeId");
   }
+  updateChart(employeeId);
 }
 
 // Handle Employee Selection Change
@@ -122,11 +124,15 @@ document
   });
 // Submit Button Functionality
 document.querySelector(".btn-submit").addEventListener("click", async () => {
-  // Ensure currentEmployee is an index or an object with necessary details
-  const employee = employees[currentEmployee]; // Assuming currentEmployee is the index in the employees array
+  const employee = employees[currentEmployee];
   employee.remarks = document.getElementById("remarks").value;
+  const avgRating =
+    (employee.ratings.productivity +
+      employee.ratings.teamwork +
+      employee.ratings.punctuality +
+      employee.ratings.innovation) /
+    4;
 
-  // Send the PUT request to update the employee's data in the database
   try {
     const response = await fetch(`/api/ratings/${employee._id}`, {
       // Use employee._id directly
@@ -137,6 +143,10 @@ document.querySelector(".btn-submit").addEventListener("click", async () => {
       body: JSON.stringify({
         ratings: employee.ratings,
         remarks: employee.remarks,
+        average: {
+          value: avgRating,
+          date: new Date().toISOString().split("T")[0],
+        },
       }),
     });
 
@@ -144,15 +154,24 @@ document.querySelector(".btn-submit").addEventListener("click", async () => {
       // Show alert with submitted ratings and remarks after a successful response
       alert(`
         Ratings Submitted for ${employee.name}
-        Productivity: ${employee.ratings.productivity}
-        Teamwork: ${employee.ratings.teamwork}
-        Punctuality: ${employee.ratings.punctuality}
-        Innovation: ${employee.ratings.innovation}
-        Remarks: ${employee.remarks}
       `);
 
       console.log("Employee ratings and remarks updated successfully.");
-      updateChart(); // Update the chart after successfully updating the employee's data
+      const updatedEmployees = await fetch("/api/ratings");
+      const updatedEmployeesArray = await updatedEmployees.json();
+      employees = updatedEmployeesArray.reduce((acc, curr) => {
+        const employeeKey = curr._id;
+        acc[employeeKey] = {
+          name: curr.employee.employeeName,
+          role: "Unknown", // Update as needed
+          ratings: curr.ratings,
+          remarks: curr.remarks,
+          _id: curr._id,
+          average: curr.average,
+        };
+        return acc;
+      }, {});
+      updateChart(employee._id); // Update the chart after successfully updating the employee's data
     } else {
       console.error("Failed to update employee data:", await response.text());
     }
@@ -166,11 +185,11 @@ const ctx = document.getElementById("performanceChart").getContext("2d");
 let performanceChart = new Chart(ctx, {
   type: "line",
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May"],
+    labels: ["2024 Jan 1"],
     datasets: [
       {
         label: "Performance Score",
-        data: [3, 4, 4, 5, 4],
+        data: [null],
         borderColor: "#3498db",
         backgroundColor: "rgba(52, 152, 219, 0.2)",
         tension: 0.3,
@@ -182,24 +201,34 @@ let performanceChart = new Chart(ctx, {
     plugins: {
       legend: { display: false },
     },
-    scales: { y: { beginAtZero: true } },
+    scales: { y: { beginAtZero: true, max: 5 } },
   },
 });
 
 // Update Chart Data Dynamically (example logic; adjust as needed)
-function updateChart() {
-  const avgRating =
-    (employees[currentEmployee].ratings.productivity +
-      employees[currentEmployee].ratings.teamwork +
-      employees[currentEmployee].ratings.punctuality +
-      employees[currentEmployee].ratings.innovation) /
-    4;
+function updateChart(employeeId) {
+  if (employeeId) {
+    const employee = employees[employeeId];
+    const averageRatings = employee.average;
+    const chartData = performanceChart.data;
+    chartData.labels = [];
+    chartData.datasets[0].data = [];
+    averageRatings.forEach((rating, index) => {
+      // Add average rating to the chart data
+      chartData.datasets[0].data.push(rating.value);
 
-  performanceChart.data.datasets[0].data.push(avgRating);
-  performanceChart.data.labels.push(
-    `Update ${performanceChart.data.labels.length + 1}`
-  );
-  performanceChart.update();
+      // Add the corresponding date to the labels
+      const date = new Date(rating.date);
+      const formattedDate = `${date.getFullYear()} ${date.toLocaleString(
+        "default",
+        { month: "short" }
+      )} ${date.getDate()}`;
+      chartData.labels.push(formattedDate);
+    });
+    performanceChart.update();
+  } else {
+    console.log("Employee Id not found");
+  }
 }
 
 // Initialize UI for the default selected employee

@@ -1,5 +1,5 @@
 const express = require("express");
-const Rating = require("../models/rating"); // Mongoose model
+const Rating = require("../models/rating");
 const router = express.Router();
 
 // Fetch all ratings
@@ -38,7 +38,7 @@ router.get("/:employeeId", async (req, res) => {
 router.put("/:employeeId", async (req, res) => {
   // Modified to use only employeeId, not month
   const { employeeId } = req.params; // Extract employeeId from the URL
-  const { ratings, remarks } = req.body;
+  const { ratings, remarks, average } = req.body;
 
   try {
     // Find the rating for the employee
@@ -50,7 +50,12 @@ router.put("/:employeeId", async (req, res) => {
     // Update the ratings and remarks
     rating.ratings = ratings;
     rating.remarks = remarks;
-
+    if (average.value && average.date) {
+      rating.average.push({
+        value: average.value,
+        date: average.date,
+      });
+    }
     await rating.save();
     res.send(rating);
   } catch (err) {

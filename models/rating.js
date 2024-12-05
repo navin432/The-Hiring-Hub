@@ -24,6 +24,12 @@ const ratingSchema = new mongoose.Schema({
     innovation: { type: Number, default: 0 },
   },
   remarks: { type: String, default: "" },
+  average: [
+    {
+      value: { type: Number },
+      date: { type: String },
+    },
+  ],
 });
 
 const Rating = mongoose.model("Rating", ratingSchema);

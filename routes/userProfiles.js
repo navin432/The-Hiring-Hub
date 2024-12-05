@@ -91,6 +91,10 @@ router.post("/", async (req, res) => {
           employeeName: newProfile.name,
           employeeEmail: newProfile.email,
         },
+        average: {
+          value: 0,
+          date: new Date().toISOString().split("T")[0],
+        },
       });
       await ratings.save();
     }
