@@ -198,3 +198,98 @@ body {
 .modal .btn-cancel:hover {
   background-color: #e57373; /* Darker shade of red on hover */
 }
+
+/* Equipments Model */
+/* Styling specific to the assignEquipmentModal */
+#assignEquipmentModal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Background overlay */
+  justify-content: center; /* Center the modal */
+  align-items: center; /* Center the modal */
+}
+
+#assignEquipmentModal .modal-content {
+  background-color: white;
+  margin: 5% auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 50%; /* Adjust width as needed */
+  max-width: 600px; /* Limit max width */
+}
+
+#assignEquipmentModal h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+/* Form styling within the modal */
+#assignEquipmentModal form {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* Space between inputs */
+}
+
+#assignEquipmentModal label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#assignEquipmentModal input {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+#assignEquipmentModal .btn-primary {
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#assignEquipmentModal .btn-primary:hover {
+  background-color: #575757;
+}
+
+#assignEquipmentModal .btn-cancel {
+  padding: 10px 20px;
+  background-color: rgb(255, 144, 64); /* Light red background */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem; /* Same font size for consistency */
+}
+
+#assignEquipmentModal .btn-cancel:hover {
+  background-color: #e57373; /* Darker shade of red on hover */
+}
+
+/* Ensure buttons appear in a row and have proper spacing */
+#assignEquipmentModal .modal button {
+  margin-top: 10px;
+  display: inline-block;
+  margin-right: 10px; /* Space between buttons */
+}
+
+#assignEquipmentModal .btn-cancel {
+  background-color: #e57373; /* Different background for cancel button */
+}
+
+/* Responsive design: ensure modal looks good on small screens */
+@media (max-width: 768px) {
+  #assignEquipmentModal .modal-content {
+    width: 90%; /* Take up most of the screen width */
+  }
+}
